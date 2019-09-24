@@ -1,17 +1,24 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-import logo from '../logo.png';
+import Home from './Home';
+import About from './About';
+
 import './App.css';
+import Nav from './Nav';
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Authors Haven by coding geeks.</p>
-        </header>
+        <BrowserRouter>
+          <header className="App-header">
+            <Nav />
+          </header>
+          <Route exact path="/" component={Home} />
+          <Route path="/About" component={About} />
+        </BrowserRouter>
       </div>
     </Provider>
   );
