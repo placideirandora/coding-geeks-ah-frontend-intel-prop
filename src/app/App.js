@@ -3,9 +3,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import './App.scss';
 import store from './store';
-import Home from './Home';
-import About from './About';
-import Nav from './Nav';
+import Home from '../feature/Home';
+import About from '../feature/About';
+import Nav from './routes/Nav';
 
 
 function App() {
