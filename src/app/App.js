@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import './App.scss';
 import store from './store';
 import Home from './Home';
 import About from './About';
-
-import './App.css';
 import Nav from './Nav';
+
 
 function App() {
   return (
