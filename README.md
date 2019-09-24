@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/andela/coding-geeks-ah-frontend.svg?branch=develop)](https://travis-ci.org/andela/coding-geeks-ah-frontend)
+
 # Authors Haven - A Social platform for the creative at heart.
 
 ## Vision
