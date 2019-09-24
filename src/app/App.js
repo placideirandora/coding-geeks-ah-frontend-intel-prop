@@ -1,9 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './redux/store';
-import logo from './logo.png';
+import store from './store';
+import logo from '../logo.png';
 import './App.css';
-
 
 function App() {
   return (
