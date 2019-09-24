@@ -1,20 +1,70 @@
 @import './layout/base';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
-.App {
-  text-align: center;
+body {
+  background: #fff;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 1px;
+
+  .App {
+    text-align: center;
+
+    .App-header {
+      background-color: #282c34;
+      height: 6.2rem;
+      font-size: 25px;
+      color: white;
+    }
+    
+  }
+
+  .nav-wrapper {
+    .App-logo {
+      height: 5rem;
+      margin: 10px 10px 10px 50px;;
+      float: left;
+    }
+
+    .right {
+      float: right;
+    }
+
+    .last {
+      margin-right: 50px;
+    }
+
+    ul {
+      display: flex;
+
+      li {
+        list-style-type: none;
+        text-transform: uppercase;
+        line-height: 45px;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          padding: 15px 20px 15px 20px;
+          font-size: 1.2rem;
+          font-weight: bolder;
+        }
+        
+        a:hover {
+          background: #fff;
+          color: #282c34;
+          cursor: pointer;
+        }
+      }
+  
+    }
+
+  }
+  
+  .intro {
+    margin-top: 20%;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
