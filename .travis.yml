@@ -1,6 +1,7 @@
 env:
   global:
     - NODE_ENV=test
+    - CC_TEST_REPORTER_ID=07758a32e0ff3c81eb5b7991df82f4f4d1b5e10df342cc0a536fcb4ca7bf3a36
 language: node_js
 node_js:
   - 'stable'
@@ -12,6 +13,7 @@ before_script:
 script:
   - npm run test:CI
   - npm run coverage
-after_success:
+after_script:
   - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
+after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
