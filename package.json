@@ -10,7 +10,9 @@
     "e2e:test": "cypress open",
     "eject": "react-scripts eject",
     "coverage": "react-scripts test --coverage",
-    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
+    "test": "react-scripts test --watchAll",
+    "e2e:test": "cypress open"
   },
   "dependencies": {
     "css-loader": "^3.2.0",
@@ -28,6 +30,7 @@
   "devDependencies": {
     "cypress": "^3.4.1",
     "coveralls": "^3.0.6",
+    "cypress": "^3.4.1",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
