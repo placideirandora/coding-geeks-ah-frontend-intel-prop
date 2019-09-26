@@ -1,12 +1,19 @@
 env:
   global:
     - NODE_ENV=test
+    - CC_TEST_REPORTER_ID=07758a32e0ff3c81eb5b7991df82f4f4d1b5e10df342cc0a536fcb4ca7bf3a36
 language: node_js
 node_js:
   - 'stable'
 before_script:
   - npm run build
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - npm run test:CI
-after_success:
   - npm run coverage
+after_script:
+  - COVERALLS_REPO_TOKEN=$coveralls_repo_token npm run coveralls
+after_success:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
