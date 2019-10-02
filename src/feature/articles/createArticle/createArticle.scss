@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+$btn-background-color: #ffffff;
+$btn-font-color: #4887c2;
+
+.mainDiv {
+  width: 70vw;
+  margin: 3rem auto;
+}
+.input {
+  border: none;
+  font-size: 16px;
+  padding: 5px;
+  width: 99%;
+  height: 50px;
+  &:focus {
+    outline-width: thin;
+  }
+}
+
+.btn {
+  border-radius: 20px;
+  &:focus {
+    outline: none;
+  }
+  &__create {
+    margin-top: 2em;
+    margin-left: 89%;
+    height: 2em;
+    width: 6em;
+    font-size: 18px;
+    background-color: $btn-background-color;
+    color: $btn-font-color;
+    border-color: $btn-font-color;
+  }
+}
+
+div .ck-editor__editable_inline {
+  height: 250px;
+}
+@media screen and (max-width: 576px) {
+  .btn {
+    &__create {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      margin-left: 30%;
+    }
+  }
+  div .ck-editor__editable_inline {
+    height: 150px;
+  }
+}
+@media screen and (min-width: 578px) {
+  .btn {
+    &__create {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      margin-left: 74%;
+    }
+  }
+}
+@media screen and (min-width: 650px) {
+  .btn {
+    &__create {
+      margin-left: 80%;
+    }
+  }
+}
