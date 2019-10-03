@@ -1,26 +1,30 @@
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
-import store from './store';
 import Home from '../feature/Home';
 import About from '../feature/About';
 import Nav from './routes/Nav';
+import Login from '../feature/authentication/login/LoginComponent';
 
 
 function App() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <BrowserRouter>
-          <header className="App-header">
-            <Nav />
-          </header>
+    <div className="App">
+      <BrowserRouter>
+        <header className="App-header">
+          <Nav />
+        </header>
+        <ToastContainer />
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/About" component={About} />
-        </BrowserRouter>
-      </div>
-    </Provider>
+          <Route path="/login" component={Login} />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 
