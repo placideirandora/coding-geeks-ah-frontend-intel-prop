@@ -27,7 +27,7 @@
   display: table;
 }
 .form-control {
-  border-right: 1px solid #000000;
+  border-right: solid #000000;
 }
 .form-group {
   height: 60px;
@@ -39,19 +39,21 @@ input {
   border-top: 0;
   border-right: 0;
   border-left: 0;
-  border-bottom: 1 px solid #eceaea;
+  border-bottom: solid #e5e5e5;
 }
-input:focus {
-  border-top: 0;
-  border-right: 0;
-  border-left: 0;
-  border-bottom: 1 px solid #eceaea;
+:focus {
+  outline: 0;
 }
 input[type='email'] {
-  font-size: 20px;
+  font-size: 15px;
+  color: #000000;
 }
 input[type='password'] {
-  font-size: 20px;
+  font-size: 15px;
+}
+input::placeholder {
+  color: #000000;
+  letter-spacing: 1px;
 }
 .reset-control {
   width: 90%;
@@ -60,35 +62,50 @@ input[type='password'] {
 .reset-link {
   text-decoration: none;
   color: #868383;
+  font-size: 14px;
 }
 .btn {
-  border-radius: 25px;
+  border-radius: 15px;
   border: 1px solid #599bda;
-  font-size: 20px;
+  font-size: 16px;
   padding: 5px 30px;
   color: #599bda;
   background: #ffffff;
   cursor: pointer;
+  margin-top: 0px;
 }
-.social-button {
-  text-decoration: none;
-  color: white;
+.social-login-control {
+  padding-top: 50px;
 }
-.social-btn-control {
-  width: 90%;
-  margin: 20px;
-  height: auto;
+.social-login-btn {
+  border: none;
+  width: 70%;
+  margin: 1% 0 1% 9%;
   padding: 10px;
+  font-size: 1vw;
+  outline: none;
+  color: #ffffff;
+  cursor: pointer;
 }
-.btn-facebook {
-  background: #3b5998;
+.social-login-btn:hover {
+  cursor: pointer;
 }
 .btn-google {
-  background: #d44638;
+  background: #d9483b;
 }
 .btn-twitter {
-  background: #38a1f3;
+  background: #3dadf2;
 }
+.btn-facebook {
+  background: #355b8c;
+}
+
+@media screen and (max-width: 900px) and (min-width: 700px) {
+  .reset-link {
+    font-size: 12px;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .row {
     width: 100%;
@@ -96,14 +113,14 @@ input[type='password'] {
   }
   .col {
     float: none;
-    width: 90%;
+    width: 80%;
     margin: auto;
   }
   .form-control {
     border-right: none;
   }
   input {
-    width: 100%;
+    width: 90%;
     height: 40px;
     border-top: 0;
     border-right: 0;
@@ -111,19 +128,20 @@ input[type='password'] {
     border-bottom: 1 px solid #eceaea;
   }
   .reset-control {
-    width: 100%;
+    width: 90%;
     text-align: right;
+  }
+  .social-login-btn {
+    width: 90%;
+    margin: 2px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
   }
 }
 @media screen and (max-width: 700px) {
-  .social-button {
-    text-decoration: none;
-    color: white;
-  }
-  .social-btn-control {
-    width: 90%;
-    margin: 20px;
-    height: 40px;
-    padding: 10px;
+  .social-login-control {
+    margin-bottom: 60px;
   }
 }

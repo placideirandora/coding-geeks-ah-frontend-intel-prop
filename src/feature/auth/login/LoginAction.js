@@ -26,11 +26,11 @@ export const login = (email, password) => async (dispatch) => {
     localStorage.setItem('token', token);
     localStorage.setItem('username', user.username);
     const { message } = data;
-    toast.success(message);
+    toast.success(message, { position: toast.POSITION.TOP_CENTER });
     dispatch(loginSuccess(token, user, message));
   } catch (error) {
     const message = (await error.response) ? error.response.data.error : 'Something wrong';
-    toast.error(message);
+    toast.error(message, { position: toast.POSITION.TOP_CENTER });
     dispatch(loginError(message));
   }
 };

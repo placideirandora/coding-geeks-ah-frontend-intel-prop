@@ -4,22 +4,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import logo from '../../logo.png';
-import Logout from '../../feature/authentication/logout/Logout';
-import { login } from '../../feature/authentication/login/LoginAction';
+import Logout from '../../feature/auth/logout/Logout';
+import { login } from '../../feature/auth/login/LoginAction';
 
 export class Navbar extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     isAuthenticated: false,
-  //   };
-  // }
-
-  // componentDidMount = () => {
-  //   const { isAuthenticated } = this.props;
-  //   this.setState({ isAuthenticated });
-  // };
-
   render() {
     const { isAuthenticated } = this.props;
     return (
@@ -34,7 +22,10 @@ export class Navbar extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/About" className="last">About</Link>
+                <Link to="/About">About</Link>
+              </li>
+              <li>
+                <Link to="/login" className="last">Login</Link>
               </li>
             </ul>
           ) : (
@@ -43,9 +34,9 @@ export class Navbar extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/About" className="last">About</Link>
+                <Link to="/About">About</Link>
               </li>
-              <li>
+              <li className="last">
                 <Logout />
               </li>
             </ul>

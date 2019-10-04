@@ -47,7 +47,7 @@ describe('Submit button test...', () => {
   let submitButton;
   beforeAll(() => {
     instance = wrapper.instance();
-    submitButton = wrapper.find('button[type="submit"]');
+    submitButton = wrapper.find('.btn');
     submitButton.simulate('click');
   });
   it('Should make a request to the server', () => {

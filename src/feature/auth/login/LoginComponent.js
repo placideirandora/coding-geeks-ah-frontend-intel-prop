@@ -46,7 +46,7 @@ export class Login extends Component {
           <div className="login-row">
             <h1>Log In</h1>
             <p>
-              <b>New to Authors Haven?</b>
+              New to Authors Haven?
               {' '}
               <span>
                 <Link to="/signup" className="sign-up-link">Sign Up</Link>
@@ -78,8 +78,7 @@ export class Login extends Component {
                     />
                   </div>
 
-                  <div className="reset-control"><Link to="/resetPasswordRequest" className="reset-link">Forgot Password?</Link></div>
-                  <br />
+                  <div className="reset-control"><Link to="/resetPassword" className="reset-link">Forgot Password?</Link></div>
                   <br />
                   <button type="submit" className="btn">
                     Login
@@ -88,15 +87,15 @@ export class Login extends Component {
               </form>
             </div>
             <div className="social-login-control col">
-              <p className="social-btn-control btn-facebook">
-                <Link to="/signup" className="social-button">Log in with Facebook</Link>
-              </p>
-              <p className="social-btn-control btn-google">
-                <Link to="/signup" className="social-button">Log in with Google</Link>
-              </p>
-              <p className="social-btn-control btn-twitter">
-                <Link to="/signup" className="social-button">Log in with Twitter</Link>
-              </p>
+              <button type="submit" className="social-login-btn btn-google">
+                LOGIN WITH GOOGLE
+              </button>
+              <button type="submit" className="social-login-btn btn-twitter">
+                LOGIN WITH TWITTER
+              </button>
+              <button type="submit" className="social-login-btn btn-facebook">
+                LOGIN WITH FACEBOOK
+              </button>
             </div>
           </div>
         </div>

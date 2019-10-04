@@ -7,7 +7,7 @@ import './App.scss';
 import Home from '../feature/Home';
 import About from '../feature/About';
 import Nav from './routes/Nav';
-import Login from '../feature/authentication/login/LoginComponent';
+import Login from '../feature/auth/login/LoginComponent';
 
 
 function App() {
