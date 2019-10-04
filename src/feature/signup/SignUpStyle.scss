@@ -1,0 +1,198 @@
+.heading {
+  text-align: center;
+  margin-bottom: 3%;
+
+  a {
+    text-decoration: none;
+    color: #599bda;
+  }
+}
+
+.flex-container {
+  display: flex;
+
+  .left-section {
+    flex-basis: 600px;
+    border-right: #000000 solid;
+    margin-left: 8%;
+   
+
+    form {
+      margin: 0 0 0 40%;
+      flex-shrink: 1;
+
+      .field {
+        padding: 10px;
+
+        input {
+          width: 80%;
+          padding: 8px;
+          font-size: 15px;
+          border: none;
+          outline: none;
+          border-bottom: solid #e5e5e5;
+        }
+
+        input::placeholder {
+          color: #000000;
+          letter-spacing: 1px;
+        }
+      }
+
+      button {
+        margin: 5% 0 0 5%;
+        padding: 9px;
+        color: #599bda;
+        border-color: #599bda;
+        border-radius: 15px;
+        outline: none;
+        font-size: 16px;
+        width: 30%;
+      }
+
+      button:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .right-section {
+    flex-basis: 500px;
+    margin-top: 8%;
+  
+
+    button {
+      width: 60%;
+      margin: 0 0 1% 4%;
+      padding: 14px;
+      font-size: 16px;
+      outline: none;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .google {
+      background: #d9483b;
+    }
+
+    .twitter {
+      background: #3dadf2;
+    }
+
+    .facebook {
+      background: #355b8c;
+    }
+  }
+}
+
+
+@media (min-width: 800px) and (max-width: 858px) {
+  .flex-container {
+
+    .left-section {
+        form {
+          margin-left: 30%;
+        }
+
+    }
+
+    .right-section {
+        margin-top: 11%;
+        
+        button {
+          font-size: 15px;
+        }
+
+    }
+  }
+}
+
+@media (min-width: 421px) and (max-width: 857px) {
+  .flex-container {
+    flex-flow: column;
+    
+    .left-section {
+      form {
+        margin-left: 8%;
+
+        button {
+          margin-left: 2%;
+          width: 20%;
+        }
+      }
+    }
+
+    .right-section {
+      margin-top: 0%;
+
+      button {
+        width: 40%;
+        margin: 2% 0 0 16%;
+      }
+    }
+  }
+}
+
+@media (min-width: 321px) and (max-width: 420px) {
+  .heading {
+      h1 {
+        font-size: 14vw;
+      }
+  }
+
+  .flex-container {
+    flex-direction: column;
+
+    .left-section {
+      form {
+        margin-left: 8%;
+
+        button {
+          margin-left: 2%;
+          width: 30%;
+        }
+      }
+    }
+
+    .right-section {
+      margin-top: 0%;
+
+      button {
+        width: 60%;
+        margin: 2% 0 0 16%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .heading {
+    h1 {
+      font-size: 12vw;
+    }
+  }
+
+  .flex-container {
+    flex-direction: column;
+
+    .left-section {
+      form {
+        margin-left: 8%;
+
+        button {
+          margin-left: 2%;
+          width: 30%;
+        }
+      }
+    }
+
+    .right-section {
+      margin-top: 0%;
+
+      button {
+        width: 60%;
+        margin: 2% 0 0 16%;
+      }
+    }
+  }
+}
