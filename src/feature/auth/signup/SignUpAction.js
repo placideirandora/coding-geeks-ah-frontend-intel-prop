@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { REGISTER_USER_SUCCESS, REGISTER_USER_ERROR } from './SignUpConstants';
+import { BACKEND_URL } from '../../../app/common/config/appConfig';
 
 const registerUser = user => async dispatch => {
   try {
@@ -12,17 +13,14 @@ const registerUser = user => async dispatch => {
       password,
       confirmPassword
     } = user;
-    const response = await axios.post(
-      'https://codinggeeks-ah-backnd-staging.herokuapp.com/api/v1/users/signup',
-      {
-        firstName,
-        lastName,
-        userName,
-        email,
-        password,
-        confirmPassword
-      }
-    );
+    const response = await axios.post(`${BACKEND_URL}/users/signup`, {
+      firstName,
+      lastName,
+      userName,
+      email,
+      password,
+      confirmPassword
+    });
     dispatch({
       type: REGISTER_USER_SUCCESS,
       user,
