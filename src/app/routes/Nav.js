@@ -25,7 +25,7 @@ export class Navbar extends Component {
             </li>
             <li>
               <Link to="/Signup" className="last">
-                Sign Up
+                SignUp
               </Link>
             </li>
           </ul>
