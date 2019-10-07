@@ -6,9 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import store from './store';
 import Home from '../feature/Home';
-import About from '../feature/About';
 import Nav from './routes/Nav';
-import SignUp from '../feature/signup/SignUpComponent';
+import SignUp from '../feature/auth/signup/SignUpComponent';
 
 toast.configure();
 
@@ -22,7 +21,6 @@ function App() {
             <Nav />
           </header>
           <Route exact path="/" component={Home} />
-          <Route path="/About" component={About} />
           <Route path="/Signup" component={SignUp} />
         </BrowserRouter>
       </div>

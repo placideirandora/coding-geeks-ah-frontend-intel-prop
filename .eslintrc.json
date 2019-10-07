@@ -4,6 +4,9 @@
     "jest": true,
     "es6": true
   },
+  "globals": {
+    "cy": true
+  },
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,

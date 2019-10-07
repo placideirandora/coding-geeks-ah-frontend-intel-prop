@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import SignUpComponent from '../SignUpComponent';
-import store from '../../../app/store/index';
+import store from '../../../../app/store/index';
 
 const Wrapper = mount(
   <Provider store={store}>

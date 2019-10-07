@@ -34,82 +34,101 @@ class SignUp extends Component {
     return (
       <div>
         <div className="heading">
-          <h1>Sign Up</h1>
-          <p>
+          <h1 className="heading__title">Sign Up</h1>
+          <p className="heading__body">
             Already have an account? &nbsp;
-            <a href="/login">Log In</a>
+            <a href="/login" className="heading__link">
+              Log In
+            </a>
           </p>
         </div>
         <div className="flex-container">
-          <div className="left-section">
-            <form onSubmit={this.handleSubmit}>
-              <div className="field">
+          <div className="flex-container__left-section">
+            <form className="flex-container__form" onSubmit={this.handleSubmit}>
+              <div className="flex-container__field">
                 <input
                   type="text"
                   id="firstName"
                   placeholder="Firstname"
                   onChange={this.handleChange}
                   required
+                  className="flex-container__input"
                 />
               </div>
-              <div className="field">
+              <div className="flex-container__field">
                 <input
                   type="text"
                   id="lastName"
                   placeholder="Lastname"
                   required
                   onChange={this.handleChange}
+                  className="flex-container__input"
                 />
               </div>
-              <div className="field">
+              <div className="flex-container__field">
                 <input
                   type="text"
                   id="userName"
                   placeholder="Username"
                   required
                   onChange={this.handleChange}
+                  className="flex-container__input"
                 />
               </div>
-              <div className="field">
+              <div className="flex-container__field">
                 <input
                   type="email"
                   id="email"
                   placeholder="Email"
                   required
                   onChange={this.handleChange}
+                  className="flex-container__input"
                 />
               </div>
-              <div className="field">
+              <div className="flex-container__field">
                 <input
                   type="password"
                   id="password"
                   placeholder="Password"
                   required
                   onChange={this.handleChange}
+                  className="flex-container__input"
                 />
               </div>
-              <div className="field">
+              <div className="flex-container__field">
                 <input
                   type="password"
                   id="confirmPassword"
                   placeholder="Confirm Password"
                   required
                   onChange={this.handleChange}
+                  className="flex-container__input"
                 />
               </div>
-              <button type="submit">Sign Up</button>
+              <button type="submit" className="flex-container__button">
+                Sign Up
+              </button>
             </form>
           </div>
-          <div className="right-section">
-            <button type="submit" className="google">
+          <div className="flex-container__right-section">
+            <button
+              type="submit"
+              className="flex-container__social-btn flex-container__google-btn"
+            >
               LOGIN WITH GOOGLE
             </button>
             <br />
-            <button type="submit" className="twitter">
+            <button
+              type="submit"
+              className="flex-container__social-btn flex-container__twitter-btn"
+            >
               LOGIN WITH TWITTER
             </button>
             <br />
-            <button type="submit" className="facebook">
+            <button
+              type="submit"
+              className="flex-container__social-btn flex-container__facebook-btn"
+            >
               LOGIN WITH FACEBOOK
             </button>
           </div>
