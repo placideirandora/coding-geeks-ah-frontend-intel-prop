@@ -2,7 +2,7 @@
 /* eslint-disable no-undef */
 describe('Knowledge Base Application', () => {
   beforeEach(() => {
-    cy.fixture('users/user').as('user');
+    cy.fixture('users/LogIn').as('user');
   });
   it('Should be able to login: user', function () {
     cy.visit('/login');

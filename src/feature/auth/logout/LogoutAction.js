@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import * as userActionTypes from './LogoutActionTypes';
-import { BACKEND_URL } from '../../../app/config/appConfig';
+import { BACKEND_URL } from '../../../app/common/config/appConfig';
 
 export const logoutSuccess = (message) => ({
   type: userActionTypes.LOGOUT_SUCCESS,

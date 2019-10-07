@@ -10,12 +10,12 @@ export class Login extends Component {
     super(props);
     this.state = {
       email: '',
-      password: '',
+      password: ''
     };
   }
 
   componentDidMount = () => {
-    this.setState((prevState) => ({ ...prevState }));
+    this.setState(prevState => ({ ...prevState }));
   };
 
   componentDidUpdate = () => {
@@ -31,8 +31,7 @@ export class Login extends Component {
     return isAuthenticated ? this.props.history.push('/') : null;
   };
 
-
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
     this.props.login(email, password);
@@ -46,10 +45,11 @@ export class Login extends Component {
           <div className="login-row">
             <h1>Log In</h1>
             <p>
-              New to Authors Haven?
-              {' '}
+              New to Authors Haven?{' '}
               <span>
-                <Link to="/signup" className="sign-up-link">Sign Up</Link>
+                <Link to="/signup" className="sign-up-link">
+                  Sign Up
+                </Link>
               </span>
             </p>
           </div>
@@ -78,7 +78,11 @@ export class Login extends Component {
                     />
                   </div>
 
-                  <div className="reset-control"><Link to="/resetPassword" className="reset-link">Forgot Password?</Link></div>
+                  <div className="reset-control">
+                    <Link to="/resetPassword" className="reset-link">
+                      Forgot Password?
+                    </Link>
+                  </div>
                   <br />
                   <button type="submit" className="btn">
                     Login
@@ -104,11 +108,11 @@ export class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.login.isAuthenticated,
+const mapStateToProps = state => ({
+  isAuthenticated: state.login.isAuthenticated
 });
 
 export default connect(
   mapStateToProps,
-  { login },
+  { login }
 )(Login);

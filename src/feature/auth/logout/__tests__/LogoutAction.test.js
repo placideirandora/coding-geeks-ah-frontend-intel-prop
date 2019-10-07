@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import axios from 'axios';
 import { logout } from '../LogoutAction';
-import { BACKEND_URL } from '../../../../app/config/appConfig';
+import { BACKEND_URL } from '../../../../app/common/config/appConfig';
 import LocalStorage from '../../../../__mocks__/localStorage';
 
 const middleware = [thunk];

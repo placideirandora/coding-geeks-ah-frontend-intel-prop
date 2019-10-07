@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt from 'jwt-decode';
 import { toast } from 'react-toastify';
 import * as userActionTypes from './LoginActionTypes';
-import { BACKEND_URL } from '../../../app/config/appConfig';
+import { BACKEND_URL } from '../../../app/common/config/appConfig';
 
 export const loginSuccess = (token, user, message) => ({
   type: userActionTypes.LOGIN_SUCCESS,

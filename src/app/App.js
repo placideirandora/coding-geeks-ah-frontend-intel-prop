@@ -1,14 +1,15 @@
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import Home from '../feature/Home';
-import About from '../feature/About';
 import Nav from './routes/Nav';
+import SignUp from '../feature/auth/signup/SignUpComponent';
 import Login from '../feature/auth/login/LoginComponent';
 
+toast.configure();
 
 function App() {
   return (
@@ -20,8 +21,8 @@ function App() {
         <ToastContainer />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/About" component={About} />
           <Route path="/login" component={Login} />
+          <Route path="/Signup" component={SignUp} />
         </Switch>
       </BrowserRouter>
     </div>

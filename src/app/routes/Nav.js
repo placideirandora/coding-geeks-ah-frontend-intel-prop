@@ -15,39 +15,43 @@ export class Navbar extends Component {
         <Link to="/">
           <img src={logo} className="App-logo" alt="authors haven logo" />
         </Link>
-        {!isAuthenticated
-          ? (
-            <ul className="right">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/About">About</Link>
-              </li>
-              <li>
-                <Link to="/login" className="last">Login</Link>
-              </li>
-            </ul>
-          ) : (
-            <ul className="right">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/About">About</Link>
-              </li>
-              <li className="last">
-                <Logout />
-              </li>
-            </ul>
-          )}
+        {!isAuthenticated ? (
+          <ul className="right">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/Signup" className="last">
+                SignUp
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className="right">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/About">About</Link>
+            </li>
+            <li className="last">
+              <Logout />
+            </li>
+          </ul>
+        )}
       </nav>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.login.isAuthenticated,
+const mapStateToProps = state => ({
+  isAuthenticated: state.login.isAuthenticated
 });
 
-export default connect(mapStateToProps, { login })(Navbar);
+export default connect(
+  mapStateToProps,
+  { login }
+)(Navbar);

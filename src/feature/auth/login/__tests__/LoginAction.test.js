@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 import moxios from 'moxios';
 import axios from 'axios';
 import { login } from '../LoginAction';
-import { BACKEND_URL } from '../../../../app/config/appConfig';
+import { BACKEND_URL } from '../../../../app/common/config/appConfig';
 
 const loginData = {
   email: 'carlos@gmail.com',
