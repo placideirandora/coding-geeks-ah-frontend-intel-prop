@@ -1,14 +1,17 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-props-no-spreading */
 /* istanbul ignore file */
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import checkAuthUser from '../../app/helpers/CheckAuthUser';
+import { connect } from 'react-redux';
 
-
-const user = checkAuthUser();
 
 const ProtectedRoutes = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (user.isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />)} />
+  <Route {...rest} render={props => (rest.isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />)} />
 );
 
-export default ProtectedRoutes;
+const mapStateToProps = state => ({
+  isAuthenticated: state.login.isAuthenticated
+});
+
+export default connect(mapStateToProps)(ProtectedRoutes);

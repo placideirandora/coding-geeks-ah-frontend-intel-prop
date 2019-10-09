@@ -1,17 +1,30 @@
+import axios from 'axios';
 import moxios from 'moxios';
-import appMockStore from '../../../__mocks__/mockStoreConfig';
+import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import createArticle from '../createArticle/createArticleAction';
 import {
   CREATE_ARTICLE_SUCCESS,
   CREATE_ARTICLE_FAIL
-} from '../createArticle/constants';
+} from '../constants';
+import LocalStorage from '../../../__mocks__/localStorage';
+
+const middleware = [thunk];
+const mockStore = configureStore(middleware);
+const store = mockStore({});
+
+let storage;
+const token = 'Invalid token';
 
 describe('Create Article success', () => {
   beforeEach(() => {
-    moxios.install();
+    moxios.install(axios);
+    storage = window.localStorage.setItem('token', token);
+    window.localStorage = new LocalStorage();
   });
   afterEach(() => {
     moxios.uninstall();
+    store.clearActions();
   });
 
   test('Should return CREATE_ARTICLE_SUCCESS action', () => {
@@ -28,37 +41,69 @@ describe('Create Article success', () => {
     };
 
     const expectedAction = [CREATE_ARTICLE_SUCCESS];
-    const store = appMockStore({});
     return store.dispatch(createArticle(mockArticles)).then(() => {
       const dispatchedActions = store.getActions();
-      const dispatchedTypes = dispatchedActions.map(action => action.type);
 
+      const dispatchedTypes = dispatchedActions.map(action => action.type);
       expect(dispatchedTypes).toEqual(expectedAction);
     });
   });
-  test('Should return CREATE_ARTICLE_FAIL action', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 400,
-
-        data: {
-          error: 'title is requiredB'
-        }
-      });
+  test('login testing error', () => {
+    const expected = {
+      status: 400,
+      error: 'SERVER ERROR!  Please contact the administartor'
+    };
+    moxios.stubRequest(/.*/, {
+      response: expected
     });
     const mockArticles = {
       description: 'I knew that would happen soon but i kept it inside',
       body: 'I knew that would happen soon but i kept it inside'
     };
+    return store.dispatch(createArticle(mockArticles)).then(() => {
+      expect(store.getActions().length).toEqual(1);
+    });
+  });
+});
 
+describe('Create article fail', () => {
+  beforeEach(() => {
+    moxios.install(axios);
+    storage = window.localStorage.setItem('token', token);
+    window.localStorage = new LocalStorage();
+  });
+  afterEach(() => {
+    moxios.uninstall(axios);
+    store.clearActions();
+  });
+
+  test('Should return CREATE_ARTICLE_FAIL action', () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 400,
+        response: {
+          error: 'Bad request'
+        }
+      });
+    });
+    const expected = {
+      status: 400,
+      error: 'SERVER ERROR!  Please contact the administartor'
+    };
+    moxios.stubRequest('/.*', {
+      response: expected
+    });
+    const mockArticles = {
+      title: 'So I the last one standing',
+      description: 'I knew that would happen soon but i kept it inside',
+      body: 'I knew that would happen soon but i kept it inside'
+    };
     const expectedAction = [CREATE_ARTICLE_FAIL];
-    const store = appMockStore({});
     return store.dispatch(createArticle(mockArticles)).then(() => {
       const dispatchedActions = store.getActions();
       const dispatchedTypes = dispatchedActions.map(action => action.type);
-
-      expect(dispatchedTypes.length).toEqual(expectedAction);
+      expect(dispatchedTypes).toEqual(expectedAction);
     });
   });
 });

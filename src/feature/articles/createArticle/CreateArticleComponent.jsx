@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import createArticle from './createArticleAction';
-import editorConfigs from '../../../app/helpers/ckeditorConfig';
+import editorConfigs from '../../../app/config/ckeditorConfig';
 import 'react-toastify/dist/ReactToastify.css';
 import './createArticle.scss';
 
 export class CreateArticle extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       title: '',
       description: '',
@@ -29,7 +28,6 @@ export class CreateArticle extends Component {
     const {
       title, description, tags, category, body
     } = this.state;
-
     const { createArticle } = this.props;
     event.preventDefault();
     createArticle({
@@ -89,7 +87,7 @@ export class CreateArticle extends Component {
         </div>
         <div className="input input--form">
           <CKEditor
-            className="input input__body"
+            className="input input__body"
             editor={ClassicEditor}
             data={body}
             onChange={(event, editor) => {
@@ -99,7 +97,11 @@ export class CreateArticle extends Component {
             config={editorConfigs}
           />
           <div className="btn btn--submit">
-            <button className="btn btn__create" type="submit" onClick={this.handleSubmit}>
+            <button
+              className="btn btn__create"
+              type="submit"
+              onClick={this.handleSubmit}
+            >
               Create
             </button>
           </div>

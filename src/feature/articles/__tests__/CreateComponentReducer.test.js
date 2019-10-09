@@ -1,7 +1,7 @@
 import {
   CREATE_ARTICLE_SUCCESS,
   CREATE_ARTICLE_FAIL
-} from '../createArticle/constants';
+} from '../constants';
 import createArticleReducer, {
   initialState
 } from '../createArticle/createArticleReducer';
