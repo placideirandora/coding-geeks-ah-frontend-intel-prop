@@ -81,9 +81,6 @@
     outline: none;
   }
 }
-.social-login-control {
-  padding-top: 50px;
-}
 .social-login-btn {
   border: none;
   width: 70%;
@@ -93,18 +90,6 @@
   outline: none;
   color: #ffffff;
   cursor: pointer;
-}
-.social-login-btn:hover {
-  cursor: pointer;
-}
-.btn-google {
-  background: #d9483b;
-}
-.btn-twitter {
-  background: #3dadf2;
-}
-.btn-facebook {
-  background: #355b8c;
 }
 
 @media screen and (max-width: 900px) and (min-width: 700px) {
@@ -146,9 +131,24 @@
     cursor: pointer;
     font-size: 16px;
   }
+  .social-login-img {
+    width: 80%;  
+  }
+  .btn {
+    width: 40%;
+  }
 }
 @media screen and (max-width: 700px) {
   .social-login-control {
     margin-bottom: 60px;
+  }
+  .field span {
+    visibility: visible;
+  }
+}
+@media screen and (max-width: 850px) {
+  .row {
+    width: 70%;
+    margin: auto;
   }
 }
