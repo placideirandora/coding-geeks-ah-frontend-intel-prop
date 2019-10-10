@@ -1,0 +1,18 @@
+.heading {
+  margin-bottom: 3%;
+  text-align: center;
+}
+
+.grid-container {
+  &__field {
+    text-align: center;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__key {
+      font-weight: bold;
+      margin-right: 30px;
+  }
+}
