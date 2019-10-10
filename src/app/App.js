@@ -25,14 +25,14 @@ function App() {
           </header>
           <ToastContainer />
           <Switch>
-          <Route path="/forgot" component={ForgotPassword} />
-          <Route path="/reset-password/:token" component={ResetPassword} />
-          <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/Signup" component={SignUp} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+            <Route path="/forgot" component={ForgotPassword} />
+            <Route path="/users/reset-password/:token" component={ResetPassword} />
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
+            <Route path="/Signup" component={SignUp} />
+          </Switch>
+        </BrowserRouter>
+      </div>
     </Provider>
   );
 }

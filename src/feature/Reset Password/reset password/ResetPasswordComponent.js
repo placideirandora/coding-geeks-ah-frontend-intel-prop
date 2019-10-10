@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { resetPasswordAction } from './resetPasswordAction';
+import resetPasswordAction from './resetPasswordAction';
 import '../resetPassword.scss';
 
 export class ResetPassword extends Component {
@@ -13,16 +13,18 @@ export class ResetPassword extends Component {
       confirmPassword: ''
     };
   }
-  onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
   }
-  onSubmit = (e) => {
-    e.preventDefault();
+
+  onSubmit = (event) => {
+    event.preventDefault();
     const { password, confirmPassword } = this.state;
     const {
-      match: { params: { token } }
+      match: { params: { token } }, resetPasswordAction
     } = this.props;
-    this.props.resetPasswordAction(password, confirmPassword, token, this.props);
+    resetPasswordAction(password, confirmPassword, token, this.props);
   };
 
   render() {
@@ -32,19 +34,19 @@ export class ResetPassword extends Component {
         <br />
         <form onSubmit={this.onSubmit}>
           <div className="reset">
-          <h1>
+            <h1>
             Reset Password
-          </h1>
-          <p>
+            </h1>
+            <p>
             Enter your new password and confirm it, then hit Reset
-          </p>
+            </p>
           </div>
           <div className="inputForm">
             <input id="password" type="password" name="password" placeholder="New Password" onChange={this.onChange} value={password} />
             <input id="confirmPassword" type="password" name="confirmPassword" placeholder="Retype New Password" onChange={this.onChange} value={confirmPassword} />
           </div>
           <div className="formButton">
-            <button type="submit" className="send">Update Password</button>
+            <button type="submit" className="send">Reset</button>
           </div>
         </form>
       </div>
@@ -53,6 +55,6 @@ export class ResetPassword extends Component {
 }
 
 ResetPassword.propTypes = {
-    resetPasswordAction: PropTypes.func.isRequired,
+  resetPasswordAction: PropTypes.func.isRequired,
 };
 export default connect(null, { resetPasswordAction })(ResetPassword);

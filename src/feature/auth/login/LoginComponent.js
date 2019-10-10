@@ -45,7 +45,8 @@ export class Login extends Component {
           <div className="login-row">
             <h1>Log In</h1>
             <p>
-              New to Authors Haven?{' '}
+              New to Authors Haven?
+              {' '}
               <span>
                 <Link to="/signup" className="sign-up-link">
                   Sign Up

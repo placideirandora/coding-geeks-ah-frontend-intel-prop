@@ -11,11 +11,11 @@ export default function (state = initialState, action) {
         ...state,
         message: payload,
       };
-      case RESET_PASSWORD_FAIL:
-        return {
-          ...state,
-          message: payload,
-        };
+    case RESET_PASSWORD_FAIL:
+      return {
+        ...state,
+        message: payload,
+      };
     default:
       return state;
   }
