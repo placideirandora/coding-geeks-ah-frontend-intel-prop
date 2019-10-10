@@ -33,8 +33,7 @@ describe('Create Article reducer', () => {
 
   it('Should test No_ACTION/DEFAULT', () => {
     const reducer = createArticleReducer(initialState, {
-      payload: {
-      }
+      payload: {}
     });
     expect(reducer.article).toEqual({});
   });

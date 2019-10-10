@@ -70,15 +70,6 @@ describe('Iputs on change tests', () => {
     });
     expect(wrapper.state('tags')).toEqual('Tourism Beaches Scuba-diving');
   });
-  // it('Should insert into body field', () => {
-  //   const CKEditor = wrapper.find('.input__body');
-  //   // CKEditor.simulate('change', {
-  //   //   ckeeditor: {
-  //   //     data: 'Tourism Beaches Scuba-diving in watamu beaches'
-  //   //   }
-  //   // });
-  //   // expect(wrapper.state('body')).toEqual('Tourism Beaches Scuba-diving');
-  // });
 });
 
 describe('On submit tests', () => {

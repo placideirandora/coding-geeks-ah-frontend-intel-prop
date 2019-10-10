@@ -1,4 +1,5 @@
 /* eslint-disable no-param-reassign */
+/* istanbul ignore file */
 import axios from 'axios';
 
 async function getCloudinaryImageUrl(file) {

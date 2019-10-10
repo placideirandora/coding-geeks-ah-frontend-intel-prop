@@ -2,7 +2,7 @@ import { CREATE_ARTICLE_SUCCESS, CREATE_ARTICLE_FAIL } from '../constants';
 
 
 export const initialState = {
-  article: []
+  article: {}
 };
 
 export default (state = initialState, action) => {

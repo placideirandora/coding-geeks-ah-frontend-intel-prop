@@ -1,6 +1,6 @@
 import { GET_ARTICLES_SUCCESS, GET_ARTICLES_FAIL } from '../constants';
 
-const initialState = {
+export const initialState = {
   articles: []
 };
 

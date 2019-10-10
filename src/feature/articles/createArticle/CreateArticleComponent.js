@@ -35,8 +35,8 @@ export class CreateArticle extends Component {
       description,
       tags,
       category,
-      body
-    });
+      body,
+    }, this.props);
   };
 
   render() {
@@ -52,6 +52,7 @@ export class CreateArticle extends Component {
             name="title"
             value={title}
             onChange={this.onChange}
+            required
             placeholder="Enter title ...."
           />
         </div>
@@ -62,17 +63,8 @@ export class CreateArticle extends Component {
             name="description"
             value={description}
             onChange={this.onChange}
+            required
             placeholder="Give a descriptive summary"
-          />
-        </div>
-        <div className=" input input--form">
-          <input
-            className="input input__tags"
-            type="text"
-            name="tags"
-            value={tags}
-            onChange={this.onChange}
-            placeholder="Enter tags for your Article"
           />
         </div>
         <div className="input input--form">
@@ -90,12 +82,23 @@ export class CreateArticle extends Component {
             className="input input__body"
             editor={ClassicEditor}
             data={body}
+            required
             onChange={(event, editor) => {
               const data = editor.getData();
               this.setState({ body: data });
             }}
             config={editorConfigs}
           />
+          <div className=" input input--form">
+            <input
+              className="input input__tags"
+              type="text"
+              name="tags"
+              value={tags}
+              onChange={this.onChange}
+              placeholder="Enter tags for your Article"
+            />
+          </div>
           <div className="btn btn--submit">
             <button
               className="btn btn__create"
