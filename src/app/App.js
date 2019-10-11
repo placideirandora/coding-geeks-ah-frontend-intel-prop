@@ -12,6 +12,7 @@ import SignUp from '../feature/auth/signup/SignUpComponent';
 import Login from '../feature/auth/login/LoginComponent';
 import ForgotPassword from '../feature/Reset Password/forgot password/ForgotPasswordComponent';
 import ResetPassword from '../feature/Reset Password/reset password/ResetPasswordComponent';
+import SingleArticle from '../feature/article/getSingleArticle/ReadSingleArticleComponent';
 
 toast.configure();
 
@@ -30,6 +31,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route path="/login" component={Login} />
             <Route path="/Signup" component={SignUp} />
+            <Route path="/articles/:slug" component={SingleArticle} />
           </Switch>
         </BrowserRouter>
       </div>
