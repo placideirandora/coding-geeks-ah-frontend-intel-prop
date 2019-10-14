@@ -45,7 +45,8 @@ export class Login extends Component {
           <div className="login-row">
             <h1>Log In</h1>
             <p>
-              New to Authors Haven?{' '}
+              New to Authors Haven?
+              {' '}
               <span>
                 <Link to="/signup" className="sign-up-link">
                   Sign Up
@@ -59,6 +60,7 @@ export class Login extends Component {
                 <div className="field">
                   <div className="form-group">
                     <input
+                      className="loginInput"
                       type="email"
                       placeholder="Email"
                       name="email"
@@ -69,6 +71,7 @@ export class Login extends Component {
                   </div>
                   <div className="form-group">
                     <input
+                      className="loginInput"
                       type="password"
                       placeholder="Password"
                       name="password"
@@ -79,12 +82,12 @@ export class Login extends Component {
                   </div>
 
                   <div className="reset-control">
-                    <Link to="/resetPassword" className="reset-link">
+                    <Link to="/forgot" className="reset-link">
                       Forgot Password?
                     </Link>
                   </div>
                   <br />
-                  <button type="submit" className="btn">
+                  <button type="submit" className="loginBtn">
                     Login
                   </button>
                 </div>
