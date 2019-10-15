@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import QueryString from 'query-string';
 import { login } from './LoginAction';
 import './Login.scss';
 
@@ -27,8 +27,9 @@ export class Login extends Component {
   };
 
   redirectOnSuccess = () => {
-    const { isAuthenticated } = this.props;
-    return isAuthenticated ? this.props.history.push('/') : null;
+    const { isAuthenticated, location } = this.props;
+    const { redirectTo } = QueryString.parse(location.search);
+    return isAuthenticated ? this.props.history.push(redirectTo || '/') : null;
   };
 
   handleSubmit = e => {
@@ -48,9 +49,9 @@ export class Login extends Component {
               New to Authors Haven?
               {' '}
               <span>
-                <Link to="/signup" className="sign-up-link">
+                <a href="/signup" className="sign-up-link">
                   Sign Up
-                </Link>
+                </a>
               </span>
             </p>
           </div>
@@ -82,9 +83,9 @@ export class Login extends Component {
                   </div>
 
                   <div className="reset-control">
-                    <Link to="/forgot" className="reset-link">
+                    <a href="/forgot" className="reset-link">
                       Forgot Password?
-                    </Link>
+                    </a>
                   </div>
                   <br />
                   <button type="submit" className="loginBtn">
@@ -114,6 +115,12 @@ export class Login extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.login.isAuthenticated
 });
+
+Login.defaultProps = {
+  location: {
+    search: ''
+  }
+};
 
 export default connect(
   mapStateToProps,
