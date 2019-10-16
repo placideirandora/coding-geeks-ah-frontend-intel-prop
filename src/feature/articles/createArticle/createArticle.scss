@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+$btn-background-color: #ffffff;
+$btn-font-color: #4887c2;
+
+.mainDiv {
+  width: 70vw;
+  margin: 3rem auto;
+}
+.input {
+  border: none;
+  font-size: 16px;
+  padding: 5px;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 3px;
+  &:focus {
+    outline-width: thin;
+  }
+}
+div .ck-editor__editable {
+  min-height: 250px;
+}
+.btn {
+  border-radius: 20px;
+  &:focus {
+    outline: none;
+  }
+  &__create {
+    margin-top: 2em;
+    margin-left: 89%;
+    height: 2em;
+    width: 6em;
+    font-size: 18px;
+    background-color: $btn-background-color;
+    color: $btn-font-color;
+    border-color: $btn-font-color;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .mainDiv {
+    margin: 0.5rem auto;
+  }
+  .btn {
+    &__create {
+      margin-left: 30%;
+      margin-top: 1.5em;
+    }
+  }
+  div .ck-editor__editable {
+    min-height: 150px;
+  }
+}
+@media (min-width: 481px) and (max-width: 767px) {
+  .btn {
+    &__create {
+      margin-left: 70%;
+    }
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .btn {
+    &__create {
+      margin-left: 81%;
+    }
+  }
+}
+@media (min-width: 1025px) {
+  .btn {
+    &__create {
+      margin-left: 88%;
+    }
+  }
+}
