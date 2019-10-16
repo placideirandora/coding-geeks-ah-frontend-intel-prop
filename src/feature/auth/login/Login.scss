@@ -36,7 +36,7 @@ h1 {
   height: 60px;
   margin-top: 10px;
 }
-input {
+.form-input {
   padding: 8px;
   font-size: 15px;
   width: 90%;
@@ -49,14 +49,14 @@ input {
 :focus {
   outline: 0;
 }
-input[type='email'] {
+.form-input[type='email'] {
   font-size: 15px;
   color: #000000;
 }
-input[type='password'] {
+.form-input[type='password'] {
   font-size: 15px;
 }
-input::placeholder {
+.form-input::placeholder {
   color: #000000;
   letter-spacing: 1px;
 }
@@ -124,7 +124,7 @@ input::placeholder {
   .form-control {
     border-right: none;
   }
-  input {
+  .form-input {
     width: 90%;
     height: 40px;
     border-top: 0;

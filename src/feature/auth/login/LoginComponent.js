@@ -28,7 +28,7 @@ export class Login extends Component {
 
   redirectOnSuccess = () => {
     const { isAuthenticated } = this.props;
-    return isAuthenticated ? this.props.history.push('/Profile') : null;
+    return isAuthenticated ? this.props.history.push('/profile') : null;
   };
 
   handleSubmit = e => {
@@ -65,6 +65,7 @@ export class Login extends Component {
                       name="email"
                       value={email}
                       onChange={this.onChange}
+                      className="form-input"
                       required
                     />
                   </div>
@@ -75,6 +76,7 @@ export class Login extends Component {
                       name="password"
                       value={password}
                       onChange={this.onChange}
+                      className="form-input"
                       required
                     />
                   </div>
