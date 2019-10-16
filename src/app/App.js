@@ -8,7 +8,8 @@ import Home from '../feature/Home';
 import Nav from './routes/Nav';
 import SignUp from '../feature/auth/signup/SignUpComponent';
 import Login from '../feature/auth/login/LoginComponent';
-import Profile from '../feature/profile/ProfileComponent';
+import Profile from '../feature/profile/view_profile/ViewProfileComponent';
+import UpdateProfile from '../feature/profile/update_profile/UpdateProfileComponent';
 
 toast.configure();
 
@@ -23,8 +24,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/Signup" component={SignUp} />
-          <Route path="/Profile" component={Profile} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/update-profile" component={UpdateProfile} />
         </Switch>
       </BrowserRouter>
     </div>
