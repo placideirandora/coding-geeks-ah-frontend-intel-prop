@@ -1,26 +1,39 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable react/jsx-props-no-spreading */
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
-import { Login } from '../LoginComponent';
+import { Provider } from 'react-redux';
+import LoginComponent, { Login } from '../LoginComponent';
+import store from '../../../../app/store/index';
 
-const props = {
-  isAuthenticated: false,
-  login: jest.fn(),
+const renderLogin = (args) => {
+  const defaultProps = {
+    isAuthenticated: true,
+    login: jest.fn(),
+    history: {
+      push: jest.fn(),
+    },
+  };
+  const props = { ...defaultProps, ...args };
+  return mount(<Login {...props} />);
 };
 
-let wrapper;
+const wrapper = renderLogin();
 
 describe('Test Login Component...', () => {
-  beforeAll(() => {
-    wrapper = shallow(<Login {...props} />);
-    wrapper.instance().onChange = jest.fn();
-    wrapper.instance().onChange();
-  });
   it('Should render login component', () => {
     expect(wrapper).toHaveLength(1);
   });
   it('Should give initial state', () => {
     expect(wrapper.state()).toBeDefined();
+  });
+  it('should update props', () => {
+    wrapper.setProps({ isAuthenticated: false });
+    expect(wrapper).toHaveLength(1);
+  });
+  it('should update props', () => {
+    wrapper.setProps({ isAuthenticated: true });
+    expect(wrapper).toHaveLength(1);
   });
 });
 
@@ -37,7 +50,7 @@ describe('Input tests...', () => {
     Password.simulate('change', {
       target: { value: 'User1234', name: 'password' },
     });
-    expect(wrapper.instance().onChange).toHaveBeenCalled();
+    expect(wrapper.state('password')).toEqual('User1234');
   });
 });
 
@@ -47,7 +60,7 @@ describe('Submit button test...', () => {
   let submitButton;
   beforeAll(() => {
     instance = wrapper.instance();
-    submitButton = wrapper.find('.btn');
+    submitButton = wrapper.find('.loginBtn');
     submitButton.simulate('click');
   });
   it('Should make a request to the server', () => {
@@ -57,5 +70,16 @@ describe('Submit button test...', () => {
       preventDefault: jest.fn(),
     };
     instance.handleSubmit(event);
+  });
+});
+
+describe('Testing connecting component to the store', () => {
+  const Wrapper = mount(
+    <Provider store={store}>
+      <LoginComponent />
+    </Provider>
+  );
+  it('should render the component that is connected to the store', () => {
+    expect(Wrapper.exists()).toBe(true);
   });
 });

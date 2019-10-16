@@ -4,15 +4,19 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
-import Home from '../feature/Home';
+import GetAllArticles from '../feature/articles/getArticles/GetAllArticlesComponent';
+import CreateArticle from '../feature/articles/createArticle/CreateArticleComponent';
+import ProtectedRoutes from '../feature/protectedRoutes/ProtectedRoutesComponent';
 import Nav from './routes/Nav';
 import SignUp from '../feature/auth/signup/SignUpComponent';
 import Login from '../feature/auth/login/LoginComponent';
 import Profile from '../feature/profile/view_profile/ViewProfileComponent';
 import UpdateProfile from '../feature/profile/update_profile/UpdateProfileComponent';
+import ForgotPassword from '../feature/Reset Password/forgot password/ForgotPasswordComponent';
+import ResetPassword from '../feature/Reset Password/reset password/ResetPasswordComponent';
+import SingleArticle from '../feature/article/getSingleArticle/ReadSingleArticleComponent';
 
 toast.configure();
-
 function App() {
   return (
     <div className="App">
@@ -22,11 +26,19 @@ function App() {
         </header>
         <ToastContainer />
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route path="/forgot" component={ForgotPassword} />
+          <Route
+            path="/users/reset-password/:token"
+            component={ResetPassword}
+          />
+          <Route exact path="/" component={GetAllArticles} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={SignUp} />
           <Route path="/profile" component={Profile} />
           <Route path="/update-profile" component={UpdateProfile} />
+          <Route path="/Signup" component={SignUp} />
+          <Route path="/articles/:slug" component={SingleArticle} />
+          <ProtectedRoutes path="/Create" component={CreateArticle} />
         </Switch>
       </BrowserRouter>
     </div>

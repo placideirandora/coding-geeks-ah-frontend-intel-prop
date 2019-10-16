@@ -12,9 +12,6 @@
   margin-bottom: 40px;
   text-align: center;
 }
-h1 {
-  font-size: 3rem;
-}
 .sign-up-link {
   text-decoration: none;
   color: #599bda;
@@ -45,6 +42,9 @@ h1 {
   border-right: 0;
   border-left: 0;
   border-bottom: solid #e5e5e5;
+  &:focus {
+    outline: none;
+  }
 }
 :focus {
   outline: 0;
@@ -69,7 +69,8 @@ h1 {
   color: #868383;
   font-size: 14px;
 }
-.btn {
+
+.loginBtn {
   margin: 3% 0 0 5%;
   padding: 9px;
   color: #599bda;
@@ -78,6 +79,7 @@ h1 {
   outline: none;
   font-size: 16px;
   width: 25%;
+  cursor: pointer;
 }
 .social-login-control {
   padding-top: 50px;

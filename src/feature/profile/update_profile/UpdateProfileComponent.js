@@ -57,15 +57,13 @@ class UpdateProfileComponent extends Component {
               type="text"
               id="bio"
               onChange={this.handleChange}
-              className="grid-container__input grid-container__textarea"
+              className="grid-container__textarea"
             />
             <br />
             <label className="grid-container__label">Image</label>
             <br />
             <input
               type="file"
-              id="image"
-              accept="image/png, image/jpeg"
               onChange={this.handleFileUpload}
               className="grid-container__file"
             />
