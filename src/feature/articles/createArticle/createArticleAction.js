@@ -31,7 +31,6 @@ const createArticle = (
   try {
     const res = await axios.post(
       `${BACKEND_URL}/articles/`,
-      // 'http://localhost:5000/api/v1/articles',
       formData,
       axiosConfig
     );

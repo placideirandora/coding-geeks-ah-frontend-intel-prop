@@ -27,27 +27,23 @@ export class CreateArticle extends Component {
   };
 
   handleSubmit = event => {
-    const { title, description, tags, category, body } = this.state;
-    if (!title || !description || !body) {
-      return toast.error(
-        'Please fill in Title, Description and Body  to create an article',
-        {
-          position: toast.POSITION.TOP_CENTER
-        }
-      );
-    }
-    const { createArticle } = this.props;
     event.preventDefault();
-    createArticle(
-      {
-        title,
-        description,
-        tags,
-        category,
-        body
-      },
-      this.props
-    );
+    const { title, description, tags, category, body } = this.state;
+    const { createArticle } = this.props;
+    const test = (!title || !description || !body);
+    const message = 'Please fill in Title, Description and Body  to create an article';
+    return test
+      ? toast.error(message, { position: toast.POSITION.TOP_CENTER })
+      : createArticle(
+        {
+          title,
+          description,
+          tags,
+          category,
+          body
+        },
+        this.props
+      );
   };
 
   render() {
