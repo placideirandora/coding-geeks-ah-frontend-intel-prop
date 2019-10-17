@@ -18,19 +18,20 @@ const createArticle = (
       Authorization: token
     }
   };
+  let formData = {};
+  formData.tags = tags || '';
+  formData.category = category || '';
 
-  const formData = {
+  formData = {
     title,
     description,
-    tags,
-    category,
     body
   };
 
   try {
     const res = await axios.post(
-      // `${BACKEND_URL}/articles/`,
-      'localhost:5000/api/v1/articles',
+      `${BACKEND_URL}/articles/`,
+      // 'http://localhost:5000/api/v1/articles',
       formData,
       axiosConfig
     );

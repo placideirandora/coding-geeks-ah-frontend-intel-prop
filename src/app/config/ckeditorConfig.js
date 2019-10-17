@@ -47,10 +47,12 @@ const editorConfigs = {
     'blockQuote',
     'imageUpload',
     'undo',
-    'redo'
+    'redo',
+    'bulletedList',
+    'numberedList'
   ],
-  blockToolbar: ['heading', 'blockQuote', 'imageUpload'],
-  removePlugins: ['List', 'Table', 'TableToolbar', 'MediaEmbed'],
+  blockToolbar: ['heading', 'blockQuote', 'imageUpload', 'ImageStyle'],
+  removePlugins: ['Table', 'TableToolbar', 'MediaEmbed'],
   extraPlugins: [UploadAdapterPlugin]
 };
 
