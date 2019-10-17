@@ -10,11 +10,18 @@ import { login } from '../../feature/auth/login/LoginAction';
 import { social, authUser } from '../../feature/auth/socialLogin/SocialAction';
 
 export class Navbar extends Component {
+  redirectURL = () => {
+    window.location.replace('/');
+  }
+
   render() {
     const { search } = window.location;
-    if (window.location.search) {
-      const token = search.replace('?token=', '');
-      this.props.authUser(token);
+    if (search) {
+      if (search.includes('token')) {
+        const token = search.replace('?token=', '');
+        this.props.authUser(token);
+        this.redirectURL();
+      }
     }
 
     const { isAuthenticated, success } = this.props;
@@ -30,6 +37,9 @@ export class Navbar extends Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
+                <Link to="/Create">Create</Link>
+              </li>
+              <li>
                 <Link to="/About">About</Link>
               </li>
               <li className="last">
@@ -40,6 +50,9 @@ export class Navbar extends Component {
             <ul className="right">
               <li>
                 <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/Create">Create</Link>
               </li>
               <li>
                 <Link to="/login">Login</Link>

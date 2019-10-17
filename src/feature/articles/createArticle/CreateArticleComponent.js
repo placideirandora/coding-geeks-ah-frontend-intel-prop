@@ -7,6 +7,7 @@ import createArticle from './createArticleAction';
 import editorConfigs from '../../../app/config/ckeditorConfig';
 import 'react-toastify/dist/ReactToastify.css';
 import './createArticle.scss';
+import Home from '../../homePage/Home';
 
 export class CreateArticle extends Component {
   constructor(props) {
@@ -44,72 +45,75 @@ export class CreateArticle extends Component {
       title, description, tags, category, body
     } = this.state;
     return (
-      <div className="mainDiv">
-        <div className="input input--form">
-          <input
-            className="input input__title"
-            type="text"
-            name="title"
-            value={title}
-            onChange={this.onChange}
-            required
-            placeholder="Enter title ...."
-          />
-        </div>
-        <div className="input input--form">
-          <input
-            className="input input__description"
-            type="text"
-            name="description"
-            value={description}
-            onChange={this.onChange}
-            required
-            placeholder="Give a descriptive summary"
-          />
-        </div>
-        <div className="input input--form">
-          <input
-            className="input input__category"
-            type="text"
-            name="category"
-            value={category}
-            onChange={this.onChange}
-            placeholder="Give a Category"
-          />
-        </div>
-        <div className="input input--form">
-          <CKEditor
-            className="input input__body"
-            editor={ClassicEditor}
-            data={body}
-            required
-            onChange={(event, editor) => {
-              const data = editor.getData();
-              this.setState({ body: data });
-            }}
-            config={editorConfigs}
-          />
-          <div className=" input input--form">
+      <>
+        <Home />
+        <div className="mainDiv">
+          <div className="input input--form">
             <input
-              className="input input__tags"
+              className="input input__title"
               type="text"
-              name="tags"
-              value={tags}
+              name="title"
+              value={title}
               onChange={this.onChange}
-              placeholder="Enter tags for your Article"
+              required
+              placeholder="Enter title ...."
             />
           </div>
-          <div className="btn btn--submit">
-            <button
-              className="btn btn__create"
-              type="submit"
-              onClick={this.handleSubmit}
-            >
+          <div className="input input--form">
+            <input
+              className="input input__description"
+              type="text"
+              name="description"
+              value={description}
+              onChange={this.onChange}
+              required
+              placeholder="Give a descriptive summary"
+            />
+          </div>
+          <div className="input input--form">
+            <input
+              className="input input__category"
+              type="text"
+              name="category"
+              value={category}
+              onChange={this.onChange}
+              placeholder="Give a Category"
+            />
+          </div>
+          <div className="input input--form">
+            <CKEditor
+              className="input input__body"
+              editor={ClassicEditor}
+              data={body}
+              required
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                this.setState({ body: data });
+              }}
+              config={editorConfigs}
+            />
+            <div className=" input input--form">
+              <input
+                className="input input__tags"
+                type="text"
+                name="tags"
+                value={tags}
+                onChange={this.onChange}
+                placeholder="Enter tags for your Article"
+              />
+            </div>
+            <div className="btn btn--submit">
+              <button
+                className="btn btn__create"
+                type="submit"
+                onClick={this.handleSubmit}
+              >
               Create
-            </button>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </>
     );
   }
 }

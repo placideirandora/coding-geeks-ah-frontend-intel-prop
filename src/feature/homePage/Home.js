@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Nav from '../../app/routes/Nav';
+// import Articles from '../articles/getArticles/GetAllArticlesComponent';
 import './Home.scss';
 
 const Home = () => (
@@ -8,7 +9,7 @@ const Home = () => (
     <header className="App-header">
       <Nav />
     </header>
-    <p className="intro">Authors Haven by Coding Geeks</p>
+    <div />
   </div>
 );
 

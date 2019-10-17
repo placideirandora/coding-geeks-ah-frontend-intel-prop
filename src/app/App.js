@@ -18,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        {/* <Nav /> */}
         <ToastContainer />
         <Switch>
           <Route path="/forgot" component={ForgotPassword} />
