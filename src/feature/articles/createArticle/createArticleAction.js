@@ -18,6 +18,7 @@ const createArticle = (
       Authorization: token
     }
   };
+
   const formData = {
     title,
     description,
@@ -25,9 +26,11 @@ const createArticle = (
     category,
     body
   };
+
   try {
     const res = await axios.post(
-      `${BACKEND_URL}/articles/`,
+      // `${BACKEND_URL}/articles/`,
+      'localhost:5000/api/v1/articles',
       formData,
       axiosConfig
     );

@@ -20,6 +20,13 @@ $btn-font-color: #4887c2;
 }
 div .ck-editor__editable {
   min-height: 250px;
+  figure {
+    max-height: 100px;
+  }
+}
+
+figcaption .ck-editor__editable {
+  max-height: 20px;
 }
 .btn {
   border-radius: 20px;

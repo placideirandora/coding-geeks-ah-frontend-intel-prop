@@ -34,7 +34,8 @@ class UploadAdapter {
 }
 
 function UploadAdapterPlugin(editor) {
-  editor.plugins.get('FileRepository').createUploadAdapter = loader => new UploadAdapter(loader);
+  editor.plugins.get('FileRepository').createUploadAdapter = loader =>
+    new UploadAdapter(loader);
 }
 
 const editorConfigs = {
