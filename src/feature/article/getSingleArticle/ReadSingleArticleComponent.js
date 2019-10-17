@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import StarRating from '../starRating/StarRatingComponent';
 import AverageRating from '../averageRating/AverageRatingComponent';
+import ShareArticle from '../shareArticle/ShareArticleComponent';
 
 class SingleArticle extends Component {
   constructor() {
@@ -25,6 +26,9 @@ class SingleArticle extends Component {
             articleId={this.state.articleId}
             pathname={this.props.location.pathname}
           />
+        </div>
+        <div>
+          <ShareArticle />
         </div>
       </div>
     );
