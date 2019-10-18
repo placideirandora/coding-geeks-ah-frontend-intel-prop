@@ -30,7 +30,7 @@ export class Login extends Component {
   redirectOnSuccess = () => {
     const { isAuthenticated, location } = this.props;
     const { redirectTo } = QueryString.parse(location.search);
-    return isAuthenticated ? this.props.history.push(redirectTo || '/') : null;
+    return isAuthenticated ? this.props.history.push(redirectTo || '/profile') : null;
   };
 
   handleSubmit = e => {
@@ -62,23 +62,23 @@ export class Login extends Component {
                 <div className="field">
                   <div className="form-group">
                     <input
-                      className="loginInput"
                       type="email"
                       placeholder="Email"
                       name="email"
                       value={email}
                       onChange={this.onChange}
+                      className="form-input"
                       required
                     />
                   </div>
                   <div className="form-group">
                     <input
-                      className="loginInput"
                       type="password"
                       placeholder="Password"
                       name="password"
                       value={password}
                       onChange={this.onChange}
+                      className="form-input"
                       required
                     />
                   </div>

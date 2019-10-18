@@ -40,7 +40,9 @@ export class GetAllArticles extends Component {
           <div className="main--banner">
             <div className="main--banner__text">
               <h1 className="heading__3">
-                Authors <br />
+                Authors
+                {' '}
+                <br />
                 Haven
               </h1>
               <h3 className="heading__4">Create and Read Articles</h3>
@@ -99,7 +101,9 @@ export class GetAllArticles extends Component {
               ) : (
                 <div className="article__error">
                   <h2>
-                    Sorry No Articles Found At The Moment. <br />
+                    Sorry No Articles Found At The Moment.
+                    {' '}
+                    <br />
                     Please Create one or comeback later!!!
                   </h2>
                 </div>

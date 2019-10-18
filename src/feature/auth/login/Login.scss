@@ -33,8 +33,9 @@
   height: 60px;
   margin-top: 10px;
 }
-
-.loginInput {
+.form-input {
+  padding: 8px;
+  font-size: 15px;
   width: 90%;
   height: 40px;
   border-top: 0;
@@ -45,15 +46,17 @@
     outline: none;
   }
 }
-
-.logininput[type='email'] {
+:focus {
+  outline: 0;
+}
+.form-input[type='email'] {
   font-size: 15px;
   color: #000000;
 }
-.logininput[type='password'] {
+.form-input[type='password'] {
   font-size: 15px;
 }
-.logininput::placeholder {
+.form-input::placeholder {
   color: #000000;
   letter-spacing: 1px;
 }
@@ -68,18 +71,18 @@
 }
 
 .loginBtn {
+  margin: 3% 0 0 5%;
+  padding: 9px;
+  color: #599bda;
+  border-color: #599bda;
   border-radius: 15px;
-  border: 1px solid #599bda;
+  outline: none;
   font-size: 16px;
   width: 100px;
   padding: 5px 30px;
   color: #599bda;
   background: #ffffff;
   cursor: pointer;
-  margin-top: 0px;
-  &:focus {
-    outline: none;
-  }
 }
 .social-login-btn {
   border: none;
@@ -111,7 +114,7 @@
   .form-control {
     border-right: none;
   }
-  .loginInput {
+  .form-input {
     width: 90%;
     height: 40px;
     border-top: 0;

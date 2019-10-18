@@ -9,6 +9,8 @@ import CreateArticle from '../feature/articles/createArticle/CreateArticleCompon
 import ProtectedRoutes from '../feature/protectedRoutes/ProtectedRoutesComponent';
 import SignUp from '../feature/auth/signup/SignUpComponent';
 import Login from '../feature/auth/login/LoginComponent';
+import Profile from '../feature/profile/view_profile/ViewProfileComponent';
+import UpdateProfile from '../feature/profile/update_profile/UpdateProfileComponent';
 import ForgotPassword from '../feature/Reset Password/forgot password/ForgotPasswordComponent';
 import ResetPassword from '../feature/Reset Password/reset password/ResetPasswordComponent';
 import SingleArticle from '../feature/article/getSingleArticle/ReadSingleArticleComponent';
@@ -28,6 +30,9 @@ function App() {
           />
           <Route exact path="/" component={GetAllArticles} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/update-profile" component={UpdateProfile} />
           <Route path="/Signup" component={SignUp} />
           <Route path="/articles/:slug" component={SingleArticle} />
           <ProtectedRoutes path="/Create" component={CreateArticle} />
