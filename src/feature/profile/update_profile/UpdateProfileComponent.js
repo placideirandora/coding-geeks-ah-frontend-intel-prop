@@ -78,7 +78,7 @@ class UpdateProfileComponent extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   authenticated: state.login.user,
   profile: state.profile
 });

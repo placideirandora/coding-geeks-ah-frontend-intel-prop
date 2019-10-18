@@ -37,11 +37,6 @@ export const updateUserProfile = profile => async dispatch => {
     });
   } catch (error) {
     dispatch(sendError(error));
-    if (error.response.status === 409) {
-      return toast.error('Username taken', {
-        position: toast.POSITION.TOP_CENTER
-      });
-    }
     toast.error(error.response.data.error, {
       position: toast.POSITION.TOP_CENTER
     });
