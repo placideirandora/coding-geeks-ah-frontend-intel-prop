@@ -38,6 +38,7 @@
     "react-redux": "^7.1.1",
     "react-redux-modal-flex": "^2.0.0",
     "react-router-dom": "^5.0.1",
+    "react-router-prop-types": "^1.0.4",
     "react-scripts": "3.1.2",
     "react-share": "^3.0.1",
     "react-star-ratings": "^2.3.0",
@@ -63,6 +64,11 @@
     "eslint-plugin-react": "^7.14.3",
     "moxios": "^0.4.0",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "react-test-renderer": "^16.10.2",
+    "redux-mock-store": "^1.5.3",
+    "redux-promise-middleware": "^6.1.1",
+    "redux-thunk": "^2.3.0",
+    "sinon": "^7.5.0",
     "start-server-and-test": "^1.10.2"
   },
   "eslintConfig": {
