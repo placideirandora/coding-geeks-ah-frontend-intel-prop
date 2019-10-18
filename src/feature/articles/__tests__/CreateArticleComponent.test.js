@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import '@ckeditor/ckeditor5-react';
 import '@ckeditor/ckeditor5-build-classic';
 import { CreateArticle } from '../createArticle/CreateArticleComponent';
+import dummyData from '../../../__mocks__/mockData';
 
 jest.mock('@ckeditor/ckeditor5-react');
 jest.mock('@ckeditor/ckeditor5-build-classic');
@@ -77,5 +78,14 @@ describe('On submit tests', () => {
   it('Should make post request to the server', () => {
     const button = wrapper.find('button');
     button.simulate('click', { preventDefault: jest.fn() });
+  });
+  it('should prevent default behavior when submitting the form', () => {
+    let prevented = false;
+    wrapper.find('.btn__create').simulate('click', {
+      preventDefault: () => {
+        prevented = true;
+      }
+    });
+    expect(prevented).toBe(true);
   });
 });

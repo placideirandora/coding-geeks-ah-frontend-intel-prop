@@ -7,7 +7,6 @@ import './App.scss';
 import GetAllArticles from '../feature/articles/getArticles/GetAllArticlesComponent';
 import CreateArticle from '../feature/articles/createArticle/CreateArticleComponent';
 import ProtectedRoutes from '../feature/protectedRoutes/ProtectedRoutesComponent';
-import Nav from './routes/Nav';
 import SignUp from '../feature/auth/signup/SignUpComponent';
 import Login from '../feature/auth/login/LoginComponent';
 import Profile from '../feature/profile/view_profile/ViewProfileComponent';
@@ -21,9 +20,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <header className="App-header">
-          <Nav />
-        </header>
+        {/* <Nav /> */}
         <ToastContainer />
         <Switch>
           <Route path="/forgot" component={ForgotPassword} />

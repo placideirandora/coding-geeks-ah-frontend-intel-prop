@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { updateUserProfile } from './UpdateProfileAction';
 import './UpdateProfileStyle.scss';
 
-class UpdateProfileComponent extends Component {
+export class UpdateProfileComponent extends Component {
   constructor(props) {
     super(props);
     const { authenticated } = this.props;

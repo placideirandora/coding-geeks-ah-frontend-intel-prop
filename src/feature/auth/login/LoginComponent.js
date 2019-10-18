@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import QueryString from 'query-string';
 import { login } from './LoginAction';
+import Social from '../socialLogin/SocialComponent';
 import './Login.scss';
 
 export class Login extends Component {
@@ -95,15 +96,7 @@ export class Login extends Component {
               </form>
             </div>
             <div className="social-login-control col">
-              <button type="submit" className="social-login-btn btn-google">
-                LOGIN WITH GOOGLE
-              </button>
-              <button type="submit" className="social-login-btn btn-twitter">
-                LOGIN WITH TWITTER
-              </button>
-              <button type="submit" className="social-login-btn btn-facebook">
-                LOGIN WITH FACEBOOK
-              </button>
+              <Social />
             </div>
           </div>
         </div>
