@@ -4,7 +4,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, BrowserRouter } from 'react-router-dom';
 import momemt from 'moment';
 import ReactHtmlParser from 'react-html-parser';
 import GetSingleArticle from './GetSingleArticleAction';
@@ -20,6 +19,7 @@ import FollowUnfollowComponent from '../../followUnfollow/FollowUnfollowComponen
 import CommentCountComponent from '../../../app/common/CommentCount/CommentCountComponent';
 import ArticleMenuDropdown from '../../../app/common/articleMenu/ArticleDropdownMenu';
 import deleteArticle from '../deleteArticle/DeleteAction';
+import CommentComponent from '../../comment/CommentComponent';
 import './GetSingleArticle.scss';
 
 export class ViewSingleArticle extends Component {
@@ -75,16 +75,17 @@ export class ViewSingleArticle extends Component {
         createdAt,
         readTime,
         averageRatings,
-        commentCount
+        commentCount,
       },
       currentUser: { user }
     } = this.props;
+    const { history, location } = this.props;
     const username = localStorage.getItem('username');
     const { userName, image } = author;
     const ownArticle = userName === user.username;
     const { displayMenu } = this.state;
     return (
-      <div className="wrapper">
+      <div className="wrapper-commenting">
         <div className="heading">
           <div className="heading__left">
             <span>
@@ -167,14 +168,10 @@ export class ViewSingleArticle extends Component {
               <span>7 reads</span>
             </div>
             <div className="status__comment">
-              <BrowserRouter>
-                <Link to="#?" className="status__comment">
-                  <CommentCountComponent
-                    className="btn__commentCount"
-                    count={commentCount}
-                  />
-                </Link>
-              </BrowserRouter>
+              <CommentCountComponent
+                className="btn__commentCount"
+                count={commentCount}
+              />
             </div>
             <div className="status__like">
               <span>
@@ -210,6 +207,11 @@ export class ViewSingleArticle extends Component {
               <ShareArticle />
             </div>
           </div>
+          <CommentComponent
+            slug={this.props.match.params.slug}
+            history={history}
+            location={location}
+          />
         </div>
       </div>
     );
