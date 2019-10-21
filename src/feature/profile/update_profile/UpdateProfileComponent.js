@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateUserProfile } from './UpdateProfileAction';
 import './UpdateProfileStyle.scss';
 
 export class UpdateProfileComponent extends Component {
@@ -43,51 +42,53 @@ export class UpdateProfileComponent extends Component {
     }
   };
 
+  hideModel = e => {
+    e.preventDefault();
+  }
+
   render() {
-    return (
+    const { show } = this.props;
+    return show ? (
       <div>
-        <h1 className="title">Update Profile</h1>
-        <div className="grid-container">
-          <form className="grid-container__form" onSubmit={this.handleSubmit}>
-            <label className="grid-container__label">Bio</label>
-            <br />
-            <textarea
-              rows="5"
-              cols="60"
-              type="text"
-              id="bio"
-              onChange={this.handleChange}
-              className="grid-container__textarea"
-            />
-            <br />
-            <label className="grid-container__label">Image</label>
-            <br />
-            <input
-              type="file"
-              onChange={this.handleFileUpload}
-              className="grid-container__file"
-            />
-            <br />
-            <button type="submit" className="grid-container__btn">
+        <div className="modal">
+          <div className="modal__modal-content">
+            <h2 className="modal-content__title">Update Profile</h2>
+            <form className="modal-content__form" onSubmit={this.handleSubmit}>
+              <label className="modal-content__label">Bio</label>
+              <br />
+              <textarea
+                rows="5"
+                cols="60"
+                type="text"
+                id="bio"
+                onChange={this.handleChange}
+                className="modal-content__textarea"
+              />
+              <br />
+              <label className="modal-content__label">Image</label>
+              <br />
+              <input
+                type="file"
+                onChange={this.handleFileUpload}
+                className="modal-content__file"
+              />
+              <br />
+              <button type="submit" className="modal-content__btn">
               Update
-            </button>
-          </form>
+              </button>
+              <button type="submit" className="modal-content__btn" onClick={this.hideModel}>Close</button>
+            </form>
+          </div>
         </div>
       </div>
-    );
+    ) : (null);
   }
 }
 
-export const mapStateToProps = state => ({
-  authenticated: state.login.user,
+const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateProfile: profile => dispatch(updateUserProfile(profile))
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(UpdateProfileComponent);

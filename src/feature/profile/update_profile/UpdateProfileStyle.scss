@@ -1,26 +1,47 @@
-.grid-container {
+.modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #F2F2F2;
+  padding: 1rem 1.5rem;
+  width: 55%;
+  overflow: scroll;
+  transform: translateX(-50%);
+
+  &__modal-content {
+    margin-left: 30%;
+  }
+}
+
+.modal-content {
+
+  &__title {
+    margin-left: 45%;
+    text-transform: uppercase;
+  }
+  
   &__form {
-    width: 50%;
+    width: 100%;
     justify-content: center;
     margin-left: 35%;
   }
 
   &__label {
     font-weight: bold;
-    font-size: 16px;
+    font-size: 14px;
     text-transform: uppercase;
     text-align: center;
   }
 
   &__btn {
     margin: 6% 0 0 0;
-    padding: 8px;
+    padding: 6px;
     color: #599bda;
     border-color: #599bda;
     border-radius: 15px;
     outline: none;
-    font-size: 16px;
-    width: 12%;
+    font-size: 15px;
+    width: 14%;
     cursor: pointer;
   }
 
@@ -47,7 +68,7 @@
 */
 
 @media (min-width: 901px) and (max-width: 1024px) {
-  .grid-container {
+  .modal-container {
     &__btn {
       margin-top: 10%;
       width: 18%;   
@@ -62,7 +83,7 @@
 */
 
 @media (min-width: 768px) and (max-width: 900px) {
-  .grid-container {
+  .modal-container {
     &__btn {
       margin-top: 10%;
       width: 22%;
@@ -76,10 +97,11 @@
 */
 
 @media (min-width: 400px) and (max-width: 480px) {
-  .title {
-    margin-bottom: 5%;
-  }
-  .grid-container {
+  .modal-container {
+    &__title {
+      margin-bottom: 5%;
+    }
+
     &__btn {
       margin-top: 10%;
       width: 21%;
@@ -113,10 +135,11 @@
 */
 
 @media (min-width: 320px) and (max-width: 399px) {
-  .title {
-    margin-bottom: 5%;
-  }
-  .grid-container {
+  .modal-container {
+    &title {
+      margin-bottom: 5%;
+    }
+
     &__btn {
       margin-top: 10%;
       width: 24%;
