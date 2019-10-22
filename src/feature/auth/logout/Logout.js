@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { logout } from './LogoutAction';
 
 export class Logout extends Component {
@@ -12,7 +12,7 @@ export class Logout extends Component {
   render() {
     return (
       <div>
-        <Link className="logout" to="/logout" onClick={this.logOut}>Logout</Link>
+        <Link className="logout" to="/logout" onClick={this.logOut}><li>Logout</li></Link>
       </div>
     );
   }

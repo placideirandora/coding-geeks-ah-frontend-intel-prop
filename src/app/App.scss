@@ -9,29 +9,84 @@ body {
   .App {
     .App-header {
       background-color: #282c34;
-      height: 6.2rem;
+      height: 5.5rem !important;
       font-size: 25px;
       color: white;
     }
   }
 
   .nav-wrapper {
-    .App-logo {
+    display: flex;
+
+    > div {
+      width: 50%;
+    }
+
+    .logo-container {
+      margin-left: 50px;
+    }
+    .logo {
+      text-decoration: none;
+      color: white;
       height: 5rem;
-      margin: 10px 10px 10px 50px;
+      margin: 30px 10px 10px 0px;
       float: left;
     }
 
     .right {
-      float: right;
-    }
-
-    .last {
       margin-right: 50px;
     }
 
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-content {
+      color: black;
+      position: absolute;
+      background-color: white;
+      border: 1px solid black;
+      z-index: 1;
+      right: 0px;
+      min-width: 180px;
+
+      ul {
+        display: block;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        a {
+          text-decoration: none;
+          color: black;
+          width: 100%;
+          padding: 0;
+
+          li {
+            text-transform: capitalize;
+            border: 1px solid #ddd;
+            background-color: white;
+            font-size: 1rem;
+            padding: 0px 12px;
+          }
+          li:hover {
+            background: #e0e0de;
+          }
+        }
+
+        .user-name {
+          text-transform: none;
+          font-size: 1rem;
+          padding: 0px 12px;
+        }
+      }
+    }
+    .user-image {
+      margin-left: 20px;
+    }
+
     ul {
-      display: flex;
+      float: right;
 
       li {
         list-style-type: none;
@@ -51,6 +106,28 @@ body {
           color: #282c34;
           cursor: pointer;
         }
+        img {
+          background: white;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+        }
+        .notification-counter {
+          font-size: 15px;
+          background: red;
+          position: absolute;
+          top: -10px;
+          right: -10px;
+          height: 25px;
+          width: 25px;
+        }
+      }
+      .notification {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        line-height: 27px;
       }
     }
   }
@@ -61,63 +138,68 @@ body {
     text-align: center;
   }
 }
-@media (min-width: 320px) and (max-width: 480px) {
-  body {
-    background: #fff;
-    font-family: ‘Open Sans’, sans-serif;
-    letter-spacing: 1px;
-    .App {
-      .App-header {
-        background-color: #282c34;
-        height: 6.2rem;
-        font-size: 25px;
-        color: white;
+@media (max-width: 700px) {
+  .nav-wrapper {
+    font-size: 20px !important;
+
+    .logo-container {
+      width: 35%;
+      font-size: 20px !important;
+      margin-left: 10px !important;
+    }
+
+    .logo {
+      margin: 35px 0px 10px 0px !important;
+    }
+
+    .right {
+      width: 65%;
+      margin-right: 10px !important;
+    }
+
+    ul {
+      li {
+        a {
+          font-size: 0.7em !important;
+          padding: 5px 10px 5px 10px !important;
+        }
+        // img {
+        //   background: red !important;
+        //   width: 25px !important;
+        //   height: 25px !important;
+        // }
       }
     }
-    .nav-wrapper {
-      .App-logo {
-        height: 5rem;
-        margin: 10px 10px 10px 50px;
-        float: left;
-      }
-      .right {
-        float: right;
-      }
-      .last {
-        margin-right: 50px;
-      }
-      ul {
-        display: flex;
-        li {
-          list-style-type: none;
-          text-transform: uppercase;
-          line-height: 45px;
-          a {
-            color: #fff;
-            text-decoration: none;
-            padding: 15px 20px 15px 20px;
-            font-size: 1.2rem;
-            font-weight: bolder;
-          }
-          a:hover {
-            background: #fff;
-            color: #282c34;
-            cursor: pointer;
-          }
+  }
+}
+@media (max-width: 550px) {
+  .nav-wrapper {
+    .logo-container {
+      font-size: 15px !important;
+    }
+    .logo {
+      margin: 10px 0px 10px 0px;
+    }
+    .right {
+      margin-right: 10px !important;
+    }
+  }
+}
+@media (max-width: 400px) {
+  .nav-wrapper {
+    .logo-container {
+      font-size: 9px !important;
+    }
+    .logo {
+      margin: 40px 0px 10px 0px !important;
+    }
+    ul {
+      li {
+        a {
+          font-size: 0.5em !important;
+          padding: 5px 10px 5px 10px !important;
         }
       }
-    }
-    .intro {
-      margin-top: 20%;
-      font-size: 1.5rem;
-      font-weight: bold;
-      text-align: center;
-    }
-    .App-logo {
-      display: none;
-    }
-    .last {
-      margin-right: 15px !important;
     }
   }
 }

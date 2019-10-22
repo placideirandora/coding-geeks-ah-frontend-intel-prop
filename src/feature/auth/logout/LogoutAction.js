@@ -1,7 +1,6 @@
 /* eslint-disable comma-dangle */
 /* eslint-disable quote-props */
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import * as userActionTypes from './LogoutActionTypes';
 import { BACKEND_URL } from '../../../app/common/config/appConfig';
 
@@ -29,12 +28,12 @@ export const logout = () => async (dispatch) => {
     const { message } = data;
     localStorage.clear();
     window.location.replace('/');
-    toast.success(message);
     dispatch(logoutSuccess(message));
   } catch (error) {
     const message = (await error.response)
       ? error.response.data.error : 'Something wrong';
-    toast.error(message);
+    localStorage.clear();
+    window.location.replace('/');
     dispatch(logoutError(message));
   }
 };

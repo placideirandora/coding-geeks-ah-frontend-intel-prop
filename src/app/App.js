@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
+import Nav from './routes/Nav';
 import GetAllArticles from '../feature/articles/getArticles/GetAllArticlesComponent';
 import CreateArticle from '../feature/articles/createArticle/CreateArticleComponent';
 import ProtectedRoutes from '../feature/protectedRoutes/ProtectedRoutesComponent';
@@ -20,7 +21,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {/* <Nav /> */}
+        <header className="App-header">
+          <Nav />
+        </header>
         <ToastContainer />
         <Switch>
           <Route path="/forgot" component={ForgotPassword} />
