@@ -16,7 +16,7 @@ export const sendError = profileError => ({
   error: profileError
 });
 
-export const updateUserProfile = profile => async dispatch => {
+export const updateUserProfile = (profile, clear) => async dispatch => {
   try {
     // localStorage.removeItem('token');
     const token = localStorage.getItem('token');
@@ -33,12 +33,14 @@ export const updateUserProfile = profile => async dispatch => {
     const response = await axios.put(`${BACKEND_URL}/profiles/${user}`, formData, config);
     dispatch(updateProfile(response));
     toast.success(response.data.message, {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_RIGHT
     });
+    clear();
   } catch (error) {
     dispatch(sendError(error));
+    // console.log(error);
     toast.error(error.response.data.error, {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_RIGHT
     });
   }
 };

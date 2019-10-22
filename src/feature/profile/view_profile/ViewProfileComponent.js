@@ -17,11 +17,11 @@ class ProfileComponent extends Component {
     };
   }
 
-  showModal = () => {
+  displayModal = (value) => {
     this.setState({
-      show: true
+      show: value
     });
-  };
+  }
 
   render() {
     const {
@@ -48,13 +48,14 @@ class ProfileComponent extends Component {
             <p className="grid-container__username">{`${profile.profile.userName}`}</p>
             <p className="grid-container__bio">{`${bio}`}</p>
           </div>
-          <button type="submit" className="grid-container__link" onClick={this.showModal}>
+          <button type="submit" className="grid-container__link" onClick={() => { this.displayModal(true); }}>
             Edit Profile
           </button>
           <UpdateProfileComponent
             show={show}
             authenticated={authenticated}
             updateProfile={updateProfile}
+            displayModal={this.displayModal}
           />
         </div>
       </div>
@@ -73,7 +74,7 @@ export const mapDispatchToProps = dispatch => ({
   getProfile: user => {
     dispatch(retrieveProfile(user));
   },
-  updateProfile: profile => dispatch(updateUserProfile(profile))
+  updateProfile: (profile, clear) => dispatch(updateUserProfile(profile, clear))
 });
 
 export default connect(

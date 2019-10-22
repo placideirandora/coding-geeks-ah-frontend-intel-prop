@@ -1,3 +1,8 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/jsx-tag-spacing */
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
@@ -11,9 +16,9 @@ export class UpdateProfileComponent extends Component {
     const { authenticated } = this.props;
     this.state = {
       user: authenticated.username,
-      userName: null,
       bio: null,
-      image: null
+      image: null,
+      preview: null
     };
   }
 
@@ -25,8 +30,19 @@ export class UpdateProfileComponent extends Component {
 
   handleFileUpload = e => {
     this.setState({
-      image: e.target.files[0]
+      image: e.target.files[0],
+      preview: URL.createObjectURL(e.target.files[0])
     });
+  }
+
+  clearStateAndModal = () => {
+    this.setState({
+      bio: null,
+      image: null,
+      preview: null
+    });
+    const { displayModal } = this.props;
+    displayModal(false);
   }
 
   handleSubmit = e => {
@@ -34,24 +50,33 @@ export class UpdateProfileComponent extends Component {
     const { bio, image } = this.state;
     if (!bio && !image) {
       toast.error('No data provided', {
-        position: toast.POSITION.TOP_CENTER
+        position: toast.POSITION.TOP_RIGHT
       });
     } else {
       const { updateProfile } = this.props;
-      updateProfile(this.state);
+      updateProfile(this.state, this.clearStateAndModal);
     }
   };
 
-  hideModel = e => {
+  handleOnClick = e => {
     e.preventDefault();
+    const { displayModal } = this.props;
+    displayModal(false);
+    this.setState({
+      bio: null,
+      image: null,
+      preview: null
+    });
   }
 
   render() {
     const { show } = this.props;
+    const { preview } = this.state;
     return show ? (
       <div>
         <div className="modal">
           <div className="modal__modal-content">
+            <i className="fa fa-times modal-content__close" onClick={this.handleOnClick}/>
             <h2 className="modal-content__title">Update Profile</h2>
             <form className="modal-content__form" onSubmit={this.handleSubmit}>
               <label className="modal-content__label">Bio</label>
@@ -73,10 +98,11 @@ export class UpdateProfileComponent extends Component {
                 className="modal-content__file"
               />
               <br />
+              <img src={preview} className="modal-content__preview" />
+              <br />
               <button type="submit" className="modal-content__btn">
               Update
               </button>
-              <button type="submit" className="modal-content__btn" onClick={this.hideModel}>Close</button>
             </form>
           </div>
         </div>
