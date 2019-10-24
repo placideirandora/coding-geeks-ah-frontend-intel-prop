@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import Nav from './routes/NavBar';
 import GetAllArticles from '../feature/articles/getArticles/GetAllArticlesComponent';
+import GetSingleArticle from '../feature/articles/getSingleArticle/GetSingleArticleComponent';
 import CreateArticle from '../feature/articles/createArticle/CreateArticleComponent';
 import ProtectedRoutes from '../feature/protectedRoutes/ProtectedRoutesComponent';
 import SignUp from '../feature/auth/signup/SignUpComponent';
@@ -14,7 +15,8 @@ import Profile from '../feature/profile/view_profile/ViewProfileComponent';
 import UpdateProfile from '../feature/profile/update_profile/UpdateProfileComponent';
 import ForgotPassword from '../feature/Reset Password/forgot password/ForgotPasswordComponent';
 import ResetPassword from '../feature/Reset Password/reset password/ResetPasswordComponent';
-import SingleArticle from '../feature/article/getSingleArticle/ReadSingleArticleComponent';
+import Home from '../feature/homePage/Home';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 toast.configure();
 function App() {
