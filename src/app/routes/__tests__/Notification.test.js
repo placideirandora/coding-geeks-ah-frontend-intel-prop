@@ -3,16 +3,11 @@
 /* eslint-disable import/named */
 import React from 'react';
 import { shallow } from 'enzyme';
-import DropDownComonent from './DropDown';
+import NotificationComponent from '../Notification';
 
 const renderDropDown = (args) => {
-  const defaultProps = {
-    user: {
-      username: 'carlos',
-    },
-  };
-  const props = { ...defaultProps, ...args };
-  return shallow(<DropDownComonent {...props} />);
+  const props = { ...args };
+  return shallow(<NotificationComponent {...props} />);
 };
 
 const Wrapper = renderDropDown();

@@ -26,19 +26,21 @@ function App() {
         </header>
         <ToastContainer />
         <Switch>
-          <Route path="/forgot" component={ForgotPassword} />
-          <Route
-            path="/users/reset-password/:token"
-            component={ResetPassword}
-          />
-          <Route exact path="/" component={GetAllArticles} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/update-profile" component={UpdateProfile} />
-          <Route path="/Signup" component={SignUp} />
-          <Route path="/articles/:slug" component={SingleArticle} />
-          <ProtectedRoutes path="/Create" component={CreateArticle} />
+          <section className="App-body">
+            <Route path="/forgot" component={ForgotPassword} />
+            <Route
+              path="/users/reset-password/:token"
+              component={ResetPassword}
+            />
+            <Route exact path="/" component={GetAllArticles} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/update-profile" component={UpdateProfile} />
+            <Route path="/Signup" component={SignUp} />
+            <Route path="/articles/:slug" component={SingleArticle} />
+            <ProtectedRoutes path="/Create" component={CreateArticle} />
+          </section>
         </Switch>
       </BrowserRouter>
     </div>

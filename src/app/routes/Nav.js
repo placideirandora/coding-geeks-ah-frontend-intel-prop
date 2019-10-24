@@ -11,6 +11,7 @@ import { retrieveProfile } from '../../feature/profile/view_profile/ViewProfileA
 import { login } from '../../feature/auth/login/LoginAction';
 import { social, authUser } from '../../feature/auth/socialLogin/SocialAction';
 import DropDown from './DropDown';
+import Notifications from './Notification';
 import DefaultAvatar from '../common/images/avatar.png';
 import NotificationAvatar from '../common/images/notification.png';
 
@@ -19,25 +20,26 @@ export class Navbar extends Component {
     super();
 
     this.state = {
-      show: false,
+      showMenu: false,
+      showNotification: false,
     };
+    this.closeMenu = this.closeMenu.bind(this);
   }
 
   componentDidMount = () => {
-    window.document.addEventListener('click', (e) => {
-      const { parentNode, classList } = e.target;
-      return (
-        (classList || (parentNode && parentNode.classList))
-        && !classList.contains('user-image')
-        && this.setState({ show: false })
-      );
-    });
     this.currentUserProfile();
   };
 
   displayMenu = () => {
-    const { show } = this.state;
-    this.setState({ show: !show });
+    this.setState({ showMenu: true }, () => {
+      document.addEventListener('click', this.closeMenu);
+    });
+  }
+
+  displayNotification = () => {
+    this.setState({ showNotification: true }, () => {
+      document.addEventListener('click', this.closeMenu);
+    });
   }
 
   currentUserProfile = () => {
@@ -48,6 +50,12 @@ export class Navbar extends Component {
 
   redirectURL = () => {
     window.location.replace('/');
+  }
+
+  closeMenu() {
+    this.setState({ showMenu: false, showNotification: false }, () => {
+      document.removeEventListener('click', this.closeMenu);
+    });
   }
 
   render() {
@@ -65,7 +73,7 @@ export class Navbar extends Component {
       success,
       profile: { profile }
     } = this.props;
-    const { show } = this.state;
+    const { showMenu, showNotification } = this.state;
     return (
       <nav className="nav-wrapper">
         <div className="logo-container">
@@ -93,20 +101,28 @@ export class Navbar extends Component {
               </ul>
             </div>
           ) : (
-            <div className="right">
+            <div className="right" id="right">
               <ul>
                 <li>
                   <Link to="/">Home</Link>
                 </li>
-                <li className="notification">
-                  <span className="notification-counter">10</span>
-                  <img src={NotificationAvatar} className="right__img" alt="notification" />
-                </li>
+                <div className="notification-dropdown">
+                  <li className="img-list-item notification-container">
+                    <span className="notification-counter">10</span>
+                    <img src={NotificationAvatar} className="right__img nav-user-notification" alt="notification" onClick={this.displayNotification} />
+                  </li>
+                  {showNotification
+                    ? (
+                      <div className="notification-content">
+                        <Notifications />
+                      </div>
+                    ) : ''}
+                </div>
                 <div className="dropdown">
                   <li className="img-list-item">
-                    <img src={profile.image || DefaultAvatar} className="right__img user-image" alt="user" onClick={this.displayMenu} />
+                    <img src={profile.image || DefaultAvatar} className="right__img nav-user-image" alt="user" onClick={this.displayMenu} />
                   </li>
-                  {show
+                  {showMenu
                     ? (
                       <div className="dropdown-content">
                         <DropDown user={profile} />

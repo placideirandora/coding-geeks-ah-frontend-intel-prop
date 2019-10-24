@@ -12,6 +12,13 @@ body {
       height: 5.5rem !important;
       font-size: 25px;
       color: white;
+      position: fixed;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+    }
+    .App-body {
+      margin-top: 130px;
     }
   }
 
@@ -81,8 +88,49 @@ body {
         }
       }
     }
-    .user-image {
+    .nav-user-image {
       margin-left: 20px;
+    }
+
+    .notification-dropdown {
+      position: relative;
+    }
+
+    .notification-content {
+      color: black;
+      position: absolute;
+      background-color: white;
+      border: 1px solid black;
+      z-index: 1;
+      right: 0px;
+      min-width: 300px;
+
+      ul {
+        display: block;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+
+        a {
+          text-decoration: none;
+          color: black;
+          width: 100%;
+          padding: 0;
+
+          li {
+            text-transform: none;
+            border: 1px solid #ddd;
+            background-color: white;
+            font-size: 0.8rem;
+            padding: 0px 12px;
+            line-height: 30px;
+          }
+          li:hover {
+            background: #e0e0de;
+          }
+        }
+      }
     }
 
     ul {
@@ -102,8 +150,8 @@ body {
         }
 
         a:hover {
-          background: #fff;
-          color: #282c34;
+          background: none !important;
+          color: #2b9ff2 !important;
           cursor: pointer;
         }
         img {
@@ -123,7 +171,7 @@ body {
           width: 25px;
         }
       }
-      .notification {
+      .notification-container {
         position: relative;
         display: inline-block;
         text-align: center;
@@ -163,16 +211,14 @@ body {
           font-size: 0.7em !important;
           padding: 5px 10px 5px 10px !important;
         }
-        // img {
-        //   background: red !important;
-        //   width: 25px !important;
-        //   height: 25px !important;
-        // }
       }
     }
   }
 }
 @media (max-width: 550px) {
+  .App-body {
+    margin-top: 95px !important;
+  }
   .nav-wrapper {
     .logo-container {
       font-size: 15px !important;
@@ -198,6 +244,17 @@ body {
         a {
           font-size: 0.5em !important;
           padding: 5px 10px 5px 10px !important;
+        }
+      }
+    }
+    .notification-content {
+      right: -10px !important;
+      min-width: 250px !important;
+      ul {
+        a {
+          li {
+            font-size: 0.5em !important;
+          }
         }
       }
     }
