@@ -24,7 +24,7 @@ const DropDown = (props) => {
         </a>
         <a href="/Create">
           <li>
-            Bookmarked
+            Bookmarks
           </li>
         </a>
         <Logout />
