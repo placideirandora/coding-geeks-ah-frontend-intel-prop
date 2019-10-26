@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
 
-const Notifications = () => {
+const NotificationDropDown = () => {
   return (
     <div className="dropdown-notification">
       <ul>
@@ -22,4 +22,4 @@ const Notifications = () => {
   );
 };
 
-export default Notifications;
+export default NotificationDropDown;

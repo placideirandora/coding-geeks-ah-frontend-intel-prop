@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import sinon from 'sinon';
-import NavBarComponent, { Navbar } from '../Nav';
+import NavBarComponent, { Navbar } from '../NavBar';
 import { document } from '../../../__mocks__/windowEvent';
 import store from '../../store/index';
 

@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
-import Nav from './routes/Nav';
+import Nav from './routes/NavBar';
 import GetAllArticles from '../feature/articles/getArticles/GetAllArticlesComponent';
 import CreateArticle from '../feature/articles/createArticle/CreateArticleComponent';
 import ProtectedRoutes from '../feature/protectedRoutes/ProtectedRoutesComponent';
@@ -37,9 +37,8 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
             <Route path="/update-profile" component={UpdateProfile} />
-            <Route path="/Signup" component={SignUp} />
             <Route path="/articles/:slug" component={SingleArticle} />
-            <ProtectedRoutes path="/Create" component={CreateArticle} />
+            <ProtectedRoutes path="/create" component={CreateArticle} />
           </section>
         </Switch>
       </BrowserRouter>

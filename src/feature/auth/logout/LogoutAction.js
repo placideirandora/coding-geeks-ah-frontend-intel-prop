@@ -26,14 +26,10 @@ export const logout = () => async (dispatch) => {
       .post(`${BACKEND_URL}/users/logout`, {}, axiosConfig);
     const { data } = send;
     const { message } = data;
-    localStorage.clear();
-    window.location.replace('/');
     dispatch(logoutSuccess(message));
   } catch (error) {
     const message = (await error.response)
       ? error.response.data.error : 'Something wrong';
-    localStorage.clear();
-    window.location.replace('/');
     dispatch(logoutError(message));
   }
 };

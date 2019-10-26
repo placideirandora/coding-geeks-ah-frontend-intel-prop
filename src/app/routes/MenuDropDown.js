@@ -4,7 +4,7 @@
 import React from 'react';
 import Logout from '../../feature/auth/logout/Logout';
 
-const DropDown = (props) => {
+const MenuDropDown = (props) => {
   const { user: { userName } } = props;
   return (
     <div className="dropdown-menu">
@@ -33,4 +33,4 @@ const DropDown = (props) => {
   );
 };
 
-export default DropDown;
+export default MenuDropDown;

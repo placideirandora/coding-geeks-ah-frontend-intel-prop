@@ -3,7 +3,7 @@
 /* eslint-disable import/named */
 import React from 'react';
 import { shallow } from 'enzyme';
-import NotificationComponent from '../Notification';
+import NotificationComponent from '../NotificationDropDown';
 
 const renderDropDown = (args) => {
   const props = { ...args };
@@ -13,7 +13,7 @@ const renderDropDown = (args) => {
 const Wrapper = renderDropDown();
 const div = Wrapper.find('div');
 
-describe('<DropDown />', () => {
+describe('Notification Dropdown tests ', () => {
   it('should render the component', () => {
     expect(Wrapper.exists()).toBe(true);
   });

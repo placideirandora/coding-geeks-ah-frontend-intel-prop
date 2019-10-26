@@ -7,6 +7,8 @@ import { logout } from './LogoutAction';
 export class Logout extends Component {
   logOut = () => {
     this.props.logout();
+    localStorage.clear();
+    window.location.replace('/');
   };
 
   render() {
@@ -18,7 +20,13 @@ export class Logout extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.login.isAuthenticated
+});
+
+const mapDispatchToProps = { logout };
+
 export default connect(
-  null,
-  { logout },
+  mapStateToProps,
+  mapDispatchToProps,
 )(Logout);
