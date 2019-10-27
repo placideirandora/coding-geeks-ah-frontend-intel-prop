@@ -2,14 +2,14 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { button } from 'react-router-dom';
+import Home from '../../homePage/Home';
 import { retrieveProfile } from './ViewProfileAction';
 import { updateUserProfile } from '../update_profile/UpdateProfileAction';
 import './ViewProfileStyle.scss';
 import notFound from '../img/no-image.jpeg';
 import { UpdateProfileComponent } from '../update_profile/UpdateProfileComponent';
 
-class ProfileComponent extends Component {
+export class ProfileComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,7 +25,7 @@ class ProfileComponent extends Component {
 
   render() {
     const {
-      authenticated, getProfile, profile, updateProfile
+      authenticated, getProfile, profile, updateProfile,
     } = this.props;
     const { show } = this.state;
     const image = profile.profile.image ? profile.profile.image : notFound;
@@ -35,6 +35,7 @@ class ProfileComponent extends Component {
     }
     return profile.profile.userName ? (
       <div>
+        <Home />
         <h1 className="title">User Profile</h1>
         <div className="grid-container">
           <div className="grid-container__cover">
@@ -48,7 +49,7 @@ class ProfileComponent extends Component {
             <p className="grid-container__username">{`${profile.profile.userName}`}</p>
             <p className="grid-container__bio">{`${bio}`}</p>
           </div>
-          <button type="submit" className="grid-container__link" onClick={() => { this.displayModal(true); }}>
+          <button type="submit" className="grid-container__btn" onClick={() => { this.displayModal(true); }}>
             Edit Profile
           </button>
           <UpdateProfileComponent
@@ -67,7 +68,7 @@ class ProfileComponent extends Component {
 
 export const mapStateToProps = state => ({
   authenticated: state.login.user,
-  profile: state.profile
+  profile: state.profile,
 });
 
 export const mapDispatchToProps = dispatch => ({

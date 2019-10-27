@@ -30,7 +30,7 @@ export class Login extends Component {
   redirectOnSuccess = () => {
     const { isAuthenticated, location } = this.props;
     const { redirectTo } = QueryString.parse(location.search);
-    return isAuthenticated ? this.props.history.push(redirectTo || '/profile') : null;
+    return isAuthenticated ? this.props.history.push(redirectTo || '/') : null;
   };
 
   handleSubmit = e => {

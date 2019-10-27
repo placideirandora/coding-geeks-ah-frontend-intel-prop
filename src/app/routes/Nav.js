@@ -40,7 +40,7 @@ export class Navbar extends Component {
                 <Link to="/Create">Create</Link>
               </li>
               <li>
-                <Link to="/About">About</Link>
+                <Link to="/profile">Profile</Link>
               </li>
               <li className="last">
                 <Logout />

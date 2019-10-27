@@ -41,7 +41,7 @@
     font-size: 1.5rem;
   }
 
-  &__link {
+  &__btn {
     color: #599bda;
     border-color: #599bda;
     margin-left: 45.6%;
@@ -77,8 +77,9 @@
       height: 115px;
     }
 
-    &__link {
+    &__btn {
       margin-left: 43%;
+      width: 11%;
     }
   }
 }
@@ -109,8 +110,9 @@
       height: 115px;
     }
 
-    &__link {
-      margin-left: 41.5%;
+    &__btn {
+      margin-left: 43%;
+      width: 13%;
     }
   }
 }
@@ -154,10 +156,11 @@
       font-size: 14px;
     }
 
-    &__link {
+    &__btn {
       margin-left: 37%;
       padding: 5px 12px 5px 12px;
       font-size: 12px;
+      width: 21%;
     }
 
     &__profile-info {
@@ -209,10 +212,11 @@
       font-size: 12px;
     }
 
-    &__link {
+    &__btn {
       margin-left: 37.5%;
       padding: 4px 10px 4px 10px;
       font-size: 10px;
+      width: 23%;
     }
 
     &__profile-info {
