@@ -67,7 +67,8 @@ const mapStateToProps = state => ({
   isAuthenticated: state.login.isAuthenticated
 });
 
+const mapDispatchToProps = { likeArticle, dislikeArticle };
 export default connect(
   mapStateToProps,
-  { likeArticle, dislikeArticle }
+  mapDispatchToProps
 )(withRouter(LikeDislike));

@@ -10,67 +10,105 @@ import {
 } from '../../constants';
 
 const store = makeMockStore({ article: {} });
-const mockSuccess = data => ({ status: 200, response: data });
-const mockError = error => ({ status: 400, response: error });
-
 describe('Like Article Action', () => {
   beforeEach(() => moxios.install());
-  afterEach(() => moxios.uninstall());
-  it('Should dispatch LIKE_ARTICLE_FAIL action', async () => {
+  afterEach(() => {
+    moxios.uninstall();
+    store.clearActions();
+  });
+  test('Should dispatch LIKE_ARTICLE_FAIL action', () => {
     const error = 'No articles the moment';
-    const expected = { type: LIKE_ARTICLE_FAIL, error };
-
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
-      request.respondWith(mockError(error));
+      request.respondWith({
+        status: 400,
+        response: {
+          data: {
+            error: 'Unable to like this article'
+          }
+        }
+      });
     });
-    await store.dispatch(likeArticle(error));
-    const dispatchedActions = store.getActions();
-    expect(dispatchedActions[0].type).toEqual(expected.type);
+    return store.dispatch(likeArticle(error)).then(() => {
+      expect(store.getActions().length).toEqual(1);
+    });
   });
 });
 
 describe('Dislike Article Action', () => {
   beforeEach(() => moxios.install());
-  afterEach(() => moxios.uninstall());
-
-  it('Should dispatch DISLIKE_ARTICLE_FAIL action', async () => {
-    const error = 'No articles the moment';
-    const expected = { type: DISLIKE_ARTICLE_FAIL, error };
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith(mockError(error));
-    });
-    await store.dispatch(dislikeArticle(error));
-    const dispatchedActions = store.getActions();
-    expect(dispatchedActions[1].type).toEqual(expected.type);
+  afterEach(() => {
+    moxios.uninstall();
+    store.clearActions();
   });
-});
-describe('Dislike Article Action', () => {
-  beforeEach(() => moxios.install());
-  afterEach(() => moxios.uninstall());
-
   it('Should dispatch DISLIKE_ARTICLE_SUCCESS action', async () => {
-    const expected = GET_SINGLE_ARTICLE_SUCCESS;
-    const slug = 'Should dispatch GET_SINGLE_ARTICLE_SUCCESS-3244';
-
+    const error = 'No articles the moment';
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
-      request.respondWith(mockSuccess(mockArticle.article));
+      request.respondWith({
+        status: 400,
+        response: {
+          data: {
+            error: 'Unable to like this article'
+          }
+        }
+      });
     });
-    await store.dispatch(dislikeArticle(slug));
-    const dispatchedActions = store.getActions();
-    const dispatchedTypes = dispatchedActions.map(action => action.type);
-    expect(dispatchedTypes[0]).toEqual(expected);
+    return store.dispatch(dislikeArticle(error)).then(() => {
+      expect(store.getActions().length).toEqual(1);
+    });
+  });
+});
+
+describe('Like and Dislike sucess  Article Actions ', () => {
+  beforeEach(() => moxios.install());
+  afterEach(() => {
+    moxios.uninstall();
+    store.clearActions();
+  });
+  const slug = 'Should dispatch GET_SINGLE_ARTICLE_SUCCESS-3244';
+  it('Should dispatch DISLIKE_ARTICLE_SUCCESS action', async () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: {
+          data: {
+            article: mockArticle.article
+          }
+        }
+      });
+    });
+    await store.dispatch(likeArticle(slug));
+    expect(store.getActions().length).toEqual(1);
+  });
+  it('Should dispatch  GET_SINGLE_ARTICLE_SUCCESS action', async () => {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: {
+          data: {
+            article: mockArticle.article
+          }
+        }
+      });
+    });
+    return store.dispatch(dislikeArticle(slug)).then(() => {
+      expect(store.getActions().length).toEqual(1);
+    });
   });
 });
 describe('SERVER ERROR', () => {
   it('Should return an error', async () => {
     const slug = 'Should dispatch GET_SINGLE_ARTICLE_SUCCESS-3244';
-    const expected = DISLIKE_ARTICLE_FAIL;
+    const expected = [
+      {
+        payload: 'jwt malformed',
+        type: 'DISLIKE_ARTICLE_FAIL'
+      }
+    ];
     await store.dispatch(dislikeArticle(slug));
-    const dispatchedActions = store.getActions();
-    const dispatchedTypes = dispatchedActions.map(action => action.type);
-    expect(dispatchedTypes[2]).toEqual(expected);
+    expect(store.getActions()).toEqual(expected);
   });
 });

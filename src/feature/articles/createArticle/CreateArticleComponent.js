@@ -1,11 +1,10 @@
-/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import createArticle from './createArticleAction';
-import editorConfigs from '../../../app/config/ckeditorConfig';
+import editorConfigs from '../../../app/common/config/ckeditorConfig';
 import 'react-toastify/dist/ReactToastify.css';
 import './createArticle.scss';
 
@@ -28,11 +27,7 @@ export class CreateArticle extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const {
-      title,
-      description,
-      tags,
-      category,
-      body
+      title, description, tags, category, body
     } = this.state;
     const { createArticle } = this.props;
     const test = !title || !description || !body;
@@ -53,11 +48,7 @@ export class CreateArticle extends Component {
 
   render() {
     const {
-      title,
-      description,
-      tags,
-      category,
-      body
+      title, description, tags, category, body
     } = this.state;
     return (
       <>

@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, BrowserRouter } from 'react-router-dom';
@@ -62,7 +60,10 @@ export class ViewSingleArticle extends Component {
                   .fromNow()}
               </span>
               {'  '}
-              <span className="heading__munite">{readTime}.</span>
+              <span className="heading__munite">
+                {readTime}
+.
+              </span>
               <span>
                 <div className="heading__avarageRating">
                   <AverageRating avarageRatings={averageRatings} />
@@ -74,7 +75,8 @@ export class ViewSingleArticle extends Component {
             <div className="heading__right-item">
               <span className="bookmark">
                 {' '}
-                <img src={bookmark} className="heading__bookmark" alt="" />{' '}
+                <img src={bookmark} className="heading__bookmark" alt="" />
+                {' '}
               </span>
               <span className="menu">
                 <img src={ellipsis} className="heading__menu" alt=" " />
