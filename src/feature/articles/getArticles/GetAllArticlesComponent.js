@@ -7,7 +7,6 @@ import getImage from '../../../app/helpers/getImage';
 import defautImage from '../../../app/common/images/defaultImage.png';
 import avatar from '../../../app/common/images/avatar.png';
 import getAllArticles from './GetAllArticlesAction';
-import Home from '../../homePage/Home';
 import './GetAllArticles.scss';
 
 export class GetAllArticles extends Component {
@@ -35,7 +34,6 @@ export class GetAllArticles extends Component {
     const { articles } = this.props;
     return (
       <>
-        <Home />
         <div className="mainDiv">
           <div className="main--banner">
             <div className="main--banner__text">
