@@ -1,25 +1,84 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { UpdateProfileComponent } from '../UpdateProfileComponent';
 import store from '../../../../app/store/index';
 
-const authenticated = {
-  user: {
-    username: 'someone'
-  }
+const renderProfile = () => {
+  const initialProps = {
+    authenticated: {
+      username: 'someone'
+    },
+    user: {},
+    bio: {},
+    image: {},
+    preview: {},
+    handleChange: jest.fn(),
+    handleFileUpload: jest.fn(),
+    clearStateAndModal: jest.fn(),
+    handleSubmit: jest.fn(),
+    handleOnClick: jest.fn(),
+    updateProfile: jest.fn(),
+    displayModal: jest.fn(),
+    show: true
+  };
+  const props = { ...initialProps };
+  return shallow(<UpdateProfileComponent {...props} />);
 };
 
-const Wrapper = mount(
-  <Provider store={store}>
-    <UpdateProfileComponent authenticated={authenticated} />
-  </Provider>
-);
+describe('Update Profile Component Tests', () => {
+  const wrapper = renderProfile();
+  global.URL.createObjectURL = jest.fn();
 
+  it('should render the Update profile component', () => {
+    expect(wrapper.length).toEqual(1);
+  });
 
-describe('View Profile Component Tests', () => {
-  it('should render the component', () => {
-    expect(Wrapper.exists()).toBe(true);
+  it('should submit without any data', () => {
+    const form = wrapper.find('form');
+    const fakeEvent = { preventDefault: () => true };
+    form.simulate('submit', fakeEvent);
+  });
+
+  it('should fill up and submit the form', () => {
+    const bio = wrapper.find('textarea');
+    const image = wrapper.find('input[type="file"]');
+    const form = wrapper.find('form');
+
+    bio.simulate('change', {
+      target: {
+        value: 'someone special',
+        id: 'bio'
+      }
+    });
+    expect(wrapper.state('bio')).toEqual(
+      'someone special'
+    );
+
+    image.simulate('change', {
+      target: {
+        files: [
+          'someone.jpeg'
+        ]
+      }
+    });
+    expect(wrapper.state('image')).toEqual(
+      'someone.jpeg'
+    );
+    const fakeEvent = { preventDefault: () => true };
+    form.simulate('submit', fakeEvent);
+  });
+
+  it('should close the modal and clear the state', () => {
+    const fakeEvent = { preventDefault: () => false };
+    const closeButton = wrapper.find('i');
+
+    closeButton.simulate('click', fakeEvent);
+
+    expect(wrapper.state('bio')).toEqual(null);
+    expect(wrapper.state('image')).toEqual(null);
+    expect(wrapper.state('preview')).toEqual(null);
   });
 });
