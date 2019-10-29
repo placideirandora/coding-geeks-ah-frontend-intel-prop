@@ -9,6 +9,7 @@ import defautImage from '../../../app/common/images/defaultImage.png';
 import avatar from '../../../app/common/images/avatar.png';
 import getAllArticles from './GetAllArticlesAction';
 import LikeDilsikeArticle from '../likeDislikeArticles/LikeDislikeComponent';
+import CommentCountComponent from '../../../app/common/CommentCount/CommentCountComponent';
 import './GetAllArticles.scss';
 
 export class GetAllArticles extends Component {
@@ -90,8 +91,13 @@ export class GetAllArticles extends Component {
                         </div>
                       </div>
                       <hr className="divider" />
+                      <CommentCountComponent
+                        className="btn__commentCount"
+                        count={article.commentCount}
+                      />
+
                       <LikeDilsikeArticle
-                        className="btn__likesDislikes"
+                        className="disabled btn__likesDislikes"
                         likes={article.likes}
                         dislikes={article.dislikes}
                       />

@@ -3,12 +3,6 @@ import { makeMockStore } from '../../../../app/common/config/mockStore';
 import { likeArticle, dislikeArticle } from '../LikeDislikeAction';
 import mockArticle from '../../../../__mocks__/mockData';
 
-import {
-  GET_SINGLE_ARTICLE_SUCCESS,
-  LIKE_ARTICLE_FAIL,
-  DISLIKE_ARTICLE_FAIL
-} from '../../constants';
-
 const store = makeMockStore({ article: {} });
 describe('Like Article Action', () => {
   beforeEach(() => moxios.install());
@@ -29,8 +23,11 @@ describe('Like Article Action', () => {
         }
       });
     });
+    const expected = ['LIKE_ARTICLE_FAIL'];
     return store.dispatch(likeArticle(error)).then(() => {
-      expect(store.getActions().length).toEqual(1);
+      const dispatchedActions = store.getActions();
+      const dispatchedTypes = dispatchedActions.map(action => action.type);
+      expect(dispatchedTypes).toEqual(expected);
     });
   });
 });
@@ -41,7 +38,7 @@ describe('Dislike Article Action', () => {
     moxios.uninstall();
     store.clearActions();
   });
-  it('Should dispatch DISLIKE_ARTICLE_SUCCESS action', async () => {
+  it('Should dispatch DISLIKE_ARTICLE_FAIL action', async () => {
     const error = 'No articles the moment';
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
@@ -54,8 +51,11 @@ describe('Dislike Article Action', () => {
         }
       });
     });
+    const expected = ['DISLIKE_ARTICLE_FAIL'];
     return store.dispatch(dislikeArticle(error)).then(() => {
-      expect(store.getActions().length).toEqual(1);
+      const dispatchedActions = store.getActions();
+      const dispatchedTypes = dispatchedActions.map(action => action.type);
+      expect(dispatchedTypes).toEqual(expected);
     });
   });
 });
@@ -67,22 +67,25 @@ describe('Like and Dislike sucess  Article Actions ', () => {
     store.clearActions();
   });
   const slug = 'Should dispatch GET_SINGLE_ARTICLE_SUCCESS-3244';
-  it('Should dispatch DISLIKE_ARTICLE_SUCCESS action', async () => {
+  it('Should dispatch LIKE_ARTICLE_SUCCESS action', async () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
         response: {
           data: {
-            article: mockArticle.article
+            message: 'You have successfully liked'
           }
         }
       });
     });
+    const expected = ['LIKE_ARTICLE_SUCCESS'];
     await store.dispatch(likeArticle(slug));
-    expect(store.getActions().length).toEqual(1);
+    const dispatchedActions = store.getActions();
+    const dispatchedTypes = dispatchedActions.map(action => action.type);
+    expect(dispatchedTypes).toEqual(expected);
   });
-  it('Should dispatch  GET_SINGLE_ARTICLE_SUCCESS action', async () => {
+  it('Should dispatch  DISLIKE_ARTICLE_SUCCESS action', async () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -94,8 +97,11 @@ describe('Like and Dislike sucess  Article Actions ', () => {
         }
       });
     });
+    const expected = ['DISLIKE_ARTICLE_SUCCESS'];
     return store.dispatch(dislikeArticle(slug)).then(() => {
-      expect(store.getActions().length).toEqual(1);
+      const dispatchedActions = store.getActions();
+      const dispatchedTypes = dispatchedActions.map(action => action.type);
+      expect(dispatchedTypes).toEqual(expected);
     });
   });
 });

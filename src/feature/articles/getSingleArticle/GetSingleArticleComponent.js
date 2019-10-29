@@ -12,6 +12,7 @@ import DefaultAvatar from '../../../app/common/images/avatar.png';
 import ellipsis from '../../../app/common/images/ellipsis.png';
 import bookmark from '../../../app/common/images/bookmark.png';
 import ShareArticle from '../shareArticle/ShareArticleComponent';
+import CommentCountComponent from '../../../app/common/CommentCount/CommentCountComponent';
 import './GetSingleArticle.scss';
 
 export class ViewSingleArticle extends Component {
@@ -19,6 +20,7 @@ export class ViewSingleArticle extends Component {
     const { GetSingleArticle } = this.props;
     const { slug } = this.props.match.params;
     GetSingleArticle(slug);
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -34,7 +36,8 @@ export class ViewSingleArticle extends Component {
         dislikes,
         createdAt,
         readTime,
-        averageRatings
+        averageRatings,
+        commentCount
       }
     } = this.props.article;
     const { userName, image } = author;
@@ -60,10 +63,7 @@ export class ViewSingleArticle extends Component {
                   .fromNow()}
               </span>
               {'  '}
-              <span className="heading__munite">
-                {readTime}
-.
-              </span>
+              <span className="heading__munite">{readTime}.</span>
               <span>
                 <div className="heading__avarageRating">
                   <AverageRating avarageRatings={averageRatings} />
@@ -75,8 +75,7 @@ export class ViewSingleArticle extends Component {
             <div className="heading__right-item">
               <span className="bookmark">
                 {' '}
-                <img src={bookmark} className="heading__bookmark" alt="" />
-                {' '}
+                <img src={bookmark} className="heading__bookmark" alt="" />{' '}
               </span>
               <span className="menu">
                 <img src={ellipsis} className="heading__menu" alt=" " />
@@ -100,7 +99,10 @@ export class ViewSingleArticle extends Component {
             <div className="status__comment">
               <BrowserRouter>
                 <Link to="#?" className="status__comment">
-                  4 comments
+                  <CommentCountComponent
+                    className="btn__commentCount"
+                    count={commentCount}
+                  />
                 </Link>
               </BrowserRouter>
             </div>
@@ -148,6 +150,10 @@ const mapStateToProps = ({ getSingleArticle, login }) => ({
   currentUser: login,
   isAuthenticated: login
 });
+const mapDispatchToProps = {
+  GetSingleArticle
+};
+
 ViewSingleArticle.defaultProps = {
   location: {
     pathname: ''
@@ -158,5 +164,5 @@ ViewSingleArticle.defaultProps = {
 };
 export default connect(
   mapStateToProps,
-  { GetSingleArticle }
+  mapDispatchToProps
 )(ViewSingleArticle);

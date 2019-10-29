@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { CREATE_ARTICLE_SUCCESS, CREATE_ARTICLE_FAIL } from '../constants';
 import { BACKEND_URL } from '../../../app/common/config/appConfig';
-import axiosConfig from '../../../app/common/config/axiosConfig';
+import setAxiosConfig from '../../../app/common/config/axiosConfig';
 
 config();
 
@@ -25,7 +25,7 @@ const createArticle = (
     const res = await axios.post(
       `${BACKEND_URL}/articles/`,
       formData,
-      axiosConfig
+      setAxiosConfig()
     );
     dispatch({
       type: CREATE_ARTICLE_SUCCESS,

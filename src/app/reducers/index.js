@@ -20,5 +20,5 @@ export default combineReducers({
   crateArticle: article,
   getAllArticles,
   social: socialReducer,
-  getSingleArticle
+  getSingleArticle,
 });
