@@ -2,7 +2,6 @@
 /* eslint-disable no-nested-ternary */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Home from '../../homePage/Home';
 import { retrieveProfile } from './ViewProfileAction';
 import { updateUserProfile } from '../update_profile/UpdateProfileAction';
 import './ViewProfileStyle.scss';
@@ -35,7 +34,6 @@ export class ProfileComponent extends Component {
     }
     return profile.profile.userName ? (
       <div>
-        <Home />
         <h1 className="title">User Profile</h1>
         <div className="grid-container">
           <div className="grid-container__cover">

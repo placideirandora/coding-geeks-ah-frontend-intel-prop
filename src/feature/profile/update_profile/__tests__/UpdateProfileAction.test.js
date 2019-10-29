@@ -37,7 +37,7 @@ describe('Update Profile Action', () => {
     } catch (err) { return null; }
   });
 
-  it('should dispatch UPDATE_PROFILE_ERROR action', async () => {  
+  it('should dispatch UPDATE_PROFILE_ERROR action', async () => {
     const profileError = { error: 'invalid image' };
     try {
       const profile = {

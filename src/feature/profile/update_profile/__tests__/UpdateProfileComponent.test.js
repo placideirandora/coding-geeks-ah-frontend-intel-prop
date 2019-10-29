@@ -1,10 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { shallow } from 'enzyme';
 import { UpdateProfileComponent } from '../UpdateProfileComponent';
-import store from '../../../../app/store/index';
 
 const renderProfile = () => {
   const initialProps = {

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';

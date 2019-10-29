@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -69,7 +73,7 @@ export class UpdateProfileComponent extends Component {
       <div>
         <div className="modal">
           <div className="modal__modal-content">
-            <i className="fa fa-times modal-content__close" onClick={this.handleOnClick}/>
+            <i className="fa fa-times modal-content__close" onClick={this.handleOnClick} />
             <h2 className="modal-content__title">Update Profile</h2>
             <form className="modal-content__form" onSubmit={this.handleSubmit}>
               <label className="modal-content__label">Bio</label>

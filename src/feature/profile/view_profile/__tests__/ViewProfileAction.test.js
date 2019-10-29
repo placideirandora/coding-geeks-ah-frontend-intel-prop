@@ -37,7 +37,7 @@ describe('Retrieve Profile Action', () => {
     } catch (err) { return null; }
   });
 
-  it('should dispatch RETRIEVE_PROFILE_ERROR action', async () => {  
+  it('should dispatch RETRIEVE_PROFILE_ERROR action', async () => {
     const profileError = { error: 'profile not found' };
     try {
       const invalidUser = 'someonelse';
