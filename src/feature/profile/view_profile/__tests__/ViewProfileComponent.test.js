@@ -36,5 +36,6 @@ describe('View Profile Component Tests', () => {
   });
   it('should click on the model', () => {
     button.simulate('click');
+    expect(wrapper.state('show')).toEqual(true);
   });
 });
