@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -6,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.scss';
 import Nav from './routes/NavBar';
 import GetAllArticles from '../feature/articles/getArticles/GetAllArticlesComponent';
+import GetSingleArticle from '../feature/articles/getSingleArticle/GetSingleArticleComponent';
 import CreateArticle from '../feature/articles/createArticle/CreateArticleComponent';
 import ProtectedRoutes from '../feature/protectedRoutes/ProtectedRoutesComponent';
 import SignUp from '../feature/auth/signup/SignUpComponent';
@@ -14,7 +14,7 @@ import Profile from '../feature/profile/view_profile/ViewProfileComponent';
 import UpdateProfile from '../feature/profile/update_profile/UpdateProfileComponent';
 import ForgotPassword from '../feature/Reset Password/forgot password/ForgotPasswordComponent';
 import ResetPassword from '../feature/Reset Password/reset password/ResetPasswordComponent';
-import SingleArticle from '../feature/article/getSingleArticle/ReadSingleArticleComponent';
+import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 toast.configure();
 function App() {
@@ -37,7 +37,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
             <Route path="/update-profile" component={UpdateProfile} />
-            <Route path="/articles/:slug" component={SingleArticle} />
+            <Route path="/articles/:slug" component={GetSingleArticle} />
             <ProtectedRoutes path="/create" component={CreateArticle} />
           </section>
         </Switch>

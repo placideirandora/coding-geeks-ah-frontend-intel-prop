@@ -15,20 +15,18 @@ export class StarRating extends Component {
     };
   }
 
-  componentDidUpdate = () => {
-    this.submitRating();
-  };
-
   changeRating = (nextValue) => {
-    this.setState({ rating: nextValue });
+    this.setState({ rating: nextValue }, () => {
+      this.submitRating();
+    });
   }
 
   submitRating = () => {
     const {
-      isAuthenticated, articleId, pathname, history, starRating
+      isAuthenticated, articleId, pathname, history, starRating, slug
     } = this.props;
     const { rating } = this.state;
-    return isAuthenticated ? starRating(rating, articleId) : history.push(`/login?redirectTo=${pathname}`);
+    return isAuthenticated ? starRating(rating, articleId, slug) : history.push(`/login?redirectTo=${pathname}`);
   }
 
   render() {

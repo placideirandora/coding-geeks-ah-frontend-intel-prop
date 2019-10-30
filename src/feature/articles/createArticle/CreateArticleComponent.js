@@ -1,11 +1,10 @@
-/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import CKEditor from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import createArticle from './createArticleAction';
-import editorConfigs from '../../../app/config/ckeditorConfig';
+import editorConfigs from '../../../app/common/config/ckeditorConfig';
 import 'react-toastify/dist/ReactToastify.css';
 import './createArticle.scss';
 
@@ -28,14 +27,10 @@ export class CreateArticle extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const {
-      title,
-      description,
-      tags,
-      category,
-      body
+      title, description, tags, category, body
     } = this.state;
     const { createArticle } = this.props;
-    const test = (!title || !description || !body);
+    const test = !title || !description || !body;
     const message = 'Please fill in Title, Description and Body  to create an article';
     return test
       ? toast.error(message, { position: toast.POSITION.TOP_CENTER })
@@ -53,11 +48,7 @@ export class CreateArticle extends Component {
 
   render() {
     const {
-      title,
-      description,
-      tags,
-      category,
-      body
+      title, description, tags, category, body
     } = this.state;
     return (
       <>
@@ -122,7 +113,7 @@ export class CreateArticle extends Component {
                 type="submit"
                 onClick={this.handleSubmit}
               >
-              Create
+                Create
               </button>
             </div>
           </div>
