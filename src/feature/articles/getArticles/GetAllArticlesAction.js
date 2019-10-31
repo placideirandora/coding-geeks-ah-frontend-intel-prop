@@ -3,13 +3,13 @@ import { toast } from 'react-toastify';
 import { GET_ARTICLES_SUCCESS, GET_ARTICLES_FAIL, LOADING } from '../constants';
 import { BACKEND_URL } from '../../../app/common/config/appConfig';
 
-const getAllArticles = () => async dispatch => {
+const getAllArticles = (page) => async dispatch => {
   try {
     dispatch({
       type: LOADING,
       payload: true
     });
-    const res = await axios.get(`${BACKEND_URL}/articles/`);
+    const res = await axios.get(`${BACKEND_URL}/articles?page=${page}&limit=10`);
 
     dispatch({
       type: GET_ARTICLES_SUCCESS,

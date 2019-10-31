@@ -26,7 +26,7 @@ describe('Get All Articles Components tests', () => {
   it('Should render a form inputs', () => {
     wrapper.setState({ loading: false });
     expect(wrapper.find('.mainDiv').length).toBe(1);
-    expect(wrapper.find('div').length).toBe(16);
+    expect(wrapper.find('div').length).toBe(17);
     expect(wrapper.find('.link').length).toBe(1);
   });
 });
