@@ -11,7 +11,6 @@ export class UpdateProfileComponent extends Component {
   constructor(props) {
     super(props);
     const { bio } = this.props;
-    console.log(bio);
     this.state = {
       bio,
       image: null,

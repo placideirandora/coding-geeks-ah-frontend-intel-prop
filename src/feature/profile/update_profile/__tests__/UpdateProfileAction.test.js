@@ -15,21 +15,22 @@ describe('Update Profile Action', () => {
 
   it('should dispatch UPDATE_PROFILE_SUCCESS action', async () => {
     const profile = {
-      user: 'someone',
       bio: 'someone special',
       image: 'someone.jpg'
     };
 
     try {
+      const user = 'someone';
       const expected = {
         type: UPDATE_PROFILE_SUCCESS,
         payload: profile
       };
+      const closeModal = 'close';
       moxios.wait(() => {
         const request = moxios.requests.mostRecent();
         request.respondWith(mockSuccess(profile));
       });
-      const result = await store.dispatch(updateUserProfile(profile));
+      const result = await store.dispatch(updateUserProfile(user, profile, closeModal));
       if (result) {
         const actionCalled = store.getActions();
         expect(actionCalled[0]).toEqual(expected);
