@@ -1,20 +1,20 @@
-/* eslint-disable react/no-unused-state */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { updateUserProfile } from './UpdateProfileAction';
 import './UpdateProfileStyle.scss';
 
 export class UpdateProfileComponent extends Component {
   constructor(props) {
     super(props);
-    const { authenticated } = this.props;
+    const { bio } = this.props;
     this.state = {
-      user: authenticated.username,
-      userName: null,
-      bio: null,
-      image: null
+      bio,
+      image: null,
+      preview: null
     };
   }
 
@@ -26,8 +26,14 @@ export class UpdateProfileComponent extends Component {
 
   handleFileUpload = e => {
     this.setState({
-      image: e.target.files[0]
+      image: e.target.files[0],
+      preview: URL.createObjectURL(e.target.files[0])
     });
+  }
+
+  closeModal = () => {
+    const { displayModal } = this.props;
+    displayModal(false);
   }
 
   handleSubmit = e => {
@@ -35,59 +41,67 @@ export class UpdateProfileComponent extends Component {
     const { bio, image } = this.state;
     if (!bio && !image) {
       toast.error('No data provided', {
-        position: toast.POSITION.TOP_CENTER
+        position: toast.POSITION.TOP_RIGHT
       });
     } else {
-      const { updateProfile } = this.props;
-      updateProfile(this.state);
+      const { authenticated, updateProfile } = this.props;
+      updateProfile(authenticated.username, this.state, this.closeModal);
     }
   };
 
+  handleCloseClick = e => {
+    e.preventDefault();
+    const { displayModal } = this.props;
+    displayModal(false);
+  }
+
   render() {
-    return (
+    const { show } = this.props;
+    const { preview, bio } = this.state;
+    return show ? (
       <div>
-        <h1 className="title">Update Profile</h1>
-        <div className="grid-container">
-          <form className="grid-container__form" onSubmit={this.handleSubmit}>
-            <label className="grid-container__label">Bio</label>
-            <br />
-            <textarea
-              rows="5"
-              cols="60"
-              type="text"
-              id="bio"
-              onChange={this.handleChange}
-              className="grid-container__textarea"
-            />
-            <br />
-            <label className="grid-container__label">Image</label>
-            <br />
-            <input
-              type="file"
-              onChange={this.handleFileUpload}
-              className="grid-container__file"
-            />
-            <br />
-            <button type="submit" className="grid-container__btn">
+        <div className="modal">
+          <div className="modal__modal-content">
+            <i className="fa fa-times modal-content__close" onClick={this.handleCloseClick} />
+            <h2 className="modal-content__title">Update Profile</h2>
+            <form className="modal-content__form" onSubmit={this.handleSubmit}>
+              <label className="modal-content__label">Bio</label>
+              <br />
+              <textarea
+                rows="5"
+                cols="60"
+                type="text"
+                id="bio"
+                onChange={this.handleChange}
+                className="modal-content__textarea"
+                value={bio}
+              />
+              <br />
+              <label className="modal-content__label">Image</label>
+              <br />
+              <input
+                type="file"
+                onChange={this.handleFileUpload}
+                className="modal-content__file"
+              />
+              <br />
+              <img src={preview} className="modal-content__preview" />
+              <br />
+              <button type="submit" className="modal-content__btn">
               Update
-            </button>
-          </form>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    );
+    ) : (null);
   }
 }
 
-export const mapStateToProps = state => ({
-  authenticated: state.login.user,
+const mapStateToProps = (state) => ({
   profile: state.profile
 });
 
-const mapDispatchToProps = dispatch => ({
-  updateProfile: profile => dispatch(updateUserProfile(profile))
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(UpdateProfileComponent);

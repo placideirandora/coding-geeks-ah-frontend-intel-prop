@@ -26,7 +26,7 @@ export class Navbar extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
-  componentDidMount = () => {
+  componentDidUpdate = () => {
     this.currentUserProfile();
   };
 

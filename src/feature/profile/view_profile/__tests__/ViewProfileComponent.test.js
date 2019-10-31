@@ -1,17 +1,41 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { mount } from 'enzyme';
-import { Provider } from 'react-redux';
-import ViewProfileComponent from '../ViewProfileComponent';
-import store from '../../../../app/store/index';
+import { shallow } from 'enzyme';
+import { ViewProfileComponent } from '../ViewProfileComponent';
 
-const Wrapper = mount(
-  <Provider store={store}>
-    <ViewProfileComponent />
-  </Provider>
-);
+const renderProfile = () => {
+  const initialProps = {
+    user: {},
+    bio: {},
+    image: {},
+    getProfile: jest.fn(),
+    authenticated: {
+      username: 'someone'
+    },
+    profile: {
+      profile: {
+        image: 'someone',
+        bio: 'someone',
+        userName: 'someone'
+      }
+    }
+  };
+  const props = { ...initialProps };
+  return shallow(<ViewProfileComponent {...props} />);
+};
 
 describe('View Profile Component Tests', () => {
+  const wrapper = renderProfile();
+  const button = wrapper.find('button');
+
   it('should render the view profile component', () => {
-    expect(Wrapper.exists()).toBe(true);
+    expect(wrapper.length).toEqual(1);
+  });
+  it('should render the view profile component', () => {
+    expect(wrapper.length).toBe(1);
+  });
+  it('should click on the model', () => {
+    button.simulate('click');
+    expect(wrapper.state('show')).toEqual(true);
   });
 });

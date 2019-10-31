@@ -16,9 +16,8 @@ export const sendError = profileError => ({
   error: profileError
 });
 
-export const updateUserProfile = profile => async dispatch => {
+export const updateUserProfile = (user, profile, closeModal) => async dispatch => {
   try {
-    // localStorage.removeItem('token');
     const token = localStorage.getItem('token');
     const config = {
       headers: {
@@ -26,19 +25,20 @@ export const updateUserProfile = profile => async dispatch => {
         'content-type': 'multipart/form-data'
       }
     };
-    const { bio, image, user } = profile;
+    const { bio, image } = profile;
     const formData = new FormData();
     if (bio !== null) formData.append('bio', bio);
     if (image !== null) formData.append('image', image);
     const response = await axios.put(`${BACKEND_URL}/profiles/${user}`, formData, config);
     dispatch(updateProfile(response));
     toast.success(response.data.message, {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_RIGHT
     });
+    closeModal();
   } catch (error) {
     dispatch(sendError(error));
     toast.error(error.response.data.error, {
-      position: toast.POSITION.TOP_CENTER
+      position: toast.POSITION.TOP_RIGHT
     });
   }
 };
