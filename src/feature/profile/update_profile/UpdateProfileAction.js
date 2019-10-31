@@ -16,9 +16,8 @@ export const sendError = profileError => ({
   error: profileError
 });
 
-export const updateUserProfile = (profile, clear) => async dispatch => {
+export const updateUserProfile = (user, profile) => async dispatch => {
   try {
-    // localStorage.removeItem('token');
     const token = localStorage.getItem('token');
     const config = {
       headers: {
@@ -26,7 +25,7 @@ export const updateUserProfile = (profile, clear) => async dispatch => {
         'content-type': 'multipart/form-data'
       }
     };
-    const { bio, image, user } = profile;
+    const { bio, image } = profile;
     const formData = new FormData();
     if (bio !== null) formData.append('bio', bio);
     if (image !== null) formData.append('image', image);
@@ -35,10 +34,8 @@ export const updateUserProfile = (profile, clear) => async dispatch => {
     toast.success(response.data.message, {
       position: toast.POSITION.TOP_RIGHT
     });
-    clear();
   } catch (error) {
     dispatch(sendError(error));
-    // console.log(error);
     toast.error(error.response.data.error, {
       position: toast.POSITION.TOP_RIGHT
     });

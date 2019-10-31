@@ -10,14 +10,19 @@ import './UpdateProfileStyle.scss';
 export class UpdateProfileComponent extends Component {
   constructor(props) {
     super(props);
-    const { authenticated } = this.props;
+    const { bio } = this.props;
     this.state = {
-      user: authenticated.username,
-      bio: null,
+      bio,
       image: null,
       preview: null
     };
   }
+
+  // componentWillReceiveProps() {
+  //   toast.success('Profile updated successfully', {
+  //     position: toast.POSITION.TOP_RIGHT
+  //   });
+  // }
 
   handleChange = e => {
     this.setState({
@@ -33,8 +38,9 @@ export class UpdateProfileComponent extends Component {
   }
 
   clearStateAndModal = () => {
+    const { bio } = this.props;
     this.setState({
-      bio: null,
+      bio,
       image: null,
       preview: null
     });
@@ -50,12 +56,12 @@ export class UpdateProfileComponent extends Component {
         position: toast.POSITION.TOP_RIGHT
       });
     } else {
-      const { updateProfile } = this.props;
-      updateProfile(this.state, this.clearStateAndModal);
+      const { authenticated, updateProfile } = this.props;
+      updateProfile(authenticated.username, this.state);
     }
   };
 
-  handleOnClick = e => {
+  handleCloseClick = e => {
     e.preventDefault();
     const { displayModal } = this.props;
     displayModal(false);
@@ -68,12 +74,12 @@ export class UpdateProfileComponent extends Component {
 
   render() {
     const { show } = this.props;
-    const { preview } = this.state;
+    const { preview, bio } = this.state;
     return show ? (
       <div>
         <div className="modal">
           <div className="modal__modal-content">
-            <i className="fa fa-times modal-content__close" onClick={this.handleOnClick} />
+            <i className="fa fa-times modal-content__close" onClick={this.handleCloseClick} />
             <h2 className="modal-content__title">Update Profile</h2>
             <form className="modal-content__form" onSubmit={this.handleSubmit}>
               <label className="modal-content__label">Bio</label>
@@ -85,6 +91,7 @@ export class UpdateProfileComponent extends Component {
                 id="bio"
                 onChange={this.handleChange}
                 className="modal-content__textarea"
+                value={bio}
               />
               <br />
               <label className="modal-content__label">Image</label>

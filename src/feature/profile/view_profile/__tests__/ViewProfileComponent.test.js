@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow } from 'enzyme';
-import { ProfileComponent } from '../ViewProfileComponent';
+import { ViewProfileComponent } from '../ViewProfileComponent';
 
 const renderProfile = () => {
   const initialProps = {
@@ -21,7 +21,7 @@ const renderProfile = () => {
     }
   };
   const props = { ...initialProps };
-  return shallow(<ProfileComponent {...props} />);
+  return shallow(<ViewProfileComponent {...props} />);
 };
 
 describe('View Profile Component Tests', () => {

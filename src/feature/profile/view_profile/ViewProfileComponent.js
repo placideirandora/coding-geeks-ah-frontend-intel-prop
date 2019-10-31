@@ -8,7 +8,7 @@ import './ViewProfileStyle.scss';
 import notFound from '../img/no-image.jpeg';
 import { UpdateProfileComponent } from '../update_profile/UpdateProfileComponent';
 
-export class ProfileComponent extends Component {
+export class ViewProfileComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,6 +55,7 @@ export class ProfileComponent extends Component {
             authenticated={authenticated}
             updateProfile={updateProfile}
             displayModal={this.displayModal}
+            bio={bio}
           />
         </div>
       </div>
@@ -73,10 +74,10 @@ export const mapDispatchToProps = dispatch => ({
   getProfile: user => {
     dispatch(retrieveProfile(user));
   },
-  updateProfile: (profile, clear) => dispatch(updateUserProfile(profile, clear))
+  updateProfile: (user, profile) => dispatch(updateUserProfile(user, profile))
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProfileComponent);
+)(ViewProfileComponent);
