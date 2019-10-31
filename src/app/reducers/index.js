@@ -7,8 +7,9 @@ import forgotPasswordReducer from '../../feature/Reset Password/forgot password/
 import resetPasswordReducer from '../../feature/Reset Password/reset password/resetPasswordReducer';
 import article from '../../feature/articles/createArticle/createArticleReducer';
 import getAllArticles from '../../feature/articles/getArticles/GetAllArticleReducer';
-import socialReducer from '../../feature/auth/socialLogin/SocialReducer';
+import followReducer from '../../feature/followUnfollow/followUnfollowReducer';
 import getSingleArticle from '../../feature/articles/getSingleArticle/GetSingleArticleReducer';
+import socialReducer from '../../feature/auth/socialLogin/SocialReducer';
 
 export default combineReducers({
   login: loginReducer,
@@ -19,6 +20,7 @@ export default combineReducers({
   resetPassword: resetPasswordReducer,
   crateArticle: article,
   getAllArticles,
-  social: socialReducer,
+  followAuthor: followReducer,
   getSingleArticle,
+  social: socialReducer,
 });

@@ -12,6 +12,7 @@ import DefaultAvatar from '../../../app/common/images/avatar.png';
 import ellipsis from '../../../app/common/images/ellipsis.png';
 import bookmark from '../../../app/common/images/bookmark.png';
 import ShareArticle from '../shareArticle/ShareArticleComponent';
+import FollowUnfollowComponent from '../../followUnfollow/FollowUnfollowComponent';
 import CommentCountComponent from '../../../app/common/CommentCount/CommentCountComponent';
 import './GetSingleArticle.scss';
 
@@ -28,6 +29,7 @@ export class ViewSingleArticle extends Component {
       article: {
         author = {},
         id,
+        authorId,
         title,
         description,
         body,
@@ -47,6 +49,15 @@ export class ViewSingleArticle extends Component {
       <div className="wrapper">
         <div className="heading">
           <div className="heading__left">
+          <span>
+              <div className="heading__follow">
+                <FollowUnfollowComponent
+                  authorId={authorId}
+                  username={userName}
+                  pathname={this.props.location.pathname}
+                />
+              </div>
+            </span>
             <div className="heading__image">
               <img
                 src={image || DefaultAvatar}

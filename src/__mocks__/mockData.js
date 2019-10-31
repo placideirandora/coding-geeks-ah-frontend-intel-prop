@@ -78,5 +78,38 @@ export default {
     category: 'Education',
     createdAt: '2019-10-10T08:34:04.511Z',
     description: 'I like creating a fontawesome.js in the src folder and.'
+  },
+  following:
+  [{
+    id: 111,
+    follower: 10,
+    following: 2,
+    updatedAt: '2019-10-24T09:01:56.240Z',
+    createdAt: '2019-10-24T09:01:56.240Z'
+  },
+  {
+    id: 222,
+    username: 'username',
+    following: 15,
+    updatedAt: '2019-10-24T09:01:56.240Z',
+    createdAt: '2019-10-24T09:01:56.240Z'
+  }],
+  followSucces: {
+    data: {
+      id: 11,
+      follower: 10,
+      following: 2,
+      updatedAt: '2019-10-24T09:01:56.240Z',
+      createdAt: '2019-10-24T09:01:56.240Z'
+    }
+  },
+  followFail: {
+    data: {
+      id: 11,
+      follower: 10,
+      following: 2,
+      updatedAt: '2019-10-24T09:01:56.240Z',
+      createdAt: '2019-10-24T09:01:56.240Z'
+    }
   }
 };
