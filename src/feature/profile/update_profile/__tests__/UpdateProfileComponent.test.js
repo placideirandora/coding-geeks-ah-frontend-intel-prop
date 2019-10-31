@@ -14,7 +14,7 @@ const renderProfile = () => {
     preview: {},
     handleChange: jest.fn(),
     handleFileUpload: jest.fn(),
-    clearStateAndModal: jest.fn(),
+    closeModal: jest.fn(),
     handleSubmit: jest.fn(),
     handleOnClick: jest.fn(),
     updateProfile: jest.fn(),
@@ -68,14 +68,12 @@ describe('Update Profile Component Tests', () => {
     form.simulate('submit', fakeEvent);
   });
 
-  it('should close the modal and clear the state', () => {
+  it('should close the modal', () => {
     const fakeEvent = { preventDefault: () => false };
     const closeButton = wrapper.find('i');
 
     closeButton.simulate('click', fakeEvent);
 
-    expect(wrapper.state('bio')).toEqual(null);
-    expect(wrapper.state('image')).toEqual(null);
-    expect(wrapper.state('preview')).toEqual(null);
+    expect(wrapper.state('bio')).toEqual('someone special');
   });
 });

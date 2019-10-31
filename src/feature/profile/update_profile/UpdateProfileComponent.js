@@ -11,18 +11,13 @@ export class UpdateProfileComponent extends Component {
   constructor(props) {
     super(props);
     const { bio } = this.props;
+    console.log(bio);
     this.state = {
       bio,
       image: null,
       preview: null
     };
   }
-
-  // componentWillReceiveProps() {
-  //   toast.success('Profile updated successfully', {
-  //     position: toast.POSITION.TOP_RIGHT
-  //   });
-  // }
 
   handleChange = e => {
     this.setState({
@@ -37,13 +32,7 @@ export class UpdateProfileComponent extends Component {
     });
   }
 
-  clearStateAndModal = () => {
-    const { bio } = this.props;
-    this.setState({
-      bio,
-      image: null,
-      preview: null
-    });
+  closeModal = () => {
     const { displayModal } = this.props;
     displayModal(false);
   }
@@ -57,7 +46,7 @@ export class UpdateProfileComponent extends Component {
       });
     } else {
       const { authenticated, updateProfile } = this.props;
-      updateProfile(authenticated.username, this.state);
+      updateProfile(authenticated.username, this.state, this.closeModal);
     }
   };
 
@@ -65,11 +54,6 @@ export class UpdateProfileComponent extends Component {
     e.preventDefault();
     const { displayModal } = this.props;
     displayModal(false);
-    this.setState({
-      bio: null,
-      image: null,
-      preview: null
-    });
   }
 
   render() {

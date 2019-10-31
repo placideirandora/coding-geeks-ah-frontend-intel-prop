@@ -74,7 +74,7 @@ export const mapDispatchToProps = dispatch => ({
   getProfile: user => {
     dispatch(retrieveProfile(user));
   },
-  updateProfile: (user, profile) => dispatch(updateUserProfile(user, profile))
+  updateProfile: (user, profile, closeModal) => dispatch(updateUserProfile(user, profile, closeModal))
 });
 
 export default connect(

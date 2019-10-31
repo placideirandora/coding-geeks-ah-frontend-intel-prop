@@ -16,7 +16,7 @@ export const sendError = profileError => ({
   error: profileError
 });
 
-export const updateUserProfile = (user, profile) => async dispatch => {
+export const updateUserProfile = (user, profile, closeModal) => async dispatch => {
   try {
     const token = localStorage.getItem('token');
     const config = {
@@ -34,6 +34,7 @@ export const updateUserProfile = (user, profile) => async dispatch => {
     toast.success(response.data.message, {
       position: toast.POSITION.TOP_RIGHT
     });
+    closeModal();
   } catch (error) {
     dispatch(sendError(error));
     toast.error(error.response.data.error, {
