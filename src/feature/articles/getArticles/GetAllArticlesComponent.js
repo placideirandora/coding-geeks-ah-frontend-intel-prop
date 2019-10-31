@@ -10,11 +10,20 @@ import avatar from '../../../app/common/images/avatar.png';
 import getAllArticles from './GetAllArticlesAction';
 import LikeDilsikeArticle from '../likeDislikeArticles/LikeDislikeComponent';
 import CommentCountComponent from '../../../app/common/CommentCount/CommentCountComponent';
+import Pagination from '../../../app/common/pagination/PaginationComonent';
 import './GetAllArticles.scss';
 
 export class GetAllArticles extends Component {
+  constructor() {
+    super();
+    this.state = {
+      activePage: 1,
+    };
+  }
+
   componentDidMount() {
-    this.props.getAllArticles();
+    const { activePage } = this.state;
+    this.props.getAllArticles(activePage);
   }
 
   render() {
@@ -24,7 +33,9 @@ export class GetAllArticles extends Component {
         <div className="main--banner">
           <div className="main--banner__text">
             <h1 className="heading__3">
-              Authors <br />
+              Authors 
+{' '}
+<br />
               Haven
             </h1>
             <h3 className="heading__4">Create and Read Articles</h3>
@@ -108,11 +119,19 @@ export class GetAllArticles extends Component {
             ) : (
               <div className="article__error">
                 <h2>
-                  Sorry No Articles Found At The Moment. <br />
+                  Sorry No Articles Found At The Moment. 
+{' '}
+<br />
                   Please Create one or comeback later!!!
                 </h2>
               </div>
             )}
+            <div>
+              <Pagination
+                getAllArticles={this.props.getAllArticles}
+                articleNumbers={this.props.totalArticleNum}
+              />
+            </div>
           </div>
         )}
       </div>
@@ -122,7 +141,8 @@ export class GetAllArticles extends Component {
 
 const mapStateToProps = state => ({
   articles: state.getAllArticles.articles,
-  loading: state.getAllArticles.loading
+  loading: state.getAllArticles.loading,
+  totalArticleNum: state.getAllArticles.articlesCount
 });
 const mapDispatchToProps = {
   getAllArticles
