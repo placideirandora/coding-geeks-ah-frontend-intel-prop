@@ -27,7 +27,7 @@ describe('Pagination Component Tests', () => {
   it('should find number of li in pagination component', () => {
     expect(li.length).toEqual(3);
   });
-  it('should test handlePageChange function', () => {
+  it('should invoke handlePageChange function', () => {
     const paginator = jest.fn().mockImplementation(() => undefined);
     const instance = Wrapper.instance();
     Wrapper.instance().handlePageChange = paginator;

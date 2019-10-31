@@ -29,6 +29,9 @@ export class PaginationComonent extends Component {
             pageRangeDisplayed={3}
             onChange={this.handlePageChange}
             hideNavigation
+            firstPageText="First"
+            lastPageText="Last"
+            hideDisabled
           />
         </div>
       </div>
