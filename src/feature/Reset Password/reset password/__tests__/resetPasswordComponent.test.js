@@ -23,7 +23,7 @@ beforeAll(() => {
   wrapper.instance().onChange();
 });
 
-describe('Input tests...', () => {
+describe('Input field tests...', () => {
   it('Should type in the password feild', () => {
     const Password = wrapper.find('input[name="password"]');
     Password.simulate('change', {
@@ -33,7 +33,7 @@ describe('Input tests...', () => {
   });
 });
 
-describe('Submit button test...', () => {
+describe('reset password button test...', () => {
   let instance;
   let sendButton;
   beforeAll(() => {
@@ -41,7 +41,7 @@ describe('Submit button test...', () => {
     sendButton = wrapper.find('.send');
     sendButton.simulate('click');
   });
-  it('Should make a request to the server', () => {
+  it('Should make a request to the server when you click on the reset button', () => {
     instance.forceUpdate();
     wrapper.update();
     const event = {

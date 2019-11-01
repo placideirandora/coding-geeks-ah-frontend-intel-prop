@@ -2,6 +2,12 @@
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
+/* eslint-disable react/sort-comp */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import momemt from 'moment';
@@ -13,32 +19,68 @@ import AverageRating from '../averageRating/AverageRatingComponent';
 import DisabledStar from '../starRating/DisabledStarComponent';
 import DefaultAvatar from '../../../app/common/images/avatar.png';
 import ellipsis from '../../../app/common/images/ellipsis.png';
-import bookmark from '../../../app/common/images/bookmark.png';
 import ShareArticle from '../shareArticle/ShareArticleComponent';
 import FollowUnfollowComponent from '../../followUnfollow/FollowUnfollowComponent';
 import CommentCountComponent from '../../../app/common/CommentCount/CommentCountComponent';
 import ArticleMenuDropdown from '../../../app/common/articleMenu/ArticleDropdownMenu';
 import deleteArticle from '../deleteArticle/DeleteAction';
 import CommentComponent from '../../comment/CommentComponent';
+import BookmarkComponent from '../../bookmark/BookmarkComponent';
+import {
+  getBookmarks, bookmarking, unbookmark
+} from '../../bookmark/bookmarkAction';
 import './GetSingleArticle.scss';
 
 export class ViewSingleArticle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayMenu: false
+      bookmarkState: 'bookmark',
+      articleId: null,
+      isArticleBookmarked: false,
+      bookmarks: []
     };
   }
 
+  UNSAFE_componentWillReceiveProps = (nextProps) => {
+    const { articleId } = this.state;
+    const { bookmarks, article } = nextProps;
+    this.setState(prevState => ({
+      ...prevState,
+      bookmarks: bookmarks || prevState.bookmarks,
+      isArticleBookmarked: (bookmarks || prevState.bookmarks)
+        .filter((bookmark) => Number(bookmark.articleId) === Number(articleId))[0],
+      articleId: (article && article.article && article.article.id) || prevState.articleId
+    }));
+  }
+
   componentDidMount() {
-    const {
-      match: {
-        params: { slug }
-      },
-      GetSingleArticle
-    } = this.props;
+    const { GetSingleArticle, getBookmarks } = this.props;
+    const { slug } = this.props.match.params;
     GetSingleArticle(slug);
     window.scrollTo(0, 0);
+
+    return localStorage.token
+      ? getBookmarks()
+      : this.setState(prevState => ({ ...prevState, buttonState: 'bookmark' }));
+  }
+
+  submitBookmark = () => {
+    const {
+      isAuthenticated
+    } = this.props;
+
+    return isAuthenticated.isAuthenticated;
+  }
+
+  handleBookmarkClick = (isBookmarked, articleId) => {
+    const { location, history } = this.props;
+    if (!this.submitBookmark()) {
+      return history.push(`/login?redirectTo=${location.pathname}`);
+    }
+    const { slug } = this.props.match.params;
+    const { bookmarking, unbookmark } = this.props;
+    return !isBookmarked ? bookmarking(slug) : unbookmark(slug, articleId);
   }
 
   componentDidUpdate() {
@@ -77,13 +119,15 @@ export class ViewSingleArticle extends Component {
         averageRatings,
         commentCount,
       },
-      currentUser: { user }
+      currentUser: { user },
+      bookmarkLoading
     } = this.props;
     const { history, location } = this.props;
     const username = localStorage.getItem('username');
     const { userName, image } = author;
     const ownArticle = userName === user.username;
-    const { displayMenu } = this.state;
+    const { displayMenu, bookmarks } = this.state;
+
     return (
       <div className="wrapper-commenting">
         <div className="heading">
@@ -115,7 +159,6 @@ export class ViewSingleArticle extends Component {
               {'  '}
               <span className="heading__munite">
                 {readTime}
-.
               </span>
               <span>
                 <div className="heading__avarageRating">
@@ -127,9 +170,15 @@ export class ViewSingleArticle extends Component {
           <div className="heading__right">
             <div className="heading__right-item">
               <div className="menu">
-                <span className="bookmark">
-                  <img src={bookmark} className="heading__bookmark" alt="" />
-                </span>
+                <BookmarkComponent
+                  isAuthenticated={this.props.isAuthenticated}
+                  loading={bookmarkLoading}
+                  articleId={id}
+                  bookmarks={bookmarks}
+                  onClick={this.handleBookmarkClick}
+                  pathname={this.props.location.pathname}
+                  className="bookmarkIcon"
+                />
                 <span>
                   {username === userName || !username ? (
                     <img
@@ -193,7 +242,6 @@ export class ViewSingleArticle extends Component {
                   <StarRating
                     articleId={id}
                     pathname={this.props.location.pathname}
-                    slug={slug}
                   />
                 </span>
               )}
@@ -217,26 +265,29 @@ export class ViewSingleArticle extends Component {
     );
   }
 }
-const mapStateToProps = ({ getSingleArticle, login }) => ({
+const mapStateToProps = ({ getSingleArticle, login, bookmarking }) => ({
   article: getSingleArticle.article,
   currentUser: login,
   isAuthenticated: login,
-  deleted: getSingleArticle.deleted
+  deleted: getSingleArticle.deleted,
+  bookmarks: bookmarking.bookmarks,
+  bookmarkLoading: bookmarking.loading
 });
+
 const mapDispatchToProps = {
   GetSingleArticle,
-  deleteArticle
+  deleteArticle,
+  getBookmarks,
+  bookmarking,
+  unbookmark
 };
 
 ViewSingleArticle.defaultProps = {
   location: {
     pathname: ''
-  },
-  match: {
-    params: ''
   }
 };
+
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps, mapDispatchToProps
 )(ViewSingleArticle);
