@@ -112,7 +112,10 @@ export class ViewSingleArticle extends Component {
                   .fromNow()}
               </span>
               {'  '}
-              <span className="heading__munite">{readTime}.</span>
+              <span className="heading__munite">
+                {readTime}
+.
+              </span>
               <span>
                 <div className="heading__avarageRating">
                   <AverageRating avarageRatings={averageRatings} />
