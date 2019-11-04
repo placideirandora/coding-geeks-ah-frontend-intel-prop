@@ -26,9 +26,14 @@ export class Navbar extends Component {
     this.closeMenu = this.closeMenu.bind(this);
   }
 
-  componentDidUpdate = () => {
+  componentDidMount() {
     this.currentUserProfile();
-  };
+  }
+
+  componentDidUpdate(prevProps) {
+    const loggingIn = prevProps.currentUser.isAuthenticated;
+    return loggingIn ? null : this.currentUserProfile();
+  }
 
   displayMenu = () => {
     this.setState({ showMenu: true }, () => {

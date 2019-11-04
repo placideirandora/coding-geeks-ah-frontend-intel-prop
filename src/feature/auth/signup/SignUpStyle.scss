@@ -1,184 +1,112 @@
-.heading {
-  margin-bottom: 3%;
-  text-align: center;
-
-  &__title {
-    font-size: 3rem;
-  }
-
-  &__link {
-    text-decoration: none;
-    color: #599bda;
-  }
-}
-.wrapper {
+.signup-main-wraper {
   width: 60%;
-  margin: 0 auto;
+  margin: auto;
+
+  &__heading {
+    text-align: center;
+
+    .sign-in-link {
+      text-decoration: none;
+      color: #599bda;
+    }
+  }
+
+  .signup-main-container {
+    display: flex;
+    margin-top: 40px;
+
+    &__form-body {
+      width: 55%;
+      border-right: #000000 solid;
+
+      .form-container {
+        width: 90%;
+        margin: auto;
+
+        .form-group {
+          width: 100%;
+          height: 60px;
+          margin-top: 10px;
+        }
+
+        .form-input {
+          width: 96%;
+          padding: 8px;
+          font-size: 15px;
+          border: none;
+          outline: none;
+          border-bottom: solid #e5e5e5;
+        }
+
+        .form-input::placeholder {
+          color: #000000;
+          letter-spacing: 1px;
+        }
+
+        .signup-btn {
+          margin: 3% 0 0 0;
+          padding: 9px;
+          color: #599bda;
+          border: 1px solid #599bda;
+          border-radius: 15px;
+          outline: none;
+          font-size: 15px;
+          width: 120px;
+          padding: 5px 30px;
+          background: #ffffff;
+          cursor: pointer;
+        }
+        .signup-btn:hover {
+          color: #ffffff;
+          border-color: #ffffff;
+          background: #599bda;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__social-container {
+      width: 45%;
+      padding-top: 120px;
+    }
+  }
 }
 
-.flex-container {
-  display: flex;
-  // width: 50%;
-
-  &__left-section {
-    flex-basis: 50%;
-    border-right: #000000 solid;
-    margin-left: 0%;
-    flex-grow: 1;
-  }
-
-  &__form {
-    margin: 0 0 0 0%;
-    flex-shrink: 1;
-  }
-
-  &__field {
-    padding: 10px;
-  }
-
-  &__input {
-    width: 85%;
-    padding: 8px;
-    font-size: 15px;
-    border: none;
-    outline: none;
-    border-bottom: solid #e5e5e5;
-  }
-
-  &__input::placeholder {
-    color: #000000;
-    letter-spacing: 1px;
-  }
-
-  &__button {
-    margin: 5% 0 0 5%;
-    padding: 9px;
-    color: #599bda;
-    border-color: #599bda;
-    border-radius: 15px;
-    outline: none;
-    font-size: 16px;
-    width: 25%;
-  }
-
-  &__button:hover {
-    cursor: pointer;
-  }
-
-  &__right-section {
-    flex-basis: 40%;
-    margin-top: 6%;
-    flex-shrink: 1;
-    flex-grow: 2;
-  }
-
-  &__social-btn {
-    width: 50%;
-    margin: 2% 0 1% 8%;
-    padding: 14px;
-    font-size: 16px;
-    outline: none;
-    color: #ffffff;
-    cursor: pointer;
+@media (min-width: 768px) and (max-width: 1024px) {
+  .signup-main-wraper {
+    width: 90%;
   }
 }
 
-/* 
-  ##Device = Tablets, Ipads (portrait)
-  ##Screen = B/w 768px to 1024px
-*/
+@media (max-width: 700px) {
+  .signup-main-wraper {
+    width: 90%;
+    margin: auto;
 
-@media (min-width: 767px) and (max-width: 1024px) {
-  .flex-container {
-    flex-flow: column;
-
-    &__input {
-      width: 75%;
-      padding: 8px;
+    &__heading {
+      text-align: center;
     }
 
-    &__button {
-      margin: 5% 0 0 3%;
-      font-size: 18px;
-      width: 15%;
-    }
+    .signup-main-container {
+      flex-wrap: wrap;
+      margin-top: 30px;
+      width: 100%;
 
-    &__left-section {
-      padding-bottom: 1%;
-      flex-basis: 50%;
-      border-right: none;
-    }
-    &__form {
-      margin-left: 8%;
-    }
+      &__form-body {
+        width: 100%;
+        border-right: none;
 
-    &__button {
-      margin-left: 2%;
-      font-size: 14px;
-    }
+        .form-container {
+          .form-group {
+            margin: 10px 0px;
+          }
+        }
+      }
 
-    &__right-section {
-      margin: 0px;
-      flex-basis: 23%;
-      margin-right: 25%;
-      margin-left: 15%;
-      margin-top: 0px;
+      &__social-container {
+        width: 100%;
+        padding-top: 20px;
+      }
     }
   }
-  .wrapper {
-    width: 70%;
-}
-}
-
-/* 
-  ##Device = Most of the Smartphones Mobiles (Portrait)
-  ##Screen = B/w 320px to 479px
-*/
-
-@media (min-width: 320px) and (max-width: 480px) {
-  .heading {
-    &__title {
-      font-size: calc(2rem + 6vw);
-    }
-  }
-
-  .flex-container {
-    flex-flow: column;
-
-    &__button {
-      margin: 5% 0 0 3%;
-      font-size: 18px;
-      width: 15%;
-    }
-
-    &__left-section {
-      padding-bottom: 1%;
-      flex-basis: 100%;
-      border-right: none;
-    }
-    &__form {
-      margin-left: 8%;
-    }
-
-    &__button {
-      margin-left: 2%;
-      font-size: 14px;
-      width: 33%;
-    }
-
-    &__right-section {
-      margin: 14% 0 0 7.5%;
-      flex-basis: 70%;
-      margin-bottom: 25%;
-      margin-top: 0px;
-    }
-    &__social-btn {
-      width: 65%;
-      margin: 0% 0 1% 9%;
-      font-size: 12px;
-    }
-  }
-  .wrapper {
-    width: 70%;
-}
 }
