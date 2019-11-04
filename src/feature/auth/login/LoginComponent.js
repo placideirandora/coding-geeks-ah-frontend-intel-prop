@@ -42,65 +42,62 @@ export class Login extends Component {
   render() {
     const { email, password } = this.state;
     return (
-      <section className="main-section-login">
-        <div className="row">
-          <div className="login-row">
-            <h1>Log In</h1>
-            <p>
-              New to Authors Haven?
-              {' '}
-              <span>
-                <a href="/signup" className="sign-up-link">
-                  Sign Up
-                </a>
-              </span>
-            </p>
-          </div>
-          <div className="main-login-row clearfix">
-            <div className="form-control col">
-              <form onSubmit={this.handleSubmit}>
-                <div className="field">
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      placeholder="Email"
-                      name="email"
-                      value={email}
-                      onChange={this.onChange}
-                      className="form-input"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                      value={password}
-                      onChange={this.onChange}
-                      className="form-input"
-                      required
-                    />
-                  </div>
-
-                  <div className="reset-control">
-                    <a href="/forgot" className="reset-link">
-                      Forgot Password?
-                    </a>
-                  </div>
-                  <br />
+      <div className="login-main-wraper">
+        <div className="login-main-wraper__heading">
+          <h1>Log In</h1>
+          <p>
+            New to Authors Haven? &nbsp;
+            <span>
+              <a href="/signup" className="sign-up-link">
+                Sign Up
+              </a>
+            </span>
+          </p>
+        </div>
+        <div className="login-main-container">
+          <div className="login-main-container__form-body">
+            <form onSubmit={this.handleSubmit} className="form-container">
+              <div className="form-group">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={email}
+                  onChange={this.onChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={this.onChange}
+                  className="form-input"
+                  required
+                />
+              </div>
+              <div className="login-botton-control">
+                <div className="login-btn-container">
                   <button type="submit" className="loginBtn">
                     Login
                   </button>
                 </div>
-              </form>
-            </div>
-            <div className="social-login-control col">
-              <Social />
-            </div>
+                <div className="reset-link-container">
+                  <a href="/forgot" className="reset-link">
+                    Forgot Password?
+                  </a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div className="login-main-container__social-container">
+            <Social />
           </div>
         </div>
-      </section>
+      </div>
     );
   }
 }
