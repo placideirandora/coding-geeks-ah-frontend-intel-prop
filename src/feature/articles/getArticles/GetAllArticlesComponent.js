@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -24,6 +23,8 @@ export class GetAllArticles extends Component {
   componentDidMount() {
     const { activePage } = this.state;
     this.props.getAllArticles(activePage);
+    const { getAllArticles } = this.props;
+    getAllArticles();
   }
 
   render() {
@@ -33,9 +34,9 @@ export class GetAllArticles extends Component {
         <div className="main--banner">
           <div className="main--banner__text">
             <h1 className="heading__3">
-              Authors 
-{' '}
-<br />
+              Authors
+              {' '}
+              <br />
               Haven
             </h1>
             <h3 className="heading__4">Create and Read Articles</h3>
@@ -119,9 +120,9 @@ export class GetAllArticles extends Component {
             ) : (
               <div className="article__error">
                 <h2>
-                  Sorry No Articles Found At The Moment. 
-{' '}
-<br />
+                  Sorry No Articles Found At The Moment.
+                  {' '}
+                  <br />
                   Please Create one or comeback later!!!
                 </h2>
               </div>

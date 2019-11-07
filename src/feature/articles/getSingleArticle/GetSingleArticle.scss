@@ -42,6 +42,9 @@
   &__right-item {
     float: right;
   }
+  .menu {
+    position: relative;
+  }
 }
 .body__article-body {
   figure {
@@ -110,6 +113,7 @@
     }
     &__menu {
       width: 20px;
+      position: relative;
     }
   }
   .share-buttons {

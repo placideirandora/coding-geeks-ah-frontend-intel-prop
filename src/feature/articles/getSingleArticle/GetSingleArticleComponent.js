@@ -1,3 +1,7 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable no-shadow */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, BrowserRouter } from 'react-router-dom';
@@ -14,15 +18,47 @@ import bookmark from '../../../app/common/images/bookmark.png';
 import ShareArticle from '../shareArticle/ShareArticleComponent';
 import FollowUnfollowComponent from '../../followUnfollow/FollowUnfollowComponent';
 import CommentCountComponent from '../../../app/common/CommentCount/CommentCountComponent';
+import ArticleMenuDropdown from '../../../app/common/articleMenu/ArticleDropdownMenu';
+import deleteArticle from '../deleteArticle/DeleteAction';
 import './GetSingleArticle.scss';
 
 export class ViewSingleArticle extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayMenu: false
+    };
+  }
+
   componentDidMount() {
-    const { GetSingleArticle } = this.props;
-    const { slug } = this.props.match.params;
+    const {
+      match: {
+        params: { slug }
+      },
+      GetSingleArticle
+    } = this.props;
     GetSingleArticle(slug);
     window.scrollTo(0, 0);
   }
+
+  componentDidUpdate() {
+    const { deleted } = this.props;
+    if (deleted) {
+      window.location.assign('/');
+    }
+  }
+
+  closeMenu = () => {
+    this.setState({ displayMenu: false }, () => {
+      document.removeEventListener('click', this.closeMenu);
+    });
+  };
+
+  displayMenu = () => {
+    this.setState({ displayMenu: true }, () => {
+      document.addEventListener('click', this.closeMenu);
+    });
+  };
 
   render() {
     const {
@@ -40,16 +76,18 @@ export class ViewSingleArticle extends Component {
         readTime,
         averageRatings,
         commentCount
-      }
-    } = this.props.article;
+      },
+      currentUser: { user }
+    } = this.props;
+    const username = localStorage.getItem('username');
     const { userName, image } = author;
-    const { user } = this.props.currentUser;
     const ownArticle = userName === user.username;
+    const { displayMenu } = this.state;
     return (
       <div className="wrapper">
         <div className="heading">
           <div className="heading__left">
-          <span>
+            <span>
               <div className="heading__follow">
                 <FollowUnfollowComponent
                   authorId={authorId}
@@ -84,13 +122,31 @@ export class ViewSingleArticle extends Component {
           </div>
           <div className="heading__right">
             <div className="heading__right-item">
-              <span className="bookmark">
-                {' '}
-                <img src={bookmark} className="heading__bookmark" alt="" />{' '}
-              </span>
-              <span className="menu">
-                <img src={ellipsis} className="heading__menu" alt=" " />
-              </span>
+              <div className="menu">
+                <span className="bookmark">
+                  <img src={bookmark} className="heading__bookmark" alt="" />
+                </span>
+                <span>
+                  {username === userName || !username ? (
+                    <img
+                      src={ellipsis}
+                      className="heading__menu"
+                      alt=" "
+                      onClick={this.displayMenu}
+                    />
+                  ) : (
+                    ''
+                  )}
+                </span>
+                {displayMenu ? (
+                  <ArticleMenuDropdown
+                    slug={slug}
+                    pathname={this.props.location.pathname}
+                  />
+                ) : (
+                  ''
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -157,12 +213,14 @@ export class ViewSingleArticle extends Component {
   }
 }
 const mapStateToProps = ({ getSingleArticle, login }) => ({
-  article: getSingleArticle,
+  article: getSingleArticle.article,
   currentUser: login,
-  isAuthenticated: login
+  isAuthenticated: login,
+  deleted: getSingleArticle.deleted
 });
 const mapDispatchToProps = {
-  GetSingleArticle
+  GetSingleArticle,
+  deleteArticle
 };
 
 ViewSingleArticle.defaultProps = {

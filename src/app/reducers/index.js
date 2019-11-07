@@ -22,5 +22,5 @@ export default combineReducers({
   getAllArticles,
   followAuthor: followReducer,
   getSingleArticle,
-  social: socialReducer,
+  social: socialReducer
 });
