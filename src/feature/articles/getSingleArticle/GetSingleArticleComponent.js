@@ -63,21 +63,19 @@ export class ViewSingleArticle extends Component {
   render() {
     const {
       article: {
-        article: {
-          author = {},
-          id,
-          authorId,
-          title,
-          description,
-          body,
-          slug,
-          likes,
-          dislikes,
-          createdAt,
-          readTime,
-          averageRatings,
-          commentCount
-        }
+        author = {},
+        id,
+        authorId,
+        title,
+        description,
+        body,
+        slug,
+        likes,
+        dislikes,
+        createdAt,
+        readTime,
+        averageRatings,
+        commentCount
       },
       currentUser: { user }
     } = this.props;
@@ -114,10 +112,7 @@ export class ViewSingleArticle extends Component {
                   .fromNow()}
               </span>
               {'  '}
-              <span className="heading__munite">
-                {readTime}
-.
-              </span>
+              <span className="heading__munite">{readTime}.</span>
               <span>
                 <div className="heading__avarageRating">
                   <AverageRating avarageRatings={averageRatings} />
@@ -218,7 +213,7 @@ export class ViewSingleArticle extends Component {
   }
 }
 const mapStateToProps = ({ getSingleArticle, login }) => ({
-  article: getSingleArticle,
+  article: getSingleArticle.article,
   currentUser: login,
   isAuthenticated: login,
   deleted: getSingleArticle.deleted
