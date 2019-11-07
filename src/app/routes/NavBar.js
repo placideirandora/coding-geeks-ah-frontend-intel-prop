@@ -93,7 +93,9 @@ export class Navbar extends Component {
           <div className="right">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/search">
+                  <i className="fa fa-search" title="search" />
+                </Link>
               </li>
               <li>
                 <Link to="/login">Login</Link>
@@ -107,7 +109,9 @@ export class Navbar extends Component {
           <div className="right" id="right">
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <Link to="/search">
+                  <i className="fa fa-search" />
+                </Link>
               </li>
               <div className="notification-dropdown">
                 <li className="img-list-item notification-container">
