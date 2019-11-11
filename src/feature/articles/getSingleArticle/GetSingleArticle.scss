@@ -1,5 +1,5 @@
 .wrapper {
-  width: 80%;
+  width: 60%;
   margin: 0 auto;
   margin-bottom: 2em !important;
   padding: 5px 30px;
@@ -8,6 +8,7 @@
 .heading {
   display: flex;
   flex-direction: row;
+  text-align: center;
   > div {
     width: 50%;
   }
@@ -40,6 +41,9 @@
   }
   &__right-item {
     float: right;
+  }
+  .menu {
+    position: relative;
   }
 }
 .body__article-body {
@@ -109,6 +113,7 @@
     }
     &__menu {
       width: 20px;
+      position: relative;
     }
   }
   .share-buttons {

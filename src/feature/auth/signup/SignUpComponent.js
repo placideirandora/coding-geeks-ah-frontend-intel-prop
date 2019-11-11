@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import registerUser from './SignUpAction';
-import SocialLogin from '../socialLogin/SocialComponent';
+import Social from '../socialLogin/SocialComponent';
 import './SignUpStyle.scss';
 
 class SignUp extends Component {
@@ -33,86 +33,88 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <div className="heading">
-          <h1 className="heading__title">Sign Up</h1>
-          <p className="heading__body">
+      <div className="signup-main-wraper">
+        <div className="signup-main-wraper__heading">
+          <h1>Sign Up</h1>
+          <p>
             Already have an account? &nbsp;
-            <a href="/login" className="heading__link">
-              Log In
-            </a>
+            <span>
+              <a href="/login" className="sign-in-link">
+                Log In
+              </a>
+            </span>
           </p>
         </div>
-        <div className="flex-container">
-          <div className="flex-container__left-section">
-            <form className="flex-container__form" onSubmit={this.handleSubmit}>
-              <div className="flex-container__field">
+        <div className="signup-main-container">
+          <div className="signup-main-container__form-body">
+            <form className="form-container" onSubmit={this.handleSubmit}>
+              <div className="form-group">
                 <input
                   type="text"
                   id="firstName"
                   placeholder="Firstname"
                   onChange={this.handleChange}
                   required
-                  className="flex-container__input"
+                  className="form-input"
                 />
               </div>
-              <div className="flex-container__field">
+              <div className="form-group">
                 <input
                   type="text"
                   id="lastName"
                   placeholder="Lastname"
                   required
                   onChange={this.handleChange}
-                  className="flex-container__input"
+                  className="form-input"
                 />
               </div>
-              <div className="flex-container__field">
+              <div className="form-group">
                 <input
                   type="text"
                   id="userName"
                   placeholder="Username"
                   required
                   onChange={this.handleChange}
-                  className="flex-container__input"
+                  className="form-input"
                 />
               </div>
-              <div className="flex-container__field">
+              <div className="form-group">
                 <input
                   type="email"
                   id="email"
                   placeholder="Email"
                   required
                   onChange={this.handleChange}
-                  className="flex-container__input"
+                  className="form-input"
                 />
               </div>
-              <div className="flex-container__field">
+              <div className="form-group">
                 <input
                   type="password"
                   id="password"
                   placeholder="Password"
                   required
                   onChange={this.handleChange}
-                  className="flex-container__input"
+                  className="form-input"
                 />
               </div>
-              <div className="flex-container__field">
+              <div className="form-group">
                 <input
                   type="password"
                   id="confirmPassword"
                   placeholder="Confirm Password"
                   required
                   onChange={this.handleChange}
-                  className="flex-container__input"
+                  className="form-input"
                 />
               </div>
-              <button type="submit" className="flex-container__button">
+              <button type="submit" className="signup-btn">
                 Sign Up
               </button>
             </form>
           </div>
-          <div className="flex-container__right-section">
-            <SocialLogin />
+          <div className="signup-main-container__social-container">
+            <Social />
           </div>
         </div>
       </div>

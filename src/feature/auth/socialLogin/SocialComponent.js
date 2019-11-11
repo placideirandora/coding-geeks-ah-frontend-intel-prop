@@ -16,50 +16,39 @@ export const SocialLogin = (props) => (
     <div className="social-login-div">
       <button
         type="button"
-        className="social-login-link social-btn"
+        className="social-btn btn-google"
         name="google"
         onClick={() => {
           const { social: redirectURL } = props;
           redirectURL(`${BACKEND_URL}/auth/google`);
         }}
       >
-        <img
-
-          className="social-login-img"
-          src="./images/login-with-google-icon-3.jpg"
-          alt="facebook"
-        />
+        <i className="fa fa-google icon" />
+        <span>Log in with Google</span>
       </button>
       <button
         type="button"
-        className="social-login-link social-btn"
+        className="social-btn btn-facebook"
         name="google"
         onClick={() => {
           const { social: redirectURL } = props;
           redirectURL(`${BACKEND_URL}/auth/facebook`);
         }}
       >
-        <img
-
-          className="social-login-img"
-          src="./images/login-with-facebook-icon.jpg"
-          alt="facebook"
-        />
+        <i className="fa fa-facebook icon" />
+        <span>Log in with Facebook</span>
       </button>
       <button
         type="button"
-        className="social-login-link social-btn"
+        className="social-btn btn-twitter"
         name="google"
         onClick={() => {
           const { social: redirectURL } = props;
           redirectURL(`${BACKEND_URL}/auth/twitter`);
         }}
       >
-        <img
-          className="social-login-img"
-          src="./images/twitter_login.png"
-          alt="facebook"
-        />
+        <i className="fa fa-twitter  icon" />
+        <span>Log in with Twitter</span>
       </button>
     </div>
   </>

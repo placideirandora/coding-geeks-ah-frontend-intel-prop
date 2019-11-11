@@ -24,7 +24,7 @@ export class Navbar extends Component {
       showMenu: false,
       showNotification: false,
       response: null,
-      endpoint: 'http://coding-geeks-frontend-staging.herokuapp.com/'
+      endpoint: 'https://www.coding-geeks-backnd-staging.herokuapp.com:5000/'
     };
     this.closeMenu = this.closeMenu.bind(this);
   }
@@ -49,7 +49,12 @@ export class Navbar extends Component {
 
   componentDidUpdate = () => {
     this.currentUserProfile();
-  };
+  }
+
+  componentDidUpdate(prevProps) {
+    const loggingIn = prevProps.currentUser.isAuthenticated;
+    return loggingIn ? null : this.currentUserProfile();
+  }
 
   displayMenu = () => {
     this.setState({ showMenu: true }, () => {
