@@ -61,7 +61,7 @@
 .status {
   display: flex;
   flex-wrap: wrap;
-  height: 50px;
+  margin-bottom: 2em;
 
   > div {
     width: 25%;
@@ -80,7 +80,6 @@
 
   > div {
     width: 50%;
-    text-align: center;
   }
   .share-buttons {
     .share-article {
