@@ -10,7 +10,7 @@ const store = appMockStore({});
 let storage;
 const token = 'Invalid token';
 
-describe('Update Article success', () => {
+describe('Update Article Actions', () => {
   beforeEach(() => {
     moxios.install(axios);
     storage = window.localStorage.setItem('token', token);
@@ -59,18 +59,6 @@ describe('Update Article success', () => {
       expect(store.getActions().length).toEqual(1);
     });
   });
-});
-
-describe('Update article fail', () => {
-  beforeEach(() => {
-    moxios.install(axios);
-    storage = window.localStorage.setItem('token', token);
-    window.localStorage = new LocalStorage();
-  });
-  afterEach(() => {
-    moxios.uninstall(axios);
-    store.clearActions();
-  });
 
   test('Should return UPDATE_ARTICLE_FAIL action', () => {
     moxios.wait(() => {
@@ -118,7 +106,8 @@ describe('Update article fail', () => {
     const mockArticles = {
       title: 'So I the last one standing',
       description: 'I knew that would happen soon but i kept it inside',
-      body: 'I knew that would happen soon but i kept it inside not to harm anyome'
+      body:
+        'I knew that would happen soon but i kept it inside not to harm anyome'
     };
     const expectedAction = [UPDATE_ARTICLE_FAIL];
     return store.dispatch(updateArticle(mockArticles)).then(() => {

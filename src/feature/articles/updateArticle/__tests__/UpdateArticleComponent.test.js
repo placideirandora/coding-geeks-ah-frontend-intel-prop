@@ -22,7 +22,7 @@ const renderUpdateArticle = args => {
   return shallow(<UpdateArticle {...props} />);
 };
 
-describe('Form inputs tests', () => {
+describe('Update Article Component Tests', () => {
   const wrapper = renderUpdateArticle();
   it('Should render a form inputs', () => {
     expect(wrapper.find('input').length).toBe(4);
@@ -34,9 +34,7 @@ describe('Form inputs tests', () => {
     const CKEditor = wrapper.find('.input__body');
     expect(CKEditor.length).toBe(1);
   });
-});
-describe('Inputs on change tests', () => {
-  const wrapper = renderUpdateArticle();
+
   it('Should insert into title field', () => {
     const title = wrapper.find('input[name="title"]');
     title.simulate('change', {
@@ -56,10 +54,7 @@ describe('Inputs on change tests', () => {
       `/articles/${wrapper.props.slug}`
     );
   });
-});
 
-describe('On submit tests', () => {
-  const wrapper = renderUpdateArticle();
   it('Should make post request to the server', () => {
     const button = wrapper.find('button');
     button.simulate('click', { preventDefault: jest.fn() });
