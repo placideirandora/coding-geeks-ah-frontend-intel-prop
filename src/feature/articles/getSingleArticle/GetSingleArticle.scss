@@ -51,8 +51,10 @@
 }
 .body__article-body {
   figure {
+    display: flex;
     img {
       max-width: 100%;
+      margin: 0 auto;
       height: auto;
       object-fit: contain;
     }

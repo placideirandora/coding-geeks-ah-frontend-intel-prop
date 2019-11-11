@@ -119,6 +119,7 @@ export class ViewSingleArticle extends Component {
         readTime,
         averageRatings,
         commentCount,
+        tagList
       },
       currentUser: { user },
       bookmarkLoading
@@ -250,7 +251,7 @@ export class ViewSingleArticle extends Component {
           </div>
           <div className="tags-share-container">
             <div className="tags">
-              <Tags />
+              <Tags tags={tagList} />
             </div>
             <div className="share-buttons">
               <ShareArticle />
