@@ -7,6 +7,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import openSocket from 'socket.io-client';
 import { retrieveProfile } from '../../feature/profile/view_profile/ViewProfileAction';
 import { login } from '../../feature/auth/login/LoginAction';
 import { social, authUser } from '../../feature/auth/socialLogin/SocialAction';
@@ -21,9 +22,29 @@ export class Navbar extends Component {
 
     this.state = {
       showMenu: false,
-      showNotification: false
+      showNotification: false,
+      response: null,
+      endpoint: 'http://coding-geeks-frontend-staging.herokuapp.com/'
     };
     this.closeMenu = this.closeMenu.bind(this);
+  }
+
+  componentDidMount() {
+    const { endpoint } = this.state;
+    const socket = openSocket(endpoint);
+    console.log(socket);
+    // socket.on('new_articles', data => this.setState({ response: data }));
+    const { currentUser } = this.props;
+    const { user } = currentUser;
+    const { username } = user;
+    socket.on('new_articles', data => {
+      // console.log(data);
+      if (data.message.ownerId !== username) {
+        this.setState({ response: data });
+      }
+    });
+    console.log('mounted!');
+    console.log(username);
   }
 
   componentDidUpdate = () => {
@@ -76,7 +97,7 @@ export class Navbar extends Component {
       success,
       profile: { profile }
     } = this.props;
-    const { showMenu, showNotification } = this.state;
+    const { showMenu, showNotification, response } = this.state;
     return (
       <nav className="nav-wrapper">
         <div className="logo-container">
@@ -116,7 +137,7 @@ export class Navbar extends Component {
                 </li>
                 {showNotification ? (
                   <div className="notification-content">
-                    <Notifications />
+                    <Notifications response={response} />
                   </div>
                 ) : (
                   ''

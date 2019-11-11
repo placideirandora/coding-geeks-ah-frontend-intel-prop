@@ -18,6 +18,10 @@ import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 toast.configure();
 function App() {
+  // // const socket = openSocket('https://codinggeeks-ah-backnd-staging.herokuapp.com:5000');
+  // const socket = openSocket('http://localhost:5000/');
+  // console.log(socket);
+  // socket.on('new_articles', data => console.log('new article published!', data));
   return (
     <div className="App">
       <BrowserRouter>

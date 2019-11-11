@@ -3,22 +3,21 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
 
-const NotificationDropDown = () => {
-  return (
+const NotificationDropDown = ({ response }) => {
+  // const { response } = props;
+  console.log(response);
+  return response ? (
     <div className="dropdown-notification">
       <ul>
-        <a href="/profile">
+        <a href={response.message.url}>
           <li>
-            Placide has published new article
-          </li>
-        </a>
-        <a href="/Create">
-          <li>
-            Raymond has published new article
+            { response.message.message }
           </li>
         </a>
       </ul>
     </div>
+  ) : (
+    <p> No new notification </p>
   );
 };
 
