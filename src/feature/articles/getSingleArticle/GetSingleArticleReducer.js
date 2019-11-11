@@ -6,12 +6,15 @@ import {
   GET_SINGLE_ARTICLE_SUCCESS,
   GET_SINGLE_ARTICLE_FAIL,
   DELETE_ARTICLE_SUCCESS,
-  DELETE_ARTICLE_FAIL
+  DELETE_ARTICLE_FAIL,
+  UPDATE_ARTICLE_SUCCESS,
+  UPDATE_ARTICLE_FAIL
 } from '../constants';
 
 export const initialState = {
   article: {},
-  deleted: false
+  deleted: false,
+  updated: false
 };
 
 export default (state = initialState, action) => {
@@ -29,12 +32,20 @@ export default (state = initialState, action) => {
         ...state,
         deleted: true
       };
+    case UPDATE_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        ...payload,
+        updated: true
+      };
     case LIKE_ARTICLE_FAIL:
     case DISLIKE_ARTICLE_FAIL:
     case GET_SINGLE_ARTICLE_FAIL:
       return { ...state, ...payload };
     case DELETE_ARTICLE_FAIL:
       return { ...state, deleted: false };
+    case UPDATE_ARTICLE_FAIL:
+      return { ...state, ...payload, updated: false };
     default:
       return {
         ...state

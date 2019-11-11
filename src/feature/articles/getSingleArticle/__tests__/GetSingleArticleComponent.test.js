@@ -35,6 +35,19 @@ describe('Get Single Article Components tests', () => {
     expect(wrapper.find('img').length).toBe(3);
     expect(window.scrollTo).toBeCalledWith(0, 0);
   });
+  it('should test eventListerner on menu display', () => {
+    const wrapper = renderViewSingleArticle();
+    const button = wrapper.find('.heading__menu');
+    button.simulate('click', {});
+    document.event({
+      name: 'click',
+      target: {
+        parentNode: { classList: { contains: jest.fn(() => false) } },
+        classList: { contains: jest.fn(() => false) }
+      }
+    });
+    expect(wrapper).toHaveLength(1);
+  });
 });
 
 describe('Reload after Delete article success ', () => {
