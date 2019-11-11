@@ -173,7 +173,7 @@ export class ViewSingleArticle extends Component {
             <div className="heading__right-item">
               <div className="menu">
                 <BookmarkComponent
-                  isAuthenticated={this.props.isAuthenticated}
+                  isAuthenticated={this.props.isAuthenticated.isAuthenticated}
                   loading={bookmarkLoading}
                   articleId={id}
                   bookmarks={bookmarks}

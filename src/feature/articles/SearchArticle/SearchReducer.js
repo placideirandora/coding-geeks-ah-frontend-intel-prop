@@ -4,7 +4,6 @@ import * as searchActionTypes from './SearchConstants';
 export const initialState = {
   articles: [],
   error: null,
-  loading: true
 };
 
 const Search = (state = initialState, action) => {
@@ -14,13 +13,12 @@ const Search = (state = initialState, action) => {
       return {
         ...state,
         ...payload,
-        loading: false
+        error: null,
       };
     case searchActionTypes.SEARCH_ERROR:
       return {
         articles: [],
         error: payload,
-        loading: false
       };
     default:
       return {

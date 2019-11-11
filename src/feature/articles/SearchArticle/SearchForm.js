@@ -34,6 +34,14 @@ export class SearchForm extends Component {
     });
   }
 
+  onSearch = event => {
+    event.preventDefault();
+    const { query, keyword } = this.state;
+    console.log(query);
+    const { searchAction } = this.props;
+    searchAction(query, keyword);
+  }
+
   render() {
     const { keyword, query } = this.state;
     return (

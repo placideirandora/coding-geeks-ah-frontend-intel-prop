@@ -15,7 +15,7 @@ export const searchError = error => ({
 export const search = (query, keyword) => async dispatch => {
   try {
     const response = await axios.get(
-      `${BACKEND_URL}/articles?${keyword}=${query}`
+      `${BACKEND_URL}/articles?${keyword}=${query}&limit=4`
     );
     const { data } = response;
     dispatch(searchSuccess(data));

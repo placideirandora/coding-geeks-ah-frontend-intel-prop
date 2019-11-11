@@ -13,6 +13,11 @@ export class SearchResult extends Component {
     };
   }
 
+  componentDidMount() {
+    const { results } = this.props;
+    this.setState({ articles: results.articles });
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       articles: nextProps.results.articles,

@@ -43,3 +43,21 @@ describe('Test Search Form...', () => {
     expect(wrapper.state('keyword')).toEqual('carlos');
   });
 });
+
+describe('Submit button test...', () => {
+  let instance;
+  let submitButton;
+  beforeAll(() => {
+    instance = wrapper.instance();
+    submitButton = wrapper.find('input[name="search"]');
+    submitButton.simulate('click').simulate('keyDown', { keyCode: 13 });
+  });
+  it('Should make a request to the server', () => {
+    instance.forceUpdate();
+    wrapper.update();
+    const event = {
+      preventDefault: jest.fn(),
+    };
+    instance.onSearch(event);
+  });
+});
