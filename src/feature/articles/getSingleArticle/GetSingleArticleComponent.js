@@ -29,6 +29,7 @@ import BookmarkComponent from '../../bookmark/BookmarkComponent';
 import {
   getBookmarks, bookmarking, unbookmark
 } from '../../bookmark/bookmarkAction';
+import Tags from '../displayTags/TagsComponent';
 import './GetSingleArticle.scss';
 
 export class ViewSingleArticle extends Component {
@@ -118,6 +119,7 @@ export class ViewSingleArticle extends Component {
         readTime,
         averageRatings,
         commentCount,
+        tagList
       },
       currentUser: { user },
       bookmarkLoading
@@ -248,8 +250,8 @@ export class ViewSingleArticle extends Component {
             </div>
           </div>
           <div className="tags-share-container">
-            <div>
-              <button type="button">Tags Carlos Tech Andela</button>
+            <div className="tags">
+              <Tags tags={tagList} />
             </div>
             <div className="share-buttons">
               <ShareArticle />
