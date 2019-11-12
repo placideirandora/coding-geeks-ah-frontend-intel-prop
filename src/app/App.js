@@ -14,14 +14,11 @@ import Profile from '../feature/profile/view_profile/ViewProfileComponent';
 import UpdateProfile from '../feature/profile/update_profile/UpdateProfileComponent';
 import ForgotPassword from '../feature/Reset Password/forgot password/ForgotPasswordComponent';
 import ResetPassword from '../feature/Reset Password/reset password/ResetPasswordComponent';
+import UpdateArticle from '../feature/articles/updateArticle/UpdateArticleComponent';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 toast.configure();
 function App() {
-  // // const socket = openSocket('https://codinggeeks-ah-backnd-staging.herokuapp.com:5000');
-  // const socket = openSocket('http://localhost:5000/');
-  // console.log(socket);
-  // socket.on('new_articles', data => console.log('new article published!', data));
   return (
     <div className="App">
       <BrowserRouter>
@@ -41,8 +38,9 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
             <Route path="/update-profile" component={UpdateProfile} />
-            <Route path="/articles/:slug" component={GetSingleArticle} />
+            <Route exact path="/articles/:slug" component={GetSingleArticle} />
             <ProtectedRoutes path="/create" component={CreateArticle} />
+            <ProtectedRoutes path="/article/:slug/update" component={UpdateArticle} />
           </section>
         </Switch>
       </BrowserRouter>

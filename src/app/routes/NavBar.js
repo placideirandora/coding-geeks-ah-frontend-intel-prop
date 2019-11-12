@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import openSocket from 'socket.io-client';
+import axios from 'axios';
 import { retrieveProfile } from '../../feature/profile/view_profile/ViewProfileAction';
 import { login } from '../../feature/auth/login/LoginAction';
 import { social, authUser } from '../../feature/auth/socialLogin/SocialAction';
@@ -15,6 +15,7 @@ import DropDown from './MenuDropDown';
 import Notifications from './NotificationDropDown';
 import DefaultAvatar from '../common/images/avatar.png';
 import NotificationAvatar from '../common/images/notification.png';
+import { async } from 'q';
 
 export class Navbar extends Component {
   constructor() {
@@ -22,32 +23,12 @@ export class Navbar extends Component {
 
     this.state = {
       showMenu: false,
-      showNotification: false,
-      response: null,
-      endpoint: 'https://www.coding-geeks-backnd-staging.herokuapp.com:5000/'
+      showNotification: false
     };
     this.closeMenu = this.closeMenu.bind(this);
   }
 
   componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = openSocket(endpoint);
-    console.log(socket);
-    // socket.on('new_articles', data => this.setState({ response: data }));
-    const { currentUser } = this.props;
-    const { user } = currentUser;
-    const { username } = user;
-    socket.on('new_articles', data => {
-      // console.log(data);
-      if (data.message.ownerId !== username) {
-        this.setState({ response: data });
-      }
-    });
-    console.log('mounted!');
-    console.log(username);
-  }
-
-  componentDidUpdate = () => {
     this.currentUserProfile();
   }
 
@@ -62,10 +43,23 @@ export class Navbar extends Component {
     });
   };
 
-  displayNotification = () => {
+  displayNotification = async () => {
     this.setState({ showNotification: true }, () => {
       document.addEventListener('click', this.closeMenu);
     });
+    console.log('notifications viewed');
+    try {
+      const token = localStorage.getItem('token');
+      const config = {
+        headers: {
+          authorization: token
+        }
+      };
+      const response = await axios.get('https://codinggeeks-ah-backnd-staging.herokuapp.com/api/v1/profiles/notifications/all', config);
+      console.log(response.data.data[0].message);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
   };
 
   currentUserProfile = () => {
@@ -102,7 +96,7 @@ export class Navbar extends Component {
       success,
       profile: { profile }
     } = this.props;
-    const { showMenu, showNotification, response } = this.state;
+    const { showMenu, showNotification } = this.state;
     return (
       <nav className="nav-wrapper">
         <div className="logo-container">
@@ -142,7 +136,7 @@ export class Navbar extends Component {
                 </li>
                 {showNotification ? (
                   <div className="notification-content">
-                    <Notifications response={response} />
+                    <Notifications />
                   </div>
                 ) : (
                   ''

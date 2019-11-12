@@ -8,8 +8,10 @@ import resetPasswordReducer from '../../feature/Reset Password/reset password/re
 import article from '../../feature/articles/createArticle/createArticleReducer';
 import getAllArticles from '../../feature/articles/getArticles/GetAllArticleReducer';
 import followReducer from '../../feature/followUnfollow/followUnfollowReducer';
-import getSingleArticle from '../../feature/articles/getSingleArticle/GetSingleArticleReducer';
+import commentReducer from '../../feature/comment/CommentReducer';
 import socialReducer from '../../feature/auth/socialLogin/SocialReducer';
+import bookmarkReducer from '../../feature/bookmark/bookmarkReducer';
+import getSingleArticle from '../../feature/articles/getSingleArticle/GetSingleArticleReducer';
 
 export default combineReducers({
   login: loginReducer,
@@ -22,5 +24,7 @@ export default combineReducers({
   getAllArticles,
   followAuthor: followReducer,
   getSingleArticle,
-  social: socialReducer
+  social: socialReducer,
+  comment: commentReducer,
+  bookmarking: bookmarkReducer
 });

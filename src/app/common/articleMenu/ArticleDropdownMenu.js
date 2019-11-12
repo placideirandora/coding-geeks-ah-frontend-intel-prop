@@ -36,10 +36,13 @@ export class ArticleDropdownMenu extends Component {
   };
 
   render() {
+    const { slug } = this.props;
     return (
       <div className="main-wrapper">
         <ul className="dropdown__menu">
-          <li>Update</li>
+          <a href={`/article/${slug}/update`}>
+            <li>Update</li>
+          </a>
           <li onClick={this.checkUser}>Delete</li>
         </ul>
       </div>
