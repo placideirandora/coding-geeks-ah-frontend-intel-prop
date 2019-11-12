@@ -38,7 +38,7 @@ function App() {
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component={Profile} />
             <Route path="/update-profile" component={UpdateProfile} />
-            <Route path="/articles/:slug" component={GetSingleArticle} />
+            <Route exact path="/articles/:slug" component={GetSingleArticle} />
             <ProtectedRoutes path="/create" component={CreateArticle} />
             <ProtectedRoutes path="/article/:slug/update" component={UpdateArticle} />
           </section>

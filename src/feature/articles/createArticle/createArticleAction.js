@@ -8,7 +8,9 @@ import setAxiosConfig from '../../../app/common/config/axiosConfig';
 config();
 
 const createArticle = (
-  { title, description, tags, category, body },
+  {
+    title, description, tags, category, body
+  },
   props
 ) => async dispatch => {
   const formData = {};

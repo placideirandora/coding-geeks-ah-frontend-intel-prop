@@ -5,14 +5,23 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
+            "type": "node",
+            "name": "vscode-jest-tests",
             "request": "launch",
-            "name": "Launch Chrome",
-            "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}/src/"
+            "args": [
+                "test",
+                "\"--",
+                "--coverage\"",
+                "--watchAll",
+                "--runInBand"
+            ],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "disableOptimisticBPs": true,
+            "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/react-scripts",
+            "protocol": "inspector"
         },
-        
-
         {
             "type": "node",
             "request": "launch",
