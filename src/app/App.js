@@ -15,6 +15,7 @@ import UpdateProfile from '../feature/profile/update_profile/UpdateProfileCompon
 import ForgotPassword from '../feature/Reset Password/forgot password/ForgotPasswordComponent';
 import ResetPassword from '../feature/Reset Password/reset password/ResetPasswordComponent';
 import UpdateArticle from '../feature/articles/updateArticle/UpdateArticleComponent';
+import Search from '../feature/articles/SearchArticle/SearchComponent';
 import '../../node_modules/font-awesome/css/font-awesome.min.css';
 
 toast.configure();
@@ -41,6 +42,7 @@ function App() {
             <Route exact path="/articles/:slug" component={GetSingleArticle} />
             <ProtectedRoutes path="/create" component={CreateArticle} />
             <ProtectedRoutes path="/article/:slug/update" component={UpdateArticle} />
+            <Route path="/search" component={Search} />
           </section>
         </Switch>
       </BrowserRouter>
