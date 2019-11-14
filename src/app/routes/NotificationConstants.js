@@ -1,0 +1,3 @@
+/* eslint-disable import/prefer-default-export */
+export const RETRIEVE_NOTIFICATIONS_SUCCESS = 'RETRIEVE_NOTIFICATIONS_SUCCESS';
+export const RETRIEVE_NOTIFICATIONS_ERROR = 'RETRIEVE_NOTIFICATIONS_ERROR';

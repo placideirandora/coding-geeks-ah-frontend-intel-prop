@@ -13,6 +13,7 @@ import socialReducer from '../../feature/auth/socialLogin/SocialReducer';
 import bookmarkReducer from '../../feature/bookmark/bookmarkReducer';
 import getSingleArticle from '../../feature/articles/getSingleArticle/GetSingleArticleReducer';
 import searchResult from '../../feature/articles/SearchArticle/SearchReducer';
+import NotificationReducer from '../routes/NotificationReducer';
 
 export default combineReducers({
   login: loginReducer,
@@ -28,5 +29,6 @@ export default combineReducers({
   social: socialReducer,
   comment: commentReducer,
   bookmarking: bookmarkReducer,
-  searchResult
+  searchResult,
+  notifications: NotificationReducer
 });

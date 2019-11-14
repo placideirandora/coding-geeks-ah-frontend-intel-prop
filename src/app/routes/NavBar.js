@@ -7,7 +7,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { retrieveProfile } from '../../feature/profile/view_profile/ViewProfileAction';
 import { login } from '../../feature/auth/login/LoginAction';
 import { social, authUser } from '../../feature/auth/socialLogin/SocialAction';
@@ -15,7 +14,8 @@ import DropDown from './MenuDropDown';
 import Notifications from './NotificationDropDown';
 import DefaultAvatar from '../common/images/avatar.png';
 import NotificationAvatar from '../common/images/notification.png';
-import { async } from 'q';
+import { retrieveNotifications, readNotification } from './NotificationAction';
+
 
 export class Navbar extends Component {
   constructor() {
@@ -23,13 +23,20 @@ export class Navbar extends Component {
 
     this.state = {
       showMenu: false,
-      showNotification: false
+      showNotification: false,
     };
     this.closeMenu = this.closeMenu.bind(this);
   }
 
   componentDidMount() {
     this.currentUserProfile();
+    // const token = localStorage.getItem('token');
+    const { retrieveNotifications } = this.props;
+
+    setTimeout(() => {
+      // if (token) retrieveNotifications(token);
+      retrieveNotifications();
+    }, 1000);
   }
 
   componentDidUpdate(prevProps) {
@@ -47,19 +54,6 @@ export class Navbar extends Component {
     this.setState({ showNotification: true }, () => {
       document.addEventListener('click', this.closeMenu);
     });
-    console.log('notifications viewed');
-    try {
-      const token = localStorage.getItem('token');
-      const config = {
-        headers: {
-          authorization: token
-        }
-      };
-      const response = await axios.get('https://codinggeeks-ah-backnd-staging.herokuapp.com/api/v1/profiles/notifications/all', config);
-      console.log(response.data.data[0].message);
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
   };
 
   currentUserProfile = () => {
@@ -94,9 +88,13 @@ export class Navbar extends Component {
     const {
       currentUser: { isAuthenticated },
       success,
-      profile: { profile }
+      profile: { profile },
+      notifications,
+      readNotification
     } = this.props;
+
     const { showMenu, showNotification } = this.state;
+
     return (
       <nav className="nav-wrapper">
         <div className="logo-container">
@@ -130,7 +128,7 @@ export class Navbar extends Component {
               </li>
               <div className="notification-dropdown">
                 <li className="img-list-item notification-container">
-                  <span className="notification-counter">10</span>
+                  <span className="notification-counter">{ notifications.length }</span>
                   <img
                     src={NotificationAvatar}
                     className="right__img nav-user-notification"
@@ -140,7 +138,7 @@ export class Navbar extends Component {
                 </li>
                 {showNotification ? (
                   <div className="notification-content">
-                    <Notifications />
+                    <Notifications notifications={notifications} readNotification={readNotification} />
                   </div>
                 ) : (
                   ''
@@ -180,14 +178,17 @@ export class Navbar extends Component {
 const mapStateToProps = state => ({
   currentUser: state.login,
   success: state.social.success,
-  profile: state.profile
+  profile: state.profile,
+  notifications: state.notifications.notifications
 });
 
 const mapDispatchToProps = {
   login,
   social,
   authUser,
-  retrieveProfile
+  retrieveProfile,
+  retrieveNotifications,
+  readNotification
 };
 
 export default connect(

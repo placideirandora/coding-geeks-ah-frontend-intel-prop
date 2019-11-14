@@ -3,7 +3,7 @@ const setAxiosConfig = () => {
   const axiosConfig = {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: getToken()
+      authorization: getToken()
     }
   };
   return axiosConfig;
